@@ -30,6 +30,8 @@ Use SSH instead of HTTP links by replacing `https://github.com/CSU-CS414-SP2018/
 ## Commit Changes
 If directly work on the master branch, each time before committing anything, use `git pull` to get newest update code. Then use `git add .` to add all the changes made, and use `git commit -m "some commit message"` Last use `git push` to push the code to master branch.
 
+For the first time push/pull request, use `git push --set-upstream origin branch_name` instead of `git push` to set up an origin..
+
 If working on a different branch, first `git branch "some branch name"` to create a new branch. The `git pull` command is still done on master branch, but later need to `git checkout "some branch name"` to checkout to the own branch, then use `git merge master` to get the newest update from master branch. Once done coding, use the same command as on the master branch, but need to go to the GitHub website and create pull request(at least that was how we did it in other class).
 
 __NEVER WORK ON MASTER BRANCH DIRECTLY!!__
