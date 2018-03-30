@@ -14,6 +14,7 @@ You should be able to clone the project into current directory.
 In this case, the URL should be set as remote directory by default. If by any chance that the default directory is not the project link or has not yet been set, type code in terminal:
 ```
 git remote add origin https://github.com/CSU-CS414-SP2018/T11
+git branch --set-upstream-to=origin
 ```
 
 In order to cache in password, you can use code:
