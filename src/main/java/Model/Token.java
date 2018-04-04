@@ -1,3 +1,5 @@
 package Model;
 
-public class Token{}
+public class Token{
+    private int position;
+}
