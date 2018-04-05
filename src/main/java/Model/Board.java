@@ -40,6 +40,18 @@ public class Board {
 		//TODO
 	}
 	
+	/*moves the player to the new position
+	 * and calls square.perform(Player) on the square at index=newPosition
+	 * */
+	public void move(Player player, int newPosition){
+		//TODO
+	}
+	
+	/*rolls the dice ONCE and returns a random number between 1 and 6*/
+	public int roll(){
+		return dice.roll();
+	}
+	
 	// 	MAIN METHOD
 	public static void main(String[] args){
 		Corner c = new Corner(0,0);
