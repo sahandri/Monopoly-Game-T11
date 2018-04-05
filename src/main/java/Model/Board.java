@@ -51,10 +51,4 @@ public class Board {
 	public int roll(){
 		return dice.roll();
 	}
-	
-	// 	MAIN METHOD
-	public static void main(String[] args){
-		Corner c = new Corner(0,0);
-		System.out.println(c.toString());
-	}
 }
