@@ -8,7 +8,7 @@ public class Player {
     /**
       * constructor that takes integer ID as argument
     */
-    public Player(int id, Token tok){
+    public Player(int id){
         this.id = id;
     }
 
