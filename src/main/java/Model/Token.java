@@ -14,6 +14,10 @@ public class Token{
     public void move(int newPosition){
     		this.position = newPosition;
     }
+    
+    public int getPosition(){
+    		return this.position;
+    }
 
     public String getName() {
         return Name;
