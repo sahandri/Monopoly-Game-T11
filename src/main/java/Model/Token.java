@@ -3,7 +3,8 @@ package Model;
 public class Token{
     private String Name;    //represents to the correspond img file name
     private int position =0;
-
+    private boolean jailed = false;
+    
 //    The img file name is set at the beginning of the game, passed by user choice or randomly
 //    selected if user does not choose token
     public void setName(String name) {
@@ -21,5 +22,9 @@ public class Token{
 
     public String getName() {
         return Name;
+    }
+    
+    public boolean inJail(){
+    		return jailed;
     }
 }
