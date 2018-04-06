@@ -1,6 +1,6 @@
 package Model;
 
-/**“INCOME TAX”… If you land here you have two options: You may
+/**ï¿½INCOME TAXï¿½ï¿½ If you land here you have two options: You may
 estimate your tax at $200 and pay the Bank, or you may pay 10% of
 your total worth to the Bank. Your total worth is all your cash on
 hand, printed prices of mortgaged and unmortgaged properties and

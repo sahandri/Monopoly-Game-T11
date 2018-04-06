@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bfb4e90c-24b0-46fa-8281-c6109c2a3007" name="Default" comment="" />
+    <list default="true" id="bfb4e90c-24b0-46fa-8281-c6109c2a3007" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Money.java" afterPath="$PROJECT_DIR$/src/main/java/Model/Money.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Tax.java" afterPath="$PROJECT_DIR$/src/main/java/Model/Tax.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -42,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/Player.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
-              <caret line="7" column="15" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+              <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
               <folding>
                 <element signature="e#117#118#0" expanded="true" />
                 <element signature="e#145#146#0" expanded="true" />
@@ -55,11 +59,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Tax.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Model/Tax.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Money.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/Money.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+            <state relative-caret-position="0">
+              <caret line="0" column="14" lean-forward="true" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
               <folding>
                 <element signature="e#71#72#0" expanded="true" />
                 <element signature="e#101#102#0" expanded="true" />
@@ -69,6 +83,8 @@
                 <element signature="e#238#239#0" expanded="true" />
                 <element signature="e#282#283#0" expanded="true" />
                 <element signature="e#317#318#0" expanded="true" />
+                <element signature="e#346#347#0" expanded="true" />
+                <element signature="e#374#375#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -120,8 +136,9 @@
         <option value="$PROJECT_DIR$/src/main/java/Model/Square.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/Card.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/Monopoly.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Model/Money.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/Player.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/Money.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/Tax.java" />
       </list>
     </option>
   </component>
@@ -338,12 +355,12 @@
       <workItem from="1522414191062" duration="8223000" />
       <workItem from="1522541136657" duration="2099000" />
       <workItem from="1522634959761" duration="1877000" />
-      <workItem from="1522708718024" duration="11718000" />
+      <workItem from="1522708718024" duration="12638000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23917000" />
+    <option name="totallyTimeSpent" value="24837000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="75" y="60" width="1537" height="912" extended-state="6" />
@@ -593,10 +610,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+          <folding>
+            <element signature="e#117#118#0" expanded="true" />
+            <element signature="e#145#146#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/Money.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+        <state relative-caret-position="0">
+          <caret line="0" column="14" lean-forward="true" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
           <folding>
             <element signature="e#71#72#0" expanded="true" />
             <element signature="e#101#102#0" expanded="true" />
@@ -606,18 +634,17 @@
             <element signature="e#238#239#0" expanded="true" />
             <element signature="e#282#283#0" expanded="true" />
             <element signature="e#317#318#0" expanded="true" />
+            <element signature="e#346#347#0" expanded="true" />
+            <element signature="e#374#375#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/Tax.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="15" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
-          <folding>
-            <element signature="e#117#118#0" expanded="true" />
-            <element signature="e#145#146#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="162">
+          <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>

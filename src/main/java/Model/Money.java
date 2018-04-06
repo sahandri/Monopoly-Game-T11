@@ -18,4 +18,8 @@ public class Money {
     public void sbustractMoney(int money){
         this.money -= money;
     }
+
+    public int getMoney() {
+        return money;
+    }
 }
