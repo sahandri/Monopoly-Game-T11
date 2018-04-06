@@ -1,14 +1,22 @@
 package Model;
 
 public class Token{
-    // As each player owns a token, I don't think that position is necessary for token
-//    The Name represents to the correspond img file name
-    private String Name;
+    private String Name;    //represents to the correspond img file name
+    private int position =0;
 
 //    The img file name is set at the beginning of the game, passed by user choice or randomly
 //    selected if user does not choose token
     public void setName(String name) {
         Name = name;
+    }
+    
+    /* this method is called when the token is moved and it updates the token position on the board*/
+    public void move(int newPosition){
+    		this.position = newPosition;
+    }
+    
+    public int getPosition(){
+    		return this.position;
     }
 
     public String getName() {

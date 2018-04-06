@@ -21,4 +21,6 @@ abstract class Square{
     public int getPosition() {
         return position;
     }
+    
+    public abstract void perform(Player player);
 }
