@@ -9,5 +9,17 @@
     <packaging>jar</packaging>
     <version>4.2.0-SNAPSHOT</version>
     <url>https://github.com/CSU-CS414-SP2018/T11</url>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+    </dependencies>
 
 </project>

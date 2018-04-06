@@ -1,9 +1,10 @@
 /**
  * The Monopoly game-board consists twenty-two streets (grouped into eight color groups)
+ * Twenty-two streets, divided into eight color groups of two or three streets;
+ * a player must own all of a color group in order to build houses or hotels.
+ * Once achieved, color group properties must be improved or "broken down" evenly.
  */
 package Model;
-
-import java.rmi.UnexpectedException;
 
 public class Street extends Square{
 
@@ -16,13 +17,14 @@ public class Street extends Square{
 	public Street(int price, int position) {
 		super(price, position);
 		try {
-            initialize(position);
+            setColor(position);
         }catch(IllegalArgumentException e){
 		    System.err.println("invalid position"+e.getMessage());
 		}
 	}
 
-	public void initialize(int position) {
+	//a helper method to initialize the streets with their group colors
+	public void setColor(int position) {
         switch(position) {
             case 1:
             case 3:
@@ -62,20 +64,18 @@ public class Street extends Square{
             case 39:
                 color = colors.DARK_BLUE;
                 break;
-            default:
+            default:// throw error if wrong position is specified
                 throw new IllegalArgumentException("Unknown position");
         }
     }
 
-	public colors getType(){
+    //returns the group color of the street
+	public colors getColor(){
         return color;
     }
 
 	@Override
 	public void perform(Player player) {
 		// TODO 
-	}
-	public static void main(String[] args){
-		System.out.println("hello");
 	}
 }
