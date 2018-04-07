@@ -18,7 +18,13 @@ public class Railroad extends Square{
 
 	@Override
 	public void perform(Player player, Board board) {
-		// TODO Auto-generated method stub
+		if(board.getPropertyOwner(this.getPosition())==player){
+			//player collects rent
+		}else if(player.getDecision()){
+			//player pays rent
+		}else{
+			
+		}
 		
 	}
 
