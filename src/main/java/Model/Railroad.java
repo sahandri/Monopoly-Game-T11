@@ -17,7 +17,7 @@ public class Railroad extends Square{
 
 
 	@Override
-	public void perform(Player player) {
+	public void perform(Player player, Board board) {
 		// TODO Auto-generated method stub
 		
 	}

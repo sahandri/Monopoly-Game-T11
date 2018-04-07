@@ -20,7 +20,7 @@ public class Tax extends Square{
 		// TODO Auto-generated constructor stub
 	}
 
-	public void perform(Player player) {
+	public void perform(Player player, Board board) {
 
 	}
 
