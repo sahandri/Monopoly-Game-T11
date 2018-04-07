@@ -31,4 +31,8 @@ public class Token{
     public void imprison(){
         this.jailed = true;
     }
+    
+    public void release(){
+        this.jailed = false;
+    }
 }
