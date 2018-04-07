@@ -140,4 +140,8 @@ public class Board {
 	public Token getToken(Player player){
 		return players.get(player);
 	}
+	
+	public void createDeed(Player player, Square property){
+		//TODO
+	}
 }
