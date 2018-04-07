@@ -25,6 +25,10 @@ public class Token{
     }
     
     public boolean inJail(){
-    		return jailed;
+    	return jailed;
+    }
+    
+    public void imprison(){
+        this.jailed = true;
     }
 }
