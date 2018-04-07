@@ -141,7 +141,13 @@ public class Board {
 		return players.get(player);
 	}
 	
-	public void createDeed(Player player, Square property){
-		//TODO
+	/*creates a deed and maps it to the player who purchased the property*/
+	public void purchaseProperty(Player player, int propertyPosition){
+		deeds.put(propertyPosition, player);
+	}
+	
+	/*returns the player who owns the property at the given position */
+	public Player getPropertyOwner(int position){
+		return deeds.get(position);
 	}
 }
