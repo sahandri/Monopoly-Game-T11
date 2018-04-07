@@ -13,7 +13,7 @@ public class Utilities extends Square {
         super(price, position);
     }
 
-    public void perform(Player player) {
+    public void perform(Player player, Board board) {
 
     }
 }
