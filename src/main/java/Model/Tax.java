@@ -42,7 +42,7 @@ public class Tax extends Square{
 		switch(this.type){
 			case INCOME_TAX:
 				// Pay 200 or 10 percent of total worth.
-				if(player.decision == true){
+				if(player.decision){
 					// Pay 200
 				}
 				else{
@@ -51,7 +51,7 @@ public class Tax extends Square{
 				break;
 			case LUXURY_TAX:
 				// Pay 100 or 10 percent of total worth.
-				if(player.decision == true){
+				if(player.decision){
 					// Pay 100
 				}
 				else{
