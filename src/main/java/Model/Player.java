@@ -4,8 +4,9 @@ public class Player {
 	private String name;
     private int id;
     private Money money;
-	/** The variable decision is a boolean value the player can set whenever a simple choice must be made, such as to pay the whole tax or 10% of total worth, to buy a property or not, etc. **/
-	private boolean decision;
+	/** The variable decision is a boolean value the player can set whenever a simple choice must be made,
+	 * such as to pay the whole tax or 10% of total worth, to buy a property or not, etc. **/
+	boolean decision;
 	
     
     /**
