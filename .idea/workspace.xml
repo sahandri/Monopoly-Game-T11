@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bfb4e90c-24b0-46fa-8281-c6109c2a3007" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Board.java" afterPath="$PROJECT_DIR$/src/main/java/Model/Board.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Corner.java" afterPath="$PROJECT_DIR$/src/main/java/Model/Corner.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Player.java" afterPath="$PROJECT_DIR$/src/main/java/Model/Player.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Railroad.java" afterPath="$PROJECT_DIR$/src/main/java/Model/Railroad.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Square.java" afterPath="$PROJECT_DIR$/src/main/java/Model/Square.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Street.java" afterPath="$PROJECT_DIR$/src/main/java/Model/Street.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/Tax.java" afterPath="$PROJECT_DIR$/src/main/java/Model/Tax.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Token.java" afterPath="$PROJECT_DIR$/src/main/java/Model/Token.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Utilities.java" afterPath="$PROJECT_DIR$/src/main/java/Model/Utilities.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,8 +37,8 @@
       <file leaf-file-name="Tax.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/Tax.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="36">
+              <caret line="2" column="60" lean-forward="false" selection-start-line="2" selection-start-column="60" selection-end-line="2" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -378,12 +370,12 @@
       <workItem from="1522634959761" duration="1877000" />
       <workItem from="1522708718024" duration="13640000" />
       <workItem from="1522996219997" duration="1090000" />
-      <workItem from="1523027914663" duration="616000" />
+      <workItem from="1523027914663" duration="631000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27545000" />
+    <option name="totallyTimeSpent" value="27560000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1537" height="912" extended-state="6" />
@@ -822,8 +814,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/Tax.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="36">
+          <caret line="2" column="60" lean-forward="false" selection-start-line="2" selection-start-column="60" selection-end-line="2" selection-end-column="60" />
           <folding />
         </state>
       </provider>
