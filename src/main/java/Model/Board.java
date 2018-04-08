@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Board {
-	public Square[] squares;				//stores the 40 squares on the board	
-	public Map<Player, Token> players;	//stores the players and the token associated with it
-	public Map<Integer,Player> deeds;	//map to keep track of deeds: < position_of_property, player >
-	public Dice dice;					//dice
+	private Square[] squares;				//stores the 40 squares on the board
+	private Map<Player, Token> players;	//stores the players and the token associated with it
+	private Map<Integer,Player> deeds;	//map to keep track of deeds: < position_of_property, player >
+	private Dice dice;					//dice
 	
 	/*constructor*/
 	public Board(){
