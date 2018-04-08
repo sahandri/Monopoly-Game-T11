@@ -111,23 +111,43 @@ public class Board {
 		squares[39] = boardwalk;
 	}
 	
-	/*add a player to the game by creating a new player object 
+	/* returns a player object and adds that player to the game
 	 * with ID equal to the variable id passed as argument
 	 * and sets the position for the token of the new player to START;
 	 * */
-	public void addPlayer(int id, Token tok){
-		//TODO
+	public Player addPlayer(int id, Token tok){
+		tok.move(0);								//set token position to start
+		Player player = new Player(id);			//create a new player with given id
+		players.put(player, tok);				//add the player to the game and map it to the token.
+		
+		return player;
 	}
 	
 	/*moves the player to the new position
 	 * and calls square.perform(Player) on the square at index=newPosition
 	 * */
 	public void move(Player player, int newPosition){
-		//TODO
+		players.get(player).move(newPosition);		//change position of the player's token
+		squares[newPosition].perform(player, this);		//perform the instructions the new square position
 	}
 	
 	/*rolls the dice ONCE and returns a random number between 1 and 6*/
 	public int roll(){
 		return dice.roll();
+	}
+	
+	/* returns the token of the player passed as argument*/
+	public Token getToken(Player player){
+		return players.get(player);
+	}
+	
+	/*creates a deed and maps it to the player who purchased the property*/
+	public void purchaseProperty(Player player, int propertyPosition){
+		deeds.put(propertyPosition, player);
+	}
+	
+	/*returns the player who owns the property at the given position */
+	public Player getPropertyOwner(int position){
+		return deeds.get(position);
 	}
 }

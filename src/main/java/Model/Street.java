@@ -75,7 +75,23 @@ public class Street extends Square{
     }
 
 	@Override
-	public void perform(Player player) {
-		// TODO 
+	public void perform(Player player, Board board) {
+	    if(player.getDecision()) {
+	        //player pays price
+        }
 	}
+
+    public String toString(){
+        switch(this.color){
+            case BROWN: return "Brown";
+            case LIGHT_BLUE: return "Light Blue";
+            case PINK: return "Pink";
+            case ORANGE: return "Orange";
+            case RED: return "Red";
+            case YELLOW: return "Yellow";
+            case GREEN: return "Green";
+            case DARK_BLUE: return "Dark Blue";
+            default: return "Type not defined.";
+        }
+    }
 }
