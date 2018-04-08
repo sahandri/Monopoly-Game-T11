@@ -8,11 +8,11 @@ package Model;
 
 public class Railroad extends Square{
 
-	private String owner;
+	private int owner;
 
 	public Railroad(int price, int position) {
 		super(price, position);
-		owner = "";
+		owner = 0;
 		if(!(position ==5 || position ==15 ||
 				position ==25 || position ==35)){
 			throw new IllegalArgumentException("Unknown position");
@@ -33,16 +33,16 @@ public class Railroad extends Square{
 	//sets property owner and collects money from player
 	//returns true if nobody ownes the property
 	public boolean setOwner(Player player){
-		if(owner==""){ // if nobody owes the railroad
+		if(owner==0){ // if nobody owes the railroad
 			//player pays $200 and buy the property
-			owner = player.getName();
+			owner = player.getID();
 			return true; //property successfully sold
 		}
 		return false; //the property is owned by somebody else and can't sell property
 	}
 
 	//returns the owner of railroad
-	public String getOwner(){
+	public int getOwner(){
 		return owner;
 	}
 
