@@ -14,9 +14,11 @@ public class Street extends Square{
 
     private colors color;
     private int ID; //every color group has and ID
+    private int owner;
 
 	public Street(int price, int position) {
 		super(price, position);
+		owner = -1;
 		try {
             setColor(position);
         }catch(IllegalArgumentException e){
@@ -30,43 +32,43 @@ public class Street extends Square{
             case 1:
             case 3:
                 color = colors.BROWN;
-                ID = 1;
+                ID = 0;
                 break;
             case 6:
             case 8:
             case 9:
                 color = colors.LIGHT_BLUE;
-                ID = 2;
+                ID = 1;
                 break;
             case 11:
             case 13:
             case 14:
                 color = colors.PINK;
-                ID = 3;
+                ID = 2;
                 break;
             case 16:
             case 18:
             case 19:
                 color = colors.ORANGE;
-                ID = 4;
+                ID = 3;
                 break;
             case 21:
             case 23:
             case 24:
                 color = colors.RED;
-                ID = 5;
+                ID = 4;
                 break;
             case 26:
             case 27:
             case 29:
                 color = colors.YELLOW;
-                ID = 6;
+                ID = 5;
                 break;
             case 31:
             case 32:
             case 34:
                 color = colors.GREEN;
-                ID = 7;
+                ID = 6;
                 break;
             case 37:
             case 39:
@@ -90,10 +92,24 @@ public class Street extends Square{
 
 	@Override
 	public void perform(Player player, Board board) {
-	    if(player.getDecision()) {
-	        //player pays price
+	    if(owner == -1 && player.getDecision()){ // if nobody owns the street and player wants to buy it
+            //player pays price and buy the property
+            player.getMoney().sbustractMoney(this.getPrice());
+            setOwner(player);
+        }else if(owner == -1 && owner!=player.getID()){ //if street owns by somebody else
+	        //player pays rent
         }
 	}
+
+    //sets property owner
+    private void setOwner(Player player){
+	    owner = player.getID();
+	}
+
+    //returns owner of the street
+    public int getOwner(){
+	    return owner;
+    }
 
     public String toString(){
         switch(this.color){
@@ -108,7 +124,7 @@ public class Street extends Square{
             default: return "Type not defined.";
         }
     }
-
+/*
     public static void main(String[] args){
 	    Board board = new Board();
 	    int[][] street = board.getStreet();
@@ -120,4 +136,5 @@ public class Street extends Square{
             System.out.println();
         }
     }
+    */
 }
