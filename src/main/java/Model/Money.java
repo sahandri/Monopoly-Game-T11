@@ -7,7 +7,7 @@ public class Money {
         this.money = 0;
     }
 
-    public Money(int money){
+    Money(int money){
         this.money = money;
     }
 
