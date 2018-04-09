@@ -8,6 +8,10 @@ public class ChanceCard extends Card{
 	}
 
 	@Override
+	public void perform(Player player, Board board) {
+
+	}
+
 	public void perform(Player player) {
 		// TODO Auto-generated method stub
 		
