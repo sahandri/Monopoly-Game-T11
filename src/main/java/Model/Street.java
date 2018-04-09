@@ -13,6 +13,7 @@ public class Street extends Square{
                         YELLOW, GREEN, DARK_BLUE}
 
     private colors color;
+    private int ID; //every color group has and ID
 
 	public Street(int price, int position) {
 		super(price, position);
@@ -29,40 +30,48 @@ public class Street extends Square{
             case 1:
             case 3:
                 color = colors.BROWN;
+                ID = 1;
                 break;
             case 6:
             case 8:
             case 9:
                 color = colors.LIGHT_BLUE;
+                ID = 2;
                 break;
             case 11:
             case 13:
             case 14:
                 color = colors.PINK;
+                ID = 3;
                 break;
             case 16:
             case 18:
             case 19:
                 color = colors.ORANGE;
+                ID = 4;
                 break;
             case 21:
             case 23:
             case 24:
                 color = colors.RED;
+                ID = 5;
                 break;
             case 26:
             case 27:
             case 29:
                 color = colors.YELLOW;
+                ID = 6;
                 break;
             case 31:
             case 32:
             case 34:
                 color = colors.GREEN;
+                ID = 7;
                 break;
             case 37:
             case 39:
                 color = colors.DARK_BLUE;
+                ID = 7;
                 break;
             default:// throw error if wrong position is specified
                 throw new IllegalArgumentException("Unknown position");
@@ -72,6 +81,11 @@ public class Street extends Square{
     //returns the group color of the street
 	public colors getColor(){
         return color;
+    }
+
+    //returns the group ID of the street
+    public int getID(){
+        return ID;
     }
 
 	@Override

@@ -8,6 +8,7 @@ public class Board {
 	private Map<Player, Token> players;	//stores the players and the token associated with it
 	private Map<Integer,Player> deeds;	//map to keep track of deeds: < position_of_property, player >
 	private Dice dice;					//dice
+	private int[][] street;           //contains position and color group ID of each street
 	
 	/*constructor*/
 	public Board(){
@@ -15,6 +16,7 @@ public class Board {
 		players = new HashMap<>();	//Stores the players and their token
 		deeds = new HashMap<>();		/*add to it using deeds.put(position,Player);		retrieve from it using deeds.get(position)*/
 		dice = new Dice();
+		streetSetUp();
 		setUp();						//set up the board at creation.
 	}
 	
@@ -110,6 +112,18 @@ public class Board {
 		Street boardwalk = new Street(400, 39);
 		squares[39] = boardwalk;
 	}
+
+	/**
+	 * initializing the street variable
+	 * street is a 2D array which first dimension contains the ID of street group
+	 * we have 8 street groups and one Railroad group and one utility group
+	 * and ID 9 is reserved for Railroad and ID 10 is for utilities
+	 * second dimension contains the position for each single street
+	 */
+	private void streetSetUp(){
+		street = new int[][]{{1,2,3},{},};
+	}
+
 	
 	/* returns a player object and adds that player to the game
 	 * with ID equal to the variable id passed as argument
