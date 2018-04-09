@@ -115,13 +115,28 @@ public class Board {
 
 	/**
 	 * initializing the street variable
-	 * street is a 2D array which first dimension contains the ID of street group
+	 * street is a 2D array which each row represents a color group ID
 	 * we have 8 street groups and one Railroad group and one utility group
-	 * and ID 9 is reserved for Railroad and ID 10 is for utilities
-	 * second dimension contains the position for each single street
+	 * The row index represents the IDs starting from 0 to 9
+	 * and ID 8 is reserved for Railroad and ID 9 is for utilities
+	 * each column is the position for each single street
 	 */
 	private void streetSetUp(){
-		street = new int[][]{{1,2,3},{},};
+		street = new int[][]{{1,3}, 	//color group brown
+							{6,8,9}, 	//color group Light Blue
+							{11,13,14},	//color group Pink
+							{16,18,19},	//color group Orange
+							{21,23,24},	//color group Red
+							{26,27,29},	//color group Yellow
+							{31,32,34},	//color group Green
+							{37,39},	//color group Dark Blue
+							{5,15,25,35},//group Railroad
+							{12,28}};	//group utility
+	}
+
+
+	public int[][] getStreet(){
+		return street;
 	}
 
 	

@@ -108,4 +108,16 @@ public class Street extends Square{
             default: return "Type not defined.";
         }
     }
+
+    public static void main(String[] args){
+	    Board board = new Board();
+	    int[][] street = board.getStreet();
+	    for(int i = 0; i<10; i++){
+	        for(int j=0;j<street[i].length;j++){
+	            System.out.print(street[i][j]);
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
 }
