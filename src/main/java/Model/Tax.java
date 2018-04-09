@@ -1,6 +1,6 @@
 package Model;
 
-/**INCOME TAX If you land here you have two options: You may
+/**BUFFET TAX If you land here you have two options: You may
 estimate your tax at $200 and pay the Bank, or you may pay 10% of
 your total worth to the Bank. Your total worth is all your cash on
 hand, printed prices of mortgaged and unmortgaged properties and
@@ -9,15 +9,15 @@ You must decide which option you will take before you add up
 your total worth.**/
 public class Tax extends Square{
 
-	/** Income Tax position on board 4, price is 200. 
-	 * Luxury Tax position on board 38, price is 100.
+	/** BUFFET Tax position on board 4, price is 200. 
+	 * CORPORATE Tax position on board 38, price is 75.
 	 * @param price
 	 * @param position
 	 */
 
 	public enum taxes{
-		INCOME_TAX,
-		LUXURY_TAX
+		BUFFET_TAX,
+		CORPORATE_TAX
 	}
 
 	private taxes type;
@@ -31,8 +31,8 @@ public class Tax extends Square{
 
 	public String toString(){
 		switch(this.type){
-			case INCOME_TAX: return "Income Tax";
-			case LUXURY_TAX: return "Luxury Tax";
+			case BUFFET_TAX: return "Buffet Tax";
+			case CORPORATE_TAX: return "Corporate Tax";
 			default: return "Type not defined.";
 		}
 	}
@@ -40,23 +40,18 @@ public class Tax extends Square{
 
 	public void perform(Player player, Board board){
 		switch(this.type){
-			case INCOME_TAX:
+			case BUFFET_TAX:
 				// Pay 200 or 10 percent of total worth.
-				if(player.decision){
-					// Pay 200
+				if(player.getDecision() == true){
+					player.getMoney().sbustractMoney(200);
 				}
 				else{
-					//Pay 10% of total worth
+					player.getMoney().sbustractMoney((int)tenPercent(player.getMoney().money));
 				}
 				break;
-			case LUXURY_TAX:
-				// Pay 100 or 10 percent of total worth.
-				if(player.decision){
-					// Pay 100
-				}
-				else{
-					// Pay 10% of total worth.
-				}
+			case CORPORATE_TAX:
+				// Pay 75 
+				player.getMoney().sbustractMoney(75);
 				break;
 		}
 	}
