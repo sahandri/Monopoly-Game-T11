@@ -17,6 +17,7 @@ public class Player {
 	public Player(int id){
 		this.id = id;
 		this.money = new Money(1500);
+		this.token = new Token();
 	}
 
 	public Player(int id, Token token){
