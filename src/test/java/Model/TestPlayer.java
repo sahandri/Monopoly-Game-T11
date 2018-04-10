@@ -16,6 +16,7 @@ public class TestPlayer {
         player1.setName("Joe");
         player1.setDecision(false);
 
+        token1 = new Token();
         token1.setName("Battleship");
         player2 = new Player(2, token1);
         player2.setName("Tom");
