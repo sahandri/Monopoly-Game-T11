@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="668b8c99-8ca1-4a48-8131-e69724c03e10" name="Default" comment="move time from monopoly to board">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/View/BoardPanel.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/MonopolyPanel.java" afterPath="$PROJECT_DIR$/src/main/java/View/MonopolyPanel.java" />
-    </list>
+    <list default="true" id="668b8c99-8ca1-4a48-8131-e69724c03e10" name="Default" comment="move time from monopoly to board" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -91,8 +87,8 @@
       <file leaf-file-name="MonopolyPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/View/MonopolyPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="13" lean-forward="true" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+            <state relative-caret-position="216">
+              <caret line="12" column="52" lean-forward="true" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -103,8 +99,8 @@
       <file leaf-file-name="BoardPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/View/BoardPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+            <state relative-caret-position="198">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#199#200#0" expanded="true" />
@@ -390,7 +386,7 @@
       <updated>1523235062931</updated>
       <workItem from="1523235064163" duration="2771000" />
       <workItem from="1523429999358" duration="1633000" />
-      <workItem from="1523438374946" duration="880000" />
+      <workItem from="1523438374946" duration="949000" />
     </task>
     <task id="LOCAL-00001" summary="move time from monopoly to board">
       <created>1523438114381</created>
@@ -403,7 +399,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5284000" />
+    <option name="totallyTimeSpent" value="5353000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1537" height="912" extended-state="6" />
@@ -673,8 +669,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/View/MonopolyPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="13" lean-forward="true" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+        <state relative-caret-position="216">
+          <caret line="12" column="52" lean-forward="true" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -683,8 +679,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/View/BoardPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        <state relative-caret-position="198">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#199#200#0" expanded="true" />
