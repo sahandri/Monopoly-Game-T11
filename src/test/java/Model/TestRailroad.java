@@ -17,7 +17,7 @@ public class TestRailroad {
 
     @Test
     public void testSetOwner(){
-        assertTrue(railroad.setOwner(player2));
+        assertFalse(railroad.setOwner(player2));
     }
 
     @Test
