@@ -1,13 +1,16 @@
 package View;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class BoardPanel extends JFrame implements MouseListener {
+public class BoardPanel extends JPanel implements MouseListener, ActionListener {
 
     public BoardPanel(){
         addMouseListener(this);
+        this.setLayout(null);
     }
 
     @Override
@@ -32,6 +35,11 @@ public class BoardPanel extends JFrame implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
     }
 }
