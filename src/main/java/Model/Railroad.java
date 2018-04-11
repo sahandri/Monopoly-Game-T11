@@ -12,7 +12,7 @@ public class Railroad extends Square{
 
 	public Railroad(int price, int position) {
 		super(price, position);
-		owner = 0;
+		owner = -1;
 		if(!(position ==5 || position ==15 ||
 				position ==25 || position ==35)){
 			throw new IllegalArgumentException("Unknown position");
@@ -31,9 +31,9 @@ public class Railroad extends Square{
 	}
 
 	//sets property owner and collects money from player
-	//returns true if nobody ownes the property
+	//returns true if nobody owns the property
 	public boolean setOwner(Player player){
-		if(owner==0){ // if nobody owes the railroad
+		if(owner==-1){ // if nobody owns the railroad
 			//player pays $200 and buy the property
 			owner = player.getID();
 			return true; //property successfully sold
