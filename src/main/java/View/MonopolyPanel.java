@@ -22,6 +22,5 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
     }
 }
