@@ -102,8 +102,12 @@ public class Street extends Square{
 	}
 
     //sets property owner
-    private void setOwner(Player player){
-	    owner = player.getID();
+    public boolean setOwner(Player player){
+	    if(owner==-1) {     //if nobody owns the street sets owner and returns true
+            owner = player.getID();
+            return true;
+        }
+        return false;
 	}
 
     //returns owner of the street

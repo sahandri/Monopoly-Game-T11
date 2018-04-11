@@ -11,7 +11,7 @@ public class TestRailroad {
     public void initialize(){
         railroad = new Railroad(300,15);
         player = new Player(1);
-        player = new Player(2);
+        player2 = new Player(2);
         railroad.setOwner(player);
     }
 
