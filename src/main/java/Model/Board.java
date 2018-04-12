@@ -175,11 +175,15 @@ public class Board {
 	 * */
 	public void purchaseProperty(Player player, int propertyPosition){
 		deeds.put(propertyPosition, player);
-		player.getMoney().sbustractMoney(squares[propertyPosition].price);
+		player.getMoney().sbustractMoney(squares[propertyPosition].getPrice());
 	}
 	
 	/*returns the player who owns the property at the given position */
 	public Player getPropertyOwner(int position){
 		return deeds.get(position);
+	}
+	
+	public Square[] getSquares() {
+		return squares;
 	}
 }

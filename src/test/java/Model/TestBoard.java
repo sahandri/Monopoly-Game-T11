@@ -40,38 +40,38 @@ public class TestBoard {
 	public void testSetUp(){
 		
 		//check the board has the right number of squares (40).
-		assertEquals(40, board.squares.length);	
+		assertEquals(40, board.getSquares().length);	
 		//check that all the squares were successfully initialized
-		for(int i=0;i<40;i++){assertTrue(board.squares[i]!=null);}
+		for(int i=0;i<40;i++){assertTrue(board.getSquares()[i]!=null);}
 		
 		//check all taxes were placed correctly on the board
-		assertTrue(board.squares[4] instanceof Tax);
-		assertTrue(board.squares[38] instanceof Tax);
+		assertTrue(board.getSquares()[4] instanceof Tax);
+		assertTrue(board.getSquares()[38] instanceof Tax);
 		
 		//check all utilities were placed correctly on the board
-		assertTrue(board.squares[12] instanceof Utilities);
-		assertTrue(board.squares[28] instanceof Utilities);
+		assertTrue(board.getSquares()[12] instanceof Utilities);
+		assertTrue(board.getSquares()[28] instanceof Utilities);
 		
 		//check all streets were placed correctly on the board
-		for(int position : streets){assertTrue(board.squares[position] instanceof Street);}
+		for(int position : streets){assertTrue(board.getSquares()[position] instanceof Street);}
 		
 		//check all corners were placed correctly on the board
-		for(int position : corners){assertTrue(board.squares[position] instanceof Corner);}
+		for(int position : corners){assertTrue(board.getSquares()[position] instanceof Corner);}
 		
 		//check all railroads were placed correctly on the board
-		for(int position : railroads){assertTrue(board.squares[position] instanceof Railroad);}
+		for(int position : railroads){assertTrue(board.getSquares()[position] instanceof Railroad);}
 		
 		//check all community chest cards were placed correctly on the board
-		for(int position : communityChest){assertTrue(board.squares[position] instanceof CommunityChest);}
+		for(int position : communityChest){assertTrue(board.getSquares()[position] instanceof CommunityChest);}
 		
 		//check all chance cards were placed correctly on the board
-		for(int position : chanceCards){assertTrue(board.squares[position] instanceof ChanceCard);}
+		for(int position : chanceCards){assertTrue(board.getSquares()[position] instanceof ChanceCard);}
 	}
 	
 	@Test
 	public void testMove(){
 		Square mockSquare = mock(Corner.class);
-		board.squares[20] = mockSquare;
+		board.getSquares()[20] = mockSquare;
 		
 		board.move(p, 20);									//move token of player to free_parking
 		assertEquals(board.getToken(p).getPosition(), 20); 	//check the token was moved correctly
