@@ -20,10 +20,11 @@ public class Player {
 		this.token = new Token();
 	}
 
-	public Player(int id, Token token){
+	public Player(int id, Token token, String name){
 		this.id = id;
 		this.money = new Money(1500);
 		this.token = token;
+		this.name = name;
 	}
 
 	public Money getMoney() {
@@ -46,16 +47,8 @@ public class Player {
 		return this.name;
 	}
 
-	public void setName(String playerName){
-		this.name = playerName;
-	}
-
 	public Token getToken(){
 		return this.token;
-	}
-
-	public void setToken(String name){
-		this.token.setName(name);
 	}
 
 }
