@@ -40,19 +40,19 @@ public class TestCorner {
 		Player p = b.addPlayer(1, tok);
 		
 		//test START
-		b.getToken(p).move(0);		//move the player to GO square
-		start.perform(p,b);			//test perform() with player on start corner			
-		assertEquals(b,b);			//no changes should have been made
+		b.getToken(p).move(0);				//move the player to GO square
+		start.perform(p,b);				//test perform() with player on start corner			
+		assertEquals(b,b);				//no changes should have been made
 		
 		//test FREE_PARKING
-		b.getToken(p).move(20);		//move player to Free_parking square
+		b.getToken(p).move(20);				//move player to Free_parking square
 		free_parking.perform(p, b);
-		assertEquals(b,b);			//no changes should have been made
+		assertEquals(b,b);				//no changes should have been made
 		
 		//test GO_TO_JAIL
-		b.getToken(p).move(30);		//move player to Go To Jail square
-		go_to_jail.perform(p, b);	//test perform() with player on go_to_jail corner
-		assertTrue(b.getToken(p).inJail());	//check that the player's token has been set to JAIL mode
+		b.getToken(p).move(30);				//move player to Go To Jail square
+		go_to_jail.perform(p, b);			//test perform() with player on go_to_jail corner
+		assertTrue(b.getToken(p).inJail());		//check that the player's token has been set to JAIL mode
 		assertEquals(10, b.getToken(p).getPosition());	//check that the token was moved to the jail Square 
 				
 		//test JAIL
@@ -63,17 +63,17 @@ public class TestCorner {
 		temp.imprison();
 		when(boardMock.getToken(any(Player.class))).thenReturn(temp);
 		when(boardMock.roll()).thenReturn(1);
-		jail.perform(p, boardMock);				//test perform() with player in jail if he rolls 2 equal numbers
-		assertEquals(1500, p.getMoney().money); //check the money wasn't subtracted
+		jail.perform(p, boardMock);			//test perform() with player in jail if he rolls 2 equal numbers
+		assertEquals(1500, p.getMoney().money); 	//check the money wasn't subtracted
 		assertFalse(temp.inJail()); 			//check the player's token is no longer in jail mode
 		
 		temp.move(10);
 		temp.imprison();
 		when(boardMock.roll()).thenReturn(1,2);
 		when(boardMock.getToken(any(Player.class))).thenReturn(temp);
-		jail.perform(p, boardMock);
-		assertEquals(1500-50, p.getMoney().money);
-		assertFalse(temp.inJail());
+		jail.perform(p, boardMock);			//test perform() with player in jail if he DOES NOT roll 2 equal numbers
+		assertEquals(1500-50, p.getMoney().money);	//check the money was subtracted
+		assertFalse(temp.inJail());			//check the player's token is no longer in jail mode
 		
 	}
 
