@@ -63,7 +63,12 @@ public class Corner extends Square{
 					int roll_1 = board.roll();
 					int roll_2 = board.roll();
 					if(roll_1 == roll_2){ board.getToken(player).release(); }								//release the token from jail state if the 2 numbers thrown are equal
-					else{if(player.getMoney().money-50 >= 0){player.getMoney().sbustractMoney(50);}}		//if the player has enough money to pay for bail, subtract the money and release him
+					else{
+						if(player.getMoney().money-50 >= 0){		//if the player has enough money to pay for bail, subtract the money and release him
+							player.getMoney().sbustractMoney(50);
+							board.getToken(player).release();
+						}
+					}		
 				}
 				break;
 			case FREE_PARKING:
