@@ -171,13 +171,20 @@ public class Board {
 		return players.get(player);
 	}
 	
-	/*creates a deed and maps it to the player who purchased the property*/
+	/*creates a deed and maps it to the player who purchased the property 
+	 * then subtract the price from the player's money
+	 * */
 	public void purchaseProperty(Player player, int propertyPosition){
 		deeds.put(propertyPosition, player);
+		player.getMoney().sbustractMoney(squares[propertyPosition].getPrice());
 	}
 	
 	/*returns the player who owns the property at the given position */
 	public Player getPropertyOwner(int position){
 		return deeds.get(position);
+	}
+	
+	public Square[] getSquares() {
+		return squares;
 	}
 }
