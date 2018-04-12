@@ -11,15 +11,12 @@ public class TestPlayer {
 
     @Before
     public void initialize(){
-        player1 = new Player(1);
-        player1.setToken("Boot");
-        player1.setName("Joe");
+        player1 = new Player(1, "Boot", "Joe");
         player1.setDecision(false);
 
         token1 = new Token();
         token1.setName("Battleship");
-        player2 = new Player(2, token1);
-        player2.setName("Tom");
+        player2 = new Player(2, token1, "Tom");
         player2.setDecision(true);
 
         board = new Board();
