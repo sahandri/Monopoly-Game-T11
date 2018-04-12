@@ -8,6 +8,7 @@ public class Board {
 	private Map<Player, Token> players;	//stores the players and the token associated with it
 	private Map<Integer,Player> deeds;	//map to keep track of deeds: < position_of_property, player >
 	private Dice dice;					//dice
+	long initialTime = System.currentTimeMillis(), endTime;
 	private int[][] street;           //contains position and color group ID of each street
 	
 	/*constructor*/
