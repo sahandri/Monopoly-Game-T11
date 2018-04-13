@@ -8,15 +8,18 @@ public class TestPlayer {
     private Player player1;
     private Player player2;
     private Token token1;
+    private Token token2;
 
     @Before
     public void initialize(){
-        player1 = new Player(1, "Boot", "Joe");
+        token1 = new Token();
+        token1.setName("Boot");
+        player1 = new Player(1, token1, "Joe");
         player1.setDecision(false);
 
-        token1 = new Token();
-        token1.setName("Battleship");
-        player2 = new Player(2, token1, "Tom");
+        token2 = new Token();
+        token2.setName("Battleship");
+        player2 = new Player(2, token2, "Tom");
         player2.setDecision(true);
 
         board = new Board();

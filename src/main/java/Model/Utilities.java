@@ -1,6 +1,6 @@
 package Model;
 
-import src.main.java.Model.Tax.taxes;
+//import src.main.java.Model.Tax.taxes;
 
 public class Utilities extends Square {
 

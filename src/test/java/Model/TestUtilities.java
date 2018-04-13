@@ -3,8 +3,8 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class TestUtilities {
-	private utilities electricCompany;
-	private utilities waterWorks;
+	private Utilities electricCompany;
+	private Utilities waterWorks;
 	private Player player1;
     private Board board;
     
