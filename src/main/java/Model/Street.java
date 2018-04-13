@@ -14,11 +14,11 @@ public class Street extends Square{
 
     private colors color;
     private int ID; //every color group has and ID
-    private int owner;
+    //private int owner;
 
 	public Street(int price, int position) {
 		super(price, position);
-		owner = -1;
+		//owner = -1;
 		try {
             setColor(position);
         }catch(IllegalArgumentException e){
@@ -92,28 +92,36 @@ public class Street extends Square{
 
 	@Override
 	public void perform(Player player, Board board) {
-	    if(owner == -1 && player.getDecision()){ // if nobody owns the street and player wants to buy it
+	    if(this.getOwner() == -1 && player.getDecision()){ // if nobody owns the street and player wants to buy it
             //player pays price and buy the property
-            player.getMoney().sbustractMoney(this.getPrice());
-            setOwner(player);
-        }else if(owner == -1 && owner!=player.getID()){ //if street owns by somebody else
-	        //player pays rent
+            board.purchaseProperty(player, this.getPosition());
+            this.setOwner(player);
+        }else if(this.getOwner() != -1 && this.getOwner()!=player.getID()){ //if street owns by somebody else
+	        int counter = numOfColorGroup(board); //gets the number of streets in the same color owned by a the owner
+	        switch (counter){
+                case 1: //subtract the rent amount
+                    break;
+                case 2: //subtract the 2*rent amount
+                    break;
+                case 3: // subtract the 4*rent amount
+                    break;
+            }
         }
 	}
 
-    //sets property owner
-    public boolean setOwner(Player player){
-	    if(owner==-1) {     //if nobody owns the street sets owner and returns true
-            owner = player.getID();
-            return true;
+	//returns number of same color groups owned by the same player(owner of this street)
+	public int numOfColorGroup(Board board){
+	    int counter = 0;
+        int[][] street = board.getStreetArray();
+        for(int i=0; i<street[this.getID()].length; i++){
+            //if(this.getOwner() == board.getPropertyOwner(street[this.getID()][i]).getID()){
+            if(this.getOwner() == board.getSquares()[street[this.getID()][i]].getOwner()){
+                counter++;
+            }
         }
-        return false;
-	}
-
-    //returns owner of the street
-    public int getOwner(){
-	    return owner;
+        return counter;
     }
+
 
     public String toString(){
         switch(this.color){
@@ -128,17 +136,4 @@ public class Street extends Square{
             default: return "Type not defined.";
         }
     }
-/*
-    public static void main(String[] args){
-	    Board board = new Board();
-	    int[][] street = board.getStreet();
-	    for(int i = 0; i<10; i++){
-	        for(int j=0;j<street[i].length;j++){
-	            System.out.print(street[i][j]);
-                System.out.print(" ");
-            }
-            System.out.println();
-        }
-    }
-    */
 }

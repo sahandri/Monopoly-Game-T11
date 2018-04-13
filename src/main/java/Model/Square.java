@@ -8,10 +8,12 @@ abstract class Square{
     private int price;
     // position starts from 0 to 39. For instance, 0 represents to Go, 1 can represent street, etc
     private int position;
+    private int owner;
 
     Square(int price, int position){
         this.price = price;
         this.position = position;
+        this.owner = -1;
     }
 
     public int getPrice() {
@@ -20,6 +22,20 @@ abstract class Square{
 
     public int getPosition() {
         return position;
+    }
+
+    //sets property owner
+    public boolean setOwner(Player player){
+        if(owner==-1) {     //if nobody owns the street sets owner and returns true
+            owner = player.getID();
+            return true;
+        }
+        return false;
+    }
+
+    //returns owner of the street
+    public int getOwner(){
+        return owner;
     }
     
     public abstract void perform(Player player, Board board);
