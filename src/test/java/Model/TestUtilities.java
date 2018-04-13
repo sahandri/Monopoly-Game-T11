@@ -1,4 +1,33 @@
 package Model;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 public class TestUtilities {
+	private utilities electricCompany;
+	private utilities waterWorks;
+	private Player player1;
+    private Board board;
+    
+    @Before
+    public void initialize(){
+        electricCompany = new Utilities(150, 12);
+        waterWorks = new Utilities(150, 28);
+        player1 = new Player(1);
+        board = new Board();
+        player1.setDecision(true);
+    }
+    
+    @Test
+    public void testToString(){
+        assertEquals("Electric Company",electricCompany.toString());
+        assertEquals("Water Works",waterWorks.toString());
+    }
+
+    @Test
+    public void testPerform(){
+        electricCompany.perform(player1, board);
+        assertEquals(player1.getMoney().money,1350);
+        waterWorks.perform(player1, board);
+        assertEquals(player1.getMoney().money, 1350);
+    }
 }
