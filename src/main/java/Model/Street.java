@@ -14,11 +14,11 @@ public class Street extends Square{
 
     private colors color;
     private int ID; //every color group has and ID
-    //private int owner;
+    private int rent;
 
-	public Street(int price, int position) {
+	public Street(int price, int position, int rent) {
 		super(price, position);
-		//owner = -1;
+		this.rent = rent;
 		try {
             setColor(position);
         }catch(IllegalArgumentException e){
@@ -99,11 +99,11 @@ public class Street extends Square{
         }else if(this.getOwner() != -1 && this.getOwner()!=player.getID()){ //if street owns by somebody else
 	        int counter = numOfColorGroup(board); //gets the number of streets in the same color owned by a the owner
 	        switch (counter){
-                case 1: //subtract the rent amount
+                case 1: player.getMoney().sbustractMoney(rent);//subtract the rent amount
                     break;
-                case 2: //subtract the 2*rent amount
+                case 2: player.getMoney().sbustractMoney(2*rent);//subtract the 2*rent amount
                     break;
-                case 3: // subtract the 4*rent amount
+                case 3: player.getMoney().sbustractMoney(4*rent);// subtract the 4*rent amount
                     break;
             }
         }
