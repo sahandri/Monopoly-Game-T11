@@ -10,7 +10,7 @@ public class TestStreet {
 
     @Before
     public void initialize(){
-        street = new Street(300,31);
+        street = new Street(300,31, 26);
         player = new Player(1);
         player = new Player(2);
         street.setOwner(player);
