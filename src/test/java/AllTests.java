@@ -1,4 +1,3 @@
-
 import Model.*;
 import View.*;
 import org.junit.runner.RunWith;
@@ -8,10 +7,18 @@ import junit.framework.JUnit4TestAdapter;
 // This section declares all of the test classes in program.
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        // Add test classes here.
-        TestStreet.class,
-        TestRailroad.class,
-        TestTax.class
+        TestBoard.class,
+	TestCard.class,
+	TestCorner.class,
+	TestDice.class,
+	TestMonopoly.class,
+	TestPlayer.class,
+	TestRailroad.class,
+	TestSquare.class,
+	TestStreet.class,
+	TestTax.class,
+	TestToken.class,
+	TestUtilities.class
 })
 
 public class AllTests
