@@ -19,15 +19,17 @@ public class TestUtilities {
     
     @Test
     public void testToString(){
-        assertEquals("Electric Company",electricCompany.toString());
+        assertEquals("Electricity Company",electricCompany.toString());
         assertEquals("Water Works",waterWorks.toString());
     }
 
     @Test
     public void testPerform(){
+    	player1.setDecision(true);
         electricCompany.perform(player1, board);
         assertEquals(player1.getMoney().money,1350);
+        
         waterWorks.perform(player1, board);
-        assertEquals(player1.getMoney().money, 1350);
+        assertEquals(player1.getMoney().money, 1350-150);
     }
 }
