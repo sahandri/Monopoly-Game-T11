@@ -9,7 +9,7 @@ public class Board {
 	private Map<Integer,Player> deeds;	//map to keep track of deeds: < position_of_property, player >
 	private Dice dice;					//dice
 	long initialTime = System.currentTimeMillis(), endTime;
-	private int[][] street;           //contains position and color group ID of each street
+	private int[][] streetArray;           //contains position and color group ID of each street
 	
 	/*constructor*/
 	public Board(){
@@ -17,7 +17,7 @@ public class Board {
 		players = new HashMap<>();	//Stores the players and their token
 		deeds = new HashMap<>();		/*add to it using deeds.put(position,Player);		retrieve from it using deeds.get(position)*/
 		dice = new Dice();
-		streetSetUp();
+		streetArraySetUp();
 		setUp();						//set up the board at creation.
 	}
 	
@@ -114,6 +114,7 @@ public class Board {
 		squares[39] = boardwalk;
 	}
 
+
 	/**
 	 * initializing the street variable
 	 * street is a 2D array which each row represents a color group ID
@@ -122,8 +123,8 @@ public class Board {
 	 * and ID 8 is reserved for Railroad and ID 9 is for utilities
 	 * each column is the position for each single street
 	 */
-	private void streetSetUp(){
-		street = new int[][]{{1,3}, 	//color group brown
+	private void streetArraySetUp(){
+		streetArray = new int[][]{{1,3}, 	//color group brown
 							{6,8,9}, 	//color group Light Blue
 							{11,13,14},	//color group Pink
 							{16,18,19},	//color group Orange
@@ -136,8 +137,8 @@ public class Board {
 	}
 
 
-	public int[][] getStreet(){
-		return street;
+	public int[][] getStreetArray(){
+		return streetArray;
 	}
 
 	
