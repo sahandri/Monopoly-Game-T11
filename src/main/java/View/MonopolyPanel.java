@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JScrollBar;
@@ -19,6 +20,7 @@ import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
 
@@ -26,6 +28,8 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private final String boardImagePath = "/board.jpg";
 
 	private JPanel contentPanel;
+	private final JButton RollDiceButton = new JButton("Roll Dice");
+	//private Monopoly monopoly;
 
 	/**
 	 * Launch the application.
@@ -61,16 +65,37 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		boardImage.setIcon(new ImageIcon(img));         //set the image of the board to be in the label 
 		contentPanel.add(boardImage);                   //add the label to the board
 		
+		String[] List = new String[] {"1","2","3","4"};
         //create button to start game
 		JButton startGameBtn = new JButton("Start");
 		startGameBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
 				//TODO: implement here what should happen when "start" button is pressed.
-			}
+				public void actionPerformed(ActionEvent arg0) {
+					String numberOfPlayers = (String) JOptionPane.showInputDialog(contentPanel, "Enter Number Of Players", "Input", JOptionPane.QUESTION_MESSAGE,
+					        null, List, "Titan");
+					JOptionPane.showMessageDialog(contentPanel.getComponent(0),
+							"number of players: "+numberOfPlayers+" player1 starts the game");
+					//calls monopoly.startGame(Integer.valueOf(numberOfPlayers))
+	            }
+
 		});
 		startGameBtn.setFont(new Font("Avenir", Font.PLAIN, 13));
 		startGameBtn.setBounds(19, 623, 117, 29);
 		contentPanel.add(startGameBtn);
+		
+		
+		//Roll dice and move player
+		RollDiceButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//int roll = monopoly.rollDice();
+				//JOptionPane.showMessageDialog(contentPanel.getComponent(0),
+				//"Dice: "+Integer.valueOf(roll));
+			}
+		});
+		RollDiceButton.setBounds(374, 623, 165, 29);
+		contentPanel.add(RollDiceButton);
+		
+		
 		
         //create button to buy property
 		JButton BuyBtn = new JButton("Buy Property");
@@ -83,16 +108,16 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		BuyBtn.setBounds(136, 623, 117, 29);
 		contentPanel.add(BuyBtn);
 		
-        //create button to end the game
-		JButton EndGameBtn = new JButton("End Game");
-		EndGameBtn.setFont(new Font("Avenir", Font.PLAIN, 13));
-		EndGameBtn.addActionListener(new ActionListener() {
+        //create Sell Property
+		JButton SellPropertyBtn = new JButton("Sell Property");
+		SellPropertyBtn.setFont(new Font("Avenir", Font.PLAIN, 13));
+		SellPropertyBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                 //TODO: implement here what should happen when "End Game" button is pressed.
 			}
 		});
-		EndGameBtn.setBounds(252, 623, 117, 29);
-		contentPanel.add(EndGameBtn);
+		SellPropertyBtn.setBounds(252, 623, 117, 29);
+		contentPanel.add(SellPropertyBtn);
 		
 		JLabel lblPlayer = new JLabel("Player");
 		lblPlayer.setBounds(615, 30, 69, 20);
@@ -284,6 +309,12 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		lblHistory.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		lblHistory.setBounds(611, 330, 75, 29);
 		contentPanel.add(lblHistory);
+		
+		JLabel Token1 = new JLabel("");
+		Token1.setBounds(526, 529, 69, 20);
+		contentPanel.add(Token1);
+		
+		
 	}
 
 	@Override
