@@ -18,6 +18,9 @@ import javax.swing.JScrollBar;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.JScrollPane;
 
 public class MonopolyPanel extends JFrame implements ActionListener {
 	private final String boardImagePath = "/board.jpg";
@@ -266,6 +269,21 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		checkBox_26.setBackground(Color.GRAY);
 		checkBox_26.setBounds(850, 206, 29, 29);
 		contentPanel.add(checkBox_26);
+
+		/** History scroll area*/
+		JTextArea display = new JTextArea ( 16, 30 );
+		display.setText("This will hold previous actions.");
+		display.setEditable ( false );
+		JScrollPane scrollPane = new JScrollPane(display);
+		scrollPane.setBounds(610, 370, 364, 212);
+		contentPanel.add(scrollPane);
+		scrollPane.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
+		
+		
+		JLabel lblHistory = new JLabel("History");
+		lblHistory.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblHistory.setBounds(611, 330, 75, 29);
+		contentPanel.add(lblHistory);
 	}
 
 	@Override
