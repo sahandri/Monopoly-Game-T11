@@ -27,7 +27,7 @@ public class Street extends Square{
 	}
 
 	//a helper method to initialize the streets with their group colors
-	public void setColor(int position) {
+	private void setColor(int position) {
         switch(position) {
             case 1:
             case 3:
@@ -110,7 +110,7 @@ public class Street extends Square{
 	}
 
 	//returns number of same color groups owned by the same player(owner of this street)
-	public int numOfColorGroup(Board board){
+	private int numOfColorGroup(Board board){
 	    int counter = 0;
         int[][] street = board.getStreetArray();
         for(int i=0; i<street[this.getID()].length; i++){
