@@ -15,6 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JScrollBar;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.JScrollPane;
 
 public class MonopolyPanel extends JFrame implements ActionListener {
 
@@ -86,6 +89,21 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		});
 		EndGameBtn.setBounds(252, 623, 117, 29);
 		contentPanel.add(EndGameBtn);
+		
+		/** History scroll area*/
+		JTextArea display = new JTextArea ( 16, 30 );
+		display.setText("This will hold previous actions.");
+		display.setEditable ( false );
+		JScrollPane scrollPane = new JScrollPane(display);
+		scrollPane.setBounds(610, 370, 364, 212);
+		contentPanel.add(scrollPane);
+		scrollPane.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
+		
+		
+		JLabel lblHistory = new JLabel("History");
+		lblHistory.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblHistory.setBounds(611, 330, 75, 29);
+		contentPanel.add(lblHistory);
 	}
 
 	@Override
