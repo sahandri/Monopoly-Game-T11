@@ -46,7 +46,7 @@ public class Railroad extends Square{
 	}
 
 	//returns number of railroad owned by the same player(owner of this street)
-	public int numOfColorGroup(Board board){
+	private int numOfColorGroup(Board board){
 		int counter = 0;
 		int[][] street = board.getStreetArray();
 		for(int i=0; i<street[this.getID()].length; i++){
