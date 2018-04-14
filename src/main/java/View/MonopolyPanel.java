@@ -51,7 +51,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
         //create label that holds board image 
 		JLabel boardImage = new JLabel("");
 		boardImage.setBounds(6, 6, 594, 585);
-		System.out.println(this.getClass().getResource(boardImagePath));
 		Image img = new ImageIcon(this.getClass().getResource(boardImagePath)).getImage().getScaledInstance(600, 600, Image.SCALE_AREA_AVERAGING);    //import board.png file as an ImageIcon object
 		boardImage.setIcon(new ImageIcon(img));         //set the image of the board to be in the label 
 		contentPanel.add(boardImage);                   //add the label to the board
