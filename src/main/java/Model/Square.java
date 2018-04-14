@@ -4,7 +4,7 @@ package Model;
 // streets, utilities, railroads, cards(including chance card and community chest), taxes, and 4 corners. The
 // class is marked as package-private
 
-abstract class Square{
+public abstract class Square{
     private int price;
     // position starts from 0 to 39. For instance, 0 represents to Go, 1 can represent street, etc
     private int position;
@@ -37,6 +37,18 @@ abstract class Square{
     public int getOwner(){
         return owner;
     }
+    
+    public void sellProperty(Player buyer, Board board) {
+		Player seller = board.getPropertyOwner(getPosition());
+		if(seller.getDecision()) {
+			buyer.getMoney().sbustractMoney(getPrice());
+			seller.getMoney().addMoney(getPrice());
+			// seller no longer owns property
+			this.setOwner(buyer);
+			board.purchaseProperty(buyer, getPosition());	
+		}
+		
+	}
     
     public abstract void perform(Player player, Board board);
 }
