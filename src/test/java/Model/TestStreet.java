@@ -9,7 +9,6 @@ public class TestStreet {
     private Player player1;
     private Player player2;
     private Board board;
-    //private Square[] squares;
 
     @Before
     public void initialize(){
@@ -70,14 +69,13 @@ public class TestStreet {
     public void testPerform(){
         player1.setDecision(true);
         //test buying street
-        //b.getToken(p1).move(1);
         board.getSquares()[1].perform(player1,board);
         assertEquals(1440, player1.getMoney().money); //testing to buy a street
         assertEquals(board.getSquares()[1].getOwner(), 1); // check the streets owner ID
         board.getSquares()[1].perform(player2,board); //player 2 moves to player1's street
         assertEquals(1498, player2.getMoney().money); //testing to pay rent for one street
 
-        board.getSquares()[3].perform(player1,board); //player 2 buys second street from same color
+        board.getSquares()[3].perform(player1,board); //player 1 buys second street from same color
         assertEquals(1380, player1.getMoney().money); //testing to buy a street
         assertEquals(board.getSquares()[3].getOwner(), 1); // check the streets owner ID
         board.getSquares()[3].perform(player2,board); //player 2 moves to player1's street
