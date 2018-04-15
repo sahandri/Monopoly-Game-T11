@@ -1,10 +1,6 @@
 package View;
-
 import javax.swing.*;
 import Model.*;
-import View.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -29,9 +25,9 @@ public class Monopoly{
     
     public void startGame(int numPlayers, ArrayList<String> names) {
     	board = new Board();
-    	for(int i = 0; i < numPlayers; i++) {
+    	for(int i = 1; i < numPlayers; i++) {
     		Token token = new Token();
-    		board.addPlayer(i+1, token, names.get(i));		//add player to board
+    		board.addPlayer(i, token, names.get(i));		//add player to board
     	}
     }
     

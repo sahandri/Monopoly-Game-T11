@@ -7,12 +7,17 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Model.Token;
+
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
@@ -28,20 +33,25 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
 
 public class MonopolyPanel extends JFrame implements ActionListener {
+	private Map<Integer,ArrayList<Integer>> GUIposition = new HashMap<Integer,ArrayList<Integer>>();
 	private final String boardImagePath = "/img/board.jpg";
 	private final String tokenImagePath = "/img/token/boot.png";
+	private JLabel tok1 = new JLabel();
+	private JLabel tok2 = new JLabel();
+	private JLabel tok3 = new JLabel();
+	private JLabel tok4 = new JLabel();
 	private static Monopoly monopoly;
 			
 	private JLayeredPane contentPanel;
 	private final JButton RollDiceButton = new JButton("Roll Dice");
-	//private Monopoly monopoly;
 
 
 	public MonopolyPanel(Monopoly monopoly) {
 		this.monopoly = monopoly;
+		createPositionMap();
 		setUpGUI();
 	}
-	
+
 	public void setUpGUI(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000 , 700);
@@ -64,14 +74,13 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		boardImage.setIcon(new ImageIcon(img));         //set the image of the board to be in the label 
 		contentPanel.add(boardImage, new Integer(1));                   //add the label to the board
 
-		//create LABEL that holds token IMAGE 
-		JLabel tokenImage = new JLabel("");
-		tokenImage.setBounds(529, 491, 100, 100);
+		//create LABEL that holds token1 IMAGE : boot
+		tok1.setBounds(89, 491, 100, 100);
 		Image tokenImg = new ImageIcon(this.getClass().getResource(tokenImagePath)).getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING);    //import boot.png file as an ImageIcon object
 		/*tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the token to be in the label 
 		* This is a scaling of the token image. */
-		tokenImage.setIcon(new ImageIcon(new ImageIcon(tokenImg).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
-		contentPanel.add(tokenImage, new Integer(2));                   //add the label to the board
+		tok1.setIcon(new ImageIcon(new ImageIcon(tokenImg).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+		contentPanel.add(tok1, new Integer(2));                   //add the label to the board
 		
 	}
 	
@@ -82,14 +91,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		sellPropertyButton();
 		historyWindow();
 		playerStatus();
-		tokens();
-	}
-	
-	private void tokens() {
-		JLabel Token1 = new JLabel("");
-		Token1.setHorizontalAlignment(SwingConstants.CENTER);
-		Token1.setBounds(519, 539, 64, 43);
-		contentPanel.add(Token1);		
 	}
 
 	private void historyWindow() {
@@ -145,7 +146,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				//"Dice: "+Integer.valueOf(roll));
 			}
 		});
-		RollDiceButton.setBounds(374, 623, 165, 29);
+		RollDiceButton.setBounds(369, 623, 117, 29);
 		contentPanel.add(RollDiceButton);
 	}
 
@@ -177,6 +178,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		JButton startGameBtn = new JButton("Start");
 		startGameBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+					moveToken(tok1, 10);
 					String numberOfPlayers = (String) JOptionPane.showInputDialog(contentPanel, "Enter Number Of Players", "Input", JOptionPane.QUESTION_MESSAGE, null, List, "Titan");
 					int option;
 					switch(Integer.valueOf(numberOfPlayers)){
@@ -185,7 +187,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 								if (option == JOptionPane.OK_OPTION){
 									names.add(name1.getText());
 									names.add(name2.getText());
-									//calls Monopoly.startGame(Integer.valueOf(numberOfPlayers), names);
+									monopoly.startGame(Integer.valueOf(numberOfPlayers), names);
 								}
 								break;
 							case 3:
@@ -194,7 +196,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 									names.add(name1.getText());
 									names.add(name2.getText());
 									names.add(name3.getText());
-									//calls Monopoly.startGame(Integer.valueOf(numberOfPlayers), names);
+									monopoly.startGame(Integer.valueOf(numberOfPlayers), names);
 								}
 								break;
 							case 4:
@@ -204,14 +206,13 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 									names.add(name2.getText());
 									names.add(name3.getText());
 									names.add(name4.getText());
-									//calls Monopoly.startGame(Integer.valueOf(numberOfPlayers), names);
+									monopoly.startGame(Integer.valueOf(numberOfPlayers), names);
 								}
 								break;
 							default: option = 0;
 					}
 						
 				JOptionPane.showMessageDialog(contentPanel.getComponent(0), "number of players: "+numberOfPlayers+"\nPlayer1 starts the game");
-				//calls Monopoly.startGame(Integer.valueOf(numberOfPlayers));
 			}
 
 		});
@@ -402,6 +403,10 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		checkBox_26.setBounds(850, 206, 29, 29);
 		contentPanel.add(checkBox_26);
 	}
+	
+	public void moveToken(JLabel tok, int newPosition){
+		tok.setLocation(GUIposition.get(newPosition).get(0), GUIposition.get(newPosition).get(1));
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -411,6 +416,54 @@ public class MonopolyPanel extends JFrame implements ActionListener {
          * This class (MonopolyPanel) implements ActionListener.
         */
 		
+	}
+	
+	private Map<Integer, ArrayList<Integer>> createPositionMap() {
+		ArrayList<Integer> coordinates = new ArrayList<Integer>();
+		
+		coordinates.add(0, 530);
+		coordinates.add(1, 490);
+		GUIposition.put(0, coordinates);
+		
+		coordinates.add(0, 470);
+		coordinates.add(1, 490);
+		GUIposition.put(1, coordinates);
+		
+		coordinates.add(0, 424);
+		coordinates.add(1, 490);
+		GUIposition.put(2, coordinates);
+		
+		coordinates.add(0, 374);
+		coordinates.add(1, 490);
+		GUIposition.put(3, coordinates);
+		
+		coordinates.add(0, 328);
+		coordinates.add(1, 490);
+		GUIposition.put(4, coordinates);
+		
+		coordinates.add(0, 280);
+		coordinates.add(1, 490);
+		GUIposition.put(5, coordinates);
+		
+		coordinates.add(0, 232);
+		coordinates.add(1, 490);
+		GUIposition.put(6, coordinates);
+		
+		coordinates.add(0, 185);
+		coordinates.add(1, 490);
+		GUIposition.put(7, coordinates);
+		
+		coordinates.add(0, 138);
+		coordinates.add(1, 490);
+		GUIposition.put(8, coordinates);
+		
+		coordinates.add(0, 89);
+		coordinates.add(1, 490);
+		GUIposition.put(9, coordinates);
+		
+		
+		
+		return null;
 	}
 	
 	/**
