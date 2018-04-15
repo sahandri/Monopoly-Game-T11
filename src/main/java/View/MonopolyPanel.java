@@ -36,10 +36,12 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private Map<Integer,ArrayList<Integer>> GUIposition = new HashMap<Integer,ArrayList<Integer>>();
 	private final String boardImagePath = "/img/board.jpg";
 	private final String tokenImagePath = "/img/token/boot.png";
+
 	private JLabel tok1 = new JLabel();
 	private JLabel tok2 = new JLabel();
 	private JLabel tok3 = new JLabel();
 	private JLabel tok4 = new JLabel();
+	
 	private static Monopoly monopoly;
 			
 	private JLayeredPane contentPanel;
