@@ -27,11 +27,11 @@ public class Monopoly {
         monopolyPanel.setExtendedState(Frame.NORMAL);
     }
     
-    public void startGame(int numPlayers, String[] names) {
+    public void startGame(int numPlayers, ArrayList<String> names) {
     	board = new Board();
     	for(int i = 0; i < numPlayers; i++) {
     		Token token = new Token();
-    		board.addPlayer(i+1, token, names[i]);		//add player to board
+    		board.addPlayer(i+1, token, names.get(i));		//add player to board
     	}
     }
     
