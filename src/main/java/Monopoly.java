@@ -1,3 +1,5 @@
+import 
+
 import javax.swing.*;
 import Model.*;
 import View.*;
@@ -76,5 +78,9 @@ public class Monopoly {
     
     public Token getToken(Player player) {
     	return player.getToken();
+    }
+    
+    public void changePlayer() {
+    	
     }
 }
