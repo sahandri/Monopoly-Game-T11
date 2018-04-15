@@ -82,7 +82,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		buyPropertyButton();
 		sellPropertyButton();
 		historyWindow();
-		playerStatus();
+		//playerStatus();
 		tokens();
 		EndTurnButton();
 	}
