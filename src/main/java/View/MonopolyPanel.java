@@ -27,9 +27,13 @@ import javax.swing.JScrollPane;
 
 public class MonopolyPanel extends JFrame implements ActionListener {
 	private final String boardImagePath = "/board.jpg";
+
 	private final String tokenImagePath = "/boot.png";
 
 	private JLayeredPane contentPanel;
+
+
+	
 	private final JButton RollDiceButton = new JButton("Roll Dice");
 	//private Monopoly monopoly;
 
@@ -67,6 +71,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		boardImage.setIcon(new ImageIcon(img));         //set the image of the board to be in the label 
 		contentPanel.add(boardImage, new Integer(1));                   //add the label to the board
 		
+
 		//create label that holds token image 
 				JLabel tokenImage = new JLabel("");
 				tokenImage.setBounds(6, 6, 594, 585);
@@ -74,6 +79,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the board to be in the label 
 				contentPanel.add(tokenImage, new Integer(2));                   //add the label to the board
 		
+
 		String[] List = new String[] {"1","2","3","4"};
         //create button to start game
 		JButton startGameBtn = new JButton("Start");
