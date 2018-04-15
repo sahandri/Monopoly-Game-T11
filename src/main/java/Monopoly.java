@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Monopoly {
+public class Monopoly{
     // monopoly is the Main class for this assignment, used to initialize a monopoly game.
 
 	private Board board;
@@ -23,8 +23,8 @@ public class Monopoly {
         }
 
         MonopolyPanel monopolyPanel = new MonopolyPanel();
-        monopolyPanel.setVisible(true);
-        monopolyPanel.setExtendedState(Frame.NORMAL);
+        
+        
     }
     
     public void startGame(int numPlayers, ArrayList<String> names) {
