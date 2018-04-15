@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JScrollBar;
@@ -21,7 +22,8 @@ import javax.swing.JScrollPane;
 
 public class MonopolyPanel extends JFrame implements ActionListener {
 
-	private JPanel contentPanel;
+	//private JPanel contentPanel;
+	private JLayeredPane contentPanel;
 
 	/**
 	 * Launch the application.
@@ -45,7 +47,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	public MonopolyPanel() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000 , 700);
-		contentPanel = new JPanel();
+		contentPanel = new JLayeredPane();
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPanel);
 		contentPanel.setLayout(null);
@@ -55,8 +57,16 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		boardImage.setBounds(6, 6, 594, 585);
 		Image img = new ImageIcon(this.getClass().getResource("/board.jpg")).getImage().getScaledInstance(600, 600, Image.SCALE_AREA_AVERAGING);    //import board.png file as an ImageIcon object
 		boardImage.setIcon(new ImageIcon(img));         //set the image of the board to be in the label 
-		contentPanel.add(boardImage);                   //add the label to the board
+		contentPanel.add(boardImage, new Integer(2));                   //add the label to the board
 		
+		
+		//create Token label that holds image 
+				JLabel tokenImage = new JLabel("");
+				tokenImage.setBounds(6, 6, 594, 585);
+				Image img1 = new ImageIcon(this.getClass().getResource("/boot.png")).getImage().getScaledInstance(600, 600, Image.SCALE_AREA_AVERAGING);    //import board.png file as an ImageIcon object
+				tokenImage.setIcon(new ImageIcon(img1));         //set the image of the board to be in the label 
+				contentPanel.add(tokenImage, new Integer(3)); 
+				
         //create button to start game
 		JButton startGameBtn = new JButton("Start");
 		startGameBtn.addActionListener(new ActionListener() {
