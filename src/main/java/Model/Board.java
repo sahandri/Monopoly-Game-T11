@@ -154,6 +154,14 @@ public class Board {
 		return player;
 	}
 	
+	public Player addPlayer(int id, Token tok, String name){
+		tok.move(0);								//set token position to start
+		Player player = new Player(id, tok, name);			//create a new player with given id, token and name
+		players.put(player, tok);						//add the player to the game and map it to the token.
+		
+		return player;
+	}
+	
 	/*moves the player to the new position
 	 * and calls square.perform(Player) on the square at index=newPosition
 	 * */

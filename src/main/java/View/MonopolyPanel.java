@@ -6,7 +6,9 @@ import java.awt.Frame;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -27,9 +29,8 @@ import javax.swing.JScrollPane;
 
 public class MonopolyPanel extends JFrame implements ActionListener {
 	private final String boardImagePath = "/img/board.jpg";
-
 	private final String tokenImagePath = "/img/token/boot.png";
-
+			
 	private JLayeredPane contentPanel;
 
 
@@ -74,7 +75,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 
 		//create label that holds token image 
 				JLabel tokenImage = new JLabel("");
-				tokenImage.setBounds(6, 6, 594, 585);
+				tokenImage.setBounds(529, 491, 100, 100);
 				Image tokenImg = new ImageIcon(this.getClass().getResource(tokenImagePath)).getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING);    //import boot.png file as an ImageIcon object
 				/*tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the token to be in the label 
 				* This is a scaling of the token image. */
@@ -82,24 +83,75 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 
 				contentPanel.add(tokenImage, new Integer(2));                   //add the label to the board
 		
-
-		String[] List = new String[] {"1","2","3","4"};
+//START BUTTON:
+		String[] List = new String[] {"2","3","4"};
+		ArrayList<String> names = new ArrayList<>();
+		JTextField name1 = new JTextField();
+		JTextField name2 = new JTextField();
+		JTextField name3 = new JTextField();
+		JTextField name4 = new JTextField();
+		Object[] playerNames2Q = {
+				"Player 1 name: ", name1,
+				"Player 2 name: ", name2
+		};
+		Object[] playerNames3Q = {
+				"Player 1 name: ", name1,
+				"Player 2 name: ", name2,
+				"Player 3 name: ", name3
+		};
+		Object[] playerNames4Q = {
+				"Player 1 name: ", name1,
+				"Player 2 name: ", name2,
+				"Player 3 name: ", name3,
+				"Player 4 name: ", name4
+		};
         //create button to start game
 		JButton startGameBtn = new JButton("Start");
 		startGameBtn.addActionListener(new ActionListener() {
 				//TODO: implement here what should happen when "start" button is pressed.
 				public void actionPerformed(ActionEvent arg0) {
-					String numberOfPlayers = (String) JOptionPane.showInputDialog(contentPanel, "Enter Number Of Players", "Input", JOptionPane.QUESTION_MESSAGE,
-					        null, List, "Titan");
-					JOptionPane.showMessageDialog(contentPanel.getComponent(0),
-							"number of players: "+numberOfPlayers+" player1 starts the game");
-					//calls monopoly.startGame(Integer.valueOf(numberOfPlayers))
+					String numberOfPlayers = (String) JOptionPane.showInputDialog(contentPanel, "Enter Number Of Players", "Input", JOptionPane.QUESTION_MESSAGE, null, List, "Titan");
+					int option;
+					switch(Integer.valueOf(numberOfPlayers)){
+						case 2: 
+							option = JOptionPane.showConfirmDialog(null, playerNames2Q, "Insert Names", JOptionPane.OK_CANCEL_OPTION);
+							if (option == JOptionPane.OK_OPTION){
+								names.add(name1.getText());
+								names.add(name2.getText());
+								//calls Monopoly.startGame(Integer.valueOf(numberOfPlayers), names);
+							}
+							break;
+						case 3:
+							option = JOptionPane.showConfirmDialog(null, playerNames3Q, "Insert Names", JOptionPane.OK_CANCEL_OPTION);
+							if (option == JOptionPane.OK_OPTION){
+								names.add(name1.getText());
+								names.add(name2.getText());
+								names.add(name3.getText());
+								//calls Monopoly.startGame(Integer.valueOf(numberOfPlayers), names);
+							}
+							break;
+						case 4:
+							option = JOptionPane.showConfirmDialog(null, playerNames4Q, "Insert Names", JOptionPane.OK_CANCEL_OPTION);
+							if (option == JOptionPane.OK_OPTION){
+								names.add(name1.getText());
+								names.add(name2.getText());
+								names.add(name3.getText());
+								names.add(name4.getText());
+								//calls Monopoly.startGame(Integer.valueOf(numberOfPlayers), names);
+							}
+							break;
+						default: option = 0;
+					}
+					
+					JOptionPane.showMessageDialog(contentPanel.getComponent(0), "number of players: "+numberOfPlayers+"\nPlayer1 starts the game");
+					//calls Monopoly.startGame(Integer.valueOf(numberOfPlayers));
 	            }
 
 		});
 		startGameBtn.setFont(new Font("Avenir", Font.PLAIN, 13));
 		startGameBtn.setBounds(19, 623, 117, 29);
 		contentPanel.add(startGameBtn);
+		RollDiceButton.setFont(new Font("Avenir", Font.PLAIN, 13));
 		
 		
 		//Roll dice and move player
@@ -138,10 +190,12 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		contentPanel.add(SellPropertyBtn);
 		
 		JLabel lblPlayer = new JLabel("Player");
+		lblPlayer.setFont(new Font("Avenir", Font.PLAIN, 13));
 		lblPlayer.setBounds(615, 30, 69, 20);
 		contentPanel.add(lblPlayer);
 		
 		JLabel lblPrice = new JLabel("Money");
+		lblPrice.setFont(new Font("Avenir", Font.PLAIN, 13));
 		lblPrice.setBounds(751, 30, 69, 20);
 		contentPanel.add(lblPrice);
 		
@@ -315,6 +369,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 
 		/** History scroll area*/
 		JTextArea display = new JTextArea ( 16, 30 );
+		display.setFont(new Font("Avenir", Font.PLAIN, 13));
 		display.setText("This will hold previous actions.");
 		display.setEditable ( false );
 		JScrollPane scrollPane = new JScrollPane(display);
@@ -324,12 +379,13 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		
 		
 		JLabel lblHistory = new JLabel("History");
-		lblHistory.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblHistory.setFont(new Font("Avenir", Font.BOLD, 18));
 		lblHistory.setBounds(611, 330, 75, 29);
 		contentPanel.add(lblHistory);
 		
 		JLabel Token1 = new JLabel("");
-		Token1.setBounds(526, 529, 69, 20);
+		Token1.setHorizontalAlignment(SwingConstants.CENTER);
+		Token1.setBounds(519, 539, 64, 43);
 		contentPanel.add(Token1);
 		
 		
