@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ public class Board {
 	private Dice dice;					//dice
 	long initialTime = System.currentTimeMillis(), endTime;
 	private int[][] streetArray;           //contains position and color group ID of each street
+	private ArrayList<Player> playerArray;
 	
 	/*constructor*/
 	public Board(){
@@ -18,6 +20,7 @@ public class Board {
 		deeds = new HashMap<>();		/*add to it using deeds.put(position,Player);		retrieve from it using deeds.get(position)*/
 		dice = new Dice();
 		streetArraySetUp();
+		playerArray = new ArrayList<Player>();
 		setUp();						//set up the board at creation.
 	}
 	
@@ -150,6 +153,7 @@ public class Board {
 		tok.move(0);								//set token position to start
 		Player player = new Player(id);			//create a new player with given id
 		players.put(player, tok);				//add the player to the game and map it to the token.
+		playerArray.add(player);
 		
 		return player;
 	}
@@ -158,6 +162,7 @@ public class Board {
 		tok.move(0);								//set token position to start
 		Player player = new Player(id, tok, name);			//create a new player with given id, token and name
 		players.put(player, tok);						//add the player to the game and map it to the token.
+		playerArray.add(player);
 		
 		return player;
 	}
@@ -195,5 +200,18 @@ public class Board {
 	
 	public Square[] getSquares() {
 		return squares;
+	}
+	
+	public Player getNextPlayer(Player player) {
+		for(int i=0; i<playerArray.size();i++) {
+			if(playerArray.get(i).equals(player)) {
+				if(i==playerArray.size()-1) {
+					return playerArray.get(0);
+				}else {
+					return playerArray.get(i+1);
+				}
+			}
+		}
+		return playerArray.get(0);
 	}
 }
