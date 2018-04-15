@@ -1,11 +1,8 @@
-import View.MonopolyPanel;
-
 import javax.swing.*;
-
-import Model.Board;
-import Model.Player;
-import Model.Square;
-import Model.Token;
+import Model.*;
+import View.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -27,14 +24,14 @@ public class Monopoly {
 
         MonopolyPanel monopolyPanel = new MonopolyPanel();
         monopolyPanel.setVisible(true);
-        monopolyPanel.setExtendedState(Frame.MAXIMIZED_BOTH);
+        monopolyPanel.setExtendedState(Frame.NORMAL);
     }
     
-    public void startGame(int numPlayers) {
+    public void startGame(int numPlayers, String[] names) {
     	board = new Board();
     	for(int i = 0; i < numPlayers; i++) {
     		Token token = new Token();
-    		board.addPlayer(i, token);
+    		board.addPlayer(i+1, token, names[i]);		//add player to board
     	}
     }
     
