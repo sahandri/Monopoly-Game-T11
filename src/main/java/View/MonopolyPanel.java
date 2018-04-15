@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -27,7 +28,12 @@ import javax.swing.JScrollPane;
 public class MonopolyPanel extends JFrame implements ActionListener {
 	private final String boardImagePath = "/board.jpg";
 
-	private JPanel contentPanel;
+	private final String tokenImagePath = "/boot.png";
+
+	private JLayeredPane contentPanel;
+
+
+	
 	private final JButton RollDiceButton = new JButton("Roll Dice");
 	//private Monopoly monopoly;
 
@@ -53,7 +59,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	public MonopolyPanel() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000 , 700);
-		contentPanel = new JPanel();
+		contentPanel = new JLayeredPane();
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPanel);
 		contentPanel.setLayout(null);
@@ -63,8 +69,17 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		boardImage.setBounds(6, 6, 594, 585);
 		Image img = new ImageIcon(this.getClass().getResource(boardImagePath)).getImage().getScaledInstance(600, 600, Image.SCALE_AREA_AVERAGING);    //import board.png file as an ImageIcon object
 		boardImage.setIcon(new ImageIcon(img));         //set the image of the board to be in the label 
-		contentPanel.add(boardImage);                   //add the label to the board
+		contentPanel.add(boardImage, new Integer(1));                   //add the label to the board
 		
+
+		//create label that holds token image 
+				JLabel tokenImage = new JLabel("");
+				tokenImage.setBounds(6, 6, 594, 585);
+				Image tokenImg = new ImageIcon(this.getClass().getResource(tokenImagePath)).getImage().getScaledInstance(600, 600, Image.SCALE_AREA_AVERAGING);    //import board.png file as an ImageIcon object
+				tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the board to be in the label 
+				contentPanel.add(tokenImage, new Integer(2));                   //add the label to the board
+		
+
 		String[] List = new String[] {"1","2","3","4"};
         //create button to start game
 		JButton startGameBtn = new JButton("Start");
