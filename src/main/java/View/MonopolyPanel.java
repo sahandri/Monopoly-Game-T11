@@ -26,7 +26,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
 
 public class MonopolyPanel extends JFrame implements ActionListener {
-	private final String boardImagePath = "/board.jpg";
+	private final String boardImagePath = "/img/board.jpg";
 
 	private final String tokenImagePath = "/img/token/boot.png";
 
