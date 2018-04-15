@@ -1,3 +1,5 @@
+package View;
+
 import javax.swing.*;
 import Model.*;
 import View.*;
@@ -21,10 +23,8 @@ public class Monopoly{
         } catch (Exception e){
             e.printStackTrace();
         }
-
-        MonopolyPanel monopolyPanel = new MonopolyPanel();
-        
-        
+        Monopoly monopoly = new Monopoly();
+        MonopolyPanel monopolyPanel = new MonopolyPanel(monopoly);
     }
     
     public void startGame(int numPlayers, ArrayList<String> names) {
