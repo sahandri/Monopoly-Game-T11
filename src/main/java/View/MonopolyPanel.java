@@ -76,7 +76,10 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				JLabel tokenImage = new JLabel("");
 				tokenImage.setBounds(6, 6, 594, 585);
 				Image tokenImg = new ImageIcon(this.getClass().getResource(tokenImagePath)).getImage().getScaledInstance(600, 600, Image.SCALE_AREA_AVERAGING);    //import board.png file as an ImageIcon object
-				tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the board to be in the label 
+				/*tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the board to be in the label 
+				* This is a scaling of the token image. */
+				tokenImage.setIcon(new ImageIcon(new ImageIcon(tokenImg).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+
 				contentPanel.add(tokenImage, new Integer(2));                   //add the label to the board
 		
 
