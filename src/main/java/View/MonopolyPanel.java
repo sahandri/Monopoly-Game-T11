@@ -33,13 +33,14 @@ import javax.swing.JScrollPane;
 public class MonopolyPanel extends JFrame implements ActionListener {
 	private final String boardImagePath = "/img/board.jpg";
 	private final String tokenImagePath = "/img/token/boot.png";
+	private static Monopoly monopoly;
 			
 	private JLayeredPane contentPanel;
 	private final JButton RollDiceButton = new JButton("Roll Dice");
-	private Monopoly monopoly = new Monopoly();
 
 
-	public MonopolyPanel() {
+	public MonopolyPanel(Monopoly monopoly) {
+		this.monopoly = monopoly;
 		setUpGUI();
 	}
 	
@@ -369,7 +370,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MonopolyPanel frame = new MonopolyPanel();
+					MonopolyPanel frame = new MonopolyPanel(monopoly);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -25,10 +25,8 @@ public class Monopoly{
         } catch (Exception e){
             e.printStackTrace();
         }
-
-        MonopolyPanel monopolyPanel = new MonopolyPanel();
-        
-        
+        Monopoly monopoly = new Monopoly();
+        MonopolyPanel monopolyPanel = new MonopolyPanel(monopoly);
     }
     
     public void startGame(int numPlayers, ArrayList<String> names) {
@@ -81,6 +79,7 @@ public class Monopoly{
     public Token getToken(Player player) {
     	return player.getToken();
     }
+
     
     public Player getPlayer() {
     	return players.get(currentPlayer);
