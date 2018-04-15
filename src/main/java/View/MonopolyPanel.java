@@ -189,6 +189,37 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		SellPropertyBtn.setBounds(252, 623, 117, 29);
 		contentPanel.add(SellPropertyBtn);
 		
+		
+		
+
+		/** History scroll area*/
+		JTextArea display = new JTextArea ( 16, 30 );
+		display.setFont(new Font("Avenir", Font.PLAIN, 13));
+		display.setText("This will hold previous actions.");
+		display.setEditable ( false );
+		JScrollPane scrollPane = new JScrollPane(display);
+		scrollPane.setBounds(610, 370, 364, 212);
+		contentPanel.add(scrollPane);
+		scrollPane.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
+		
+		
+		JLabel lblHistory = new JLabel("History");
+		lblHistory.setFont(new Font("Avenir", Font.BOLD, 18));
+		lblHistory.setBounds(611, 330, 75, 29);
+		contentPanel.add(lblHistory);
+		
+		JLabel Token1 = new JLabel("");
+		Token1.setHorizontalAlignment(SwingConstants.CENTER);
+		Token1.setBounds(519, 539, 64, 43);
+		contentPanel.add(Token1);
+		
+		playerStatus();
+		
+		
+	}
+	
+	
+	public void playerStatus() {
 		JLabel lblPlayer = new JLabel("Player");
 		lblPlayer.setFont(new Font("Avenir", Font.PLAIN, 13));
 		lblPlayer.setBounds(615, 30, 69, 20);
@@ -332,6 +363,8 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		contentPanel.add(checkBox_20);
 		
 		JCheckBox checkBox_21 = new JCheckBox("");
+		checkBox_21.setSelected(true);
+		checkBox_21.setEnabled(false);
 		checkBox_21.setForeground(Color.BLACK);
 		checkBox_21.setBackground(Color.BLACK);
 		checkBox_21.setBounds(611, 206, 29, 29);
@@ -366,29 +399,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		checkBox_26.setBackground(Color.GRAY);
 		checkBox_26.setBounds(850, 206, 29, 29);
 		contentPanel.add(checkBox_26);
-
-		/** History scroll area*/
-		JTextArea display = new JTextArea ( 16, 30 );
-		display.setFont(new Font("Avenir", Font.PLAIN, 13));
-		display.setText("This will hold previous actions.");
-		display.setEditable ( false );
-		JScrollPane scrollPane = new JScrollPane(display);
-		scrollPane.setBounds(610, 370, 364, 212);
-		contentPanel.add(scrollPane);
-		scrollPane.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
-		
-		
-		JLabel lblHistory = new JLabel("History");
-		lblHistory.setFont(new Font("Avenir", Font.BOLD, 18));
-		lblHistory.setBounds(611, 330, 75, 29);
-		contentPanel.add(lblHistory);
-		
-		JLabel Token1 = new JLabel("");
-		Token1.setHorizontalAlignment(SwingConstants.CENTER);
-		Token1.setBounds(519, 539, 64, 43);
-		contentPanel.add(Token1);
-		
-		
 	}
 
 	@Override
