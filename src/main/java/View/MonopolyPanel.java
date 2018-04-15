@@ -28,7 +28,7 @@ import javax.swing.JScrollPane;
 public class MonopolyPanel extends JFrame implements ActionListener {
 	private final String boardImagePath = "/board.jpg";
 
-	private final String tokenImagePath = "/boot.png";
+	private final String tokenImagePath = "/img/token/boot.png";
 
 	private JLayeredPane contentPanel;
 
@@ -75,8 +75,8 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		//create label that holds token image 
 				JLabel tokenImage = new JLabel("");
 				tokenImage.setBounds(6, 6, 594, 585);
-				Image tokenImg = new ImageIcon(this.getClass().getResource(tokenImagePath)).getImage().getScaledInstance(600, 600, Image.SCALE_AREA_AVERAGING);    //import board.png file as an ImageIcon object
-				/*tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the board to be in the label 
+				Image tokenImg = new ImageIcon(this.getClass().getResource(tokenImagePath)).getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING);    //import boot.png file as an ImageIcon object
+				/*tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the token to be in the label 
 				* This is a scaling of the token image. */
 				tokenImage.setIcon(new ImageIcon(new ImageIcon(tokenImg).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
 

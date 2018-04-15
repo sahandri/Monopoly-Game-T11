@@ -39,3 +39,4 @@ hs_err_pid*
 # ignore everything in .idea
 .idea/*
 
+/bin/
