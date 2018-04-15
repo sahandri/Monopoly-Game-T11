@@ -27,7 +27,7 @@ public class Monopoly {
 
         MonopolyPanel monopolyPanel = new MonopolyPanel();
         monopolyPanel.setVisible(true);
-        monopolyPanel.setExtendedState(Frame.MAXIMIZED_BOTH);
+        monopolyPanel.setExtendedState(Frame.NORMAL);
     }
     
     public void startGame(int numPlayers) {
