@@ -209,27 +209,27 @@ public class MonopolyPanel extends JFrame implements ActionListener {
                 //TODO: implement here what should happen when "Buy Property" button is pressed.
 				if(monopoly.getOwnerID(monopoly.getPlayer()) != monopoly.getPlayer().getID()
 						&& monopoly.getOwnerID(monopoly.getPlayer()) != -1) {
-					if(JOptionPane.showConfirmDialog(contentPanel.getComponent(0),
+					if(JOptionPane.showConfirmDialog(contentPanel,
 							monopoly.getOwnerName(monopoly.getPlayer())+" do you want to sell?", "",
 							JOptionPane.OK_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, MONOPOLY_ICON)
 							==JOptionPane.YES_OPTION) {
 						boolean success = monopoly.buyProperty(monopoly.getPlayer());
 						if(success) {
 							Object[] messageObj = {"Property purchased succesfully"};
-							JOptionPane.showMessageDialog(contentPanel.getComponent(0), messageObj,"Hooray!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
+							JOptionPane.showMessageDialog(contentPanel, messageObj,"Hooray!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
 						}else {
 							Object[] messageObj = {"Can not purchase this property"};
-							JOptionPane.showMessageDialog(contentPanel.getComponent(0),messageObj ,"Oops!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
+							JOptionPane.showMessageDialog(contentPanel,messageObj ,"Oops!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
 						}
 					}
 				}else {
 					boolean success = monopoly.buyProperty(monopoly.getPlayer());
 					if(success) {
 						Object[] messageObj = {"Property purchased succesfully"};
-						JOptionPane.showMessageDialog(contentPanel.getComponent(0), messageObj,"Hooray!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
+						JOptionPane.showMessageDialog(contentPanel, messageObj,"Hooray!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
 					}else {
 						Object[] messageObj = {"Can not purchase this property"};
-						JOptionPane.showMessageDialog(contentPanel.getComponent(0),messageObj ,"Oops!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
+						JOptionPane.showMessageDialog(contentPanel,messageObj ,"Oops!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
 					}
 				}
 			}
@@ -244,7 +244,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		rollDiceBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int roll = monopoly.getDiceRoll();
-				JOptionPane.showMessageDialog(contentPanel.getComponent(0),"You got: "+Integer.valueOf(roll), "Dice Rolled..", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
+				JOptionPane.showMessageDialog(contentPanel,"You got: "+Integer.valueOf(roll), "Dice Rolled..", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
 				int newPosition = (monopoly.getCurrentPlayerPosition() + roll)%40;
 				switch(monopoly.getPlayer().getID()){
 					case 1: moveToken(tok1, newPosition);
@@ -304,7 +304,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 					int option;
 					switch(Integer.valueOf(numberOfPlayers)){
 							case 2: 
-								option = JOptionPane.showConfirmDialog(null, playerNames2Q, "Insert Names", JOptionPane.OK_CANCEL_OPTION, JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
+								option = JOptionPane.showConfirmDialog(contentPanel, playerNames2Q, "Insert Names", JOptionPane.OK_CANCEL_OPTION, JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
 								if (option == JOptionPane.OK_OPTION){
 									names.add(name1.getText());
 									names.add(name2.getText());
@@ -312,7 +312,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 								}
 								break;
 							case 3:
-								option = JOptionPane.showConfirmDialog(null, playerNames3Q, "Insert Names", JOptionPane.OK_CANCEL_OPTION, JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
+								option = JOptionPane.showConfirmDialog(contentPanel, playerNames3Q, "Insert Names", JOptionPane.OK_CANCEL_OPTION, JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
 								if (option == JOptionPane.OK_OPTION){
 									names.add(name1.getText());
 									names.add(name2.getText());
@@ -321,7 +321,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 								}
 								break;
 							case 4:
-								option = JOptionPane.showConfirmDialog(null, playerNames4Q, "Insert Names", JOptionPane.OK_CANCEL_OPTION,JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
+								option = JOptionPane.showConfirmDialog(contentPanel, playerNames4Q, "Insert Names", JOptionPane.OK_CANCEL_OPTION,JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
 								if (option == JOptionPane.OK_OPTION){
 									names.add(name1.getText());
 									names.add(name2.getText());
@@ -335,7 +335,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				Object[] messageObj = {
 						"number of players: "+numberOfPlayers+"\n"+monopoly.getPlayer().getName()+" starts the game", 
 				};
-				JOptionPane.showMessageDialog(contentPanel.getComponent(0), messageObj, "IT'S GAME TIME",JOptionPane.OK_CANCEL_OPTION,MONOPOLY_ICON);
+				JOptionPane.showMessageDialog(contentPanel, messageObj, "IT'S GAME TIME",JOptionPane.OK_CANCEL_OPTION,MONOPOLY_ICON);
 				setUpTokenImg();
 				playerStatus();
 				startTimer();
@@ -364,7 +364,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		    	   timer.setText((endTimeMin - calendar1.get(Calendar.MINUTE)) +" minutes left");
 		       }else{
 		    	   timer.setText("Game Over");
-		    	   JOptionPane.showMessageDialog(contentPanel.getComponent(0),"Game is over!\nWinner is: " + monopoly.selectWinner().getName());
+		    	   JOptionPane.showMessageDialog(contentPanel,"Game is over!\nWinner is: " + monopoly.selectWinner().getName());
 		       }
 		    }
 		});
