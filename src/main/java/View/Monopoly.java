@@ -60,7 +60,7 @@ public class Monopoly{
     	for(Player p : players){
     		if(p.getID() == ownerID){return p.getName();}
     	}
-    	return null;
+    	return "Owner not found";
     }
     
     
