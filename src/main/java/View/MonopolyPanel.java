@@ -35,7 +35,7 @@ import javax.swing.JScrollPane;
 public class MonopolyPanel extends JFrame implements ActionListener {
 	private Map<Integer,int[]> GUIposition = new HashMap<Integer,int[]>();
 	private final String boardImagePath = "/img/board.jpg";
-	private final String tokenImagePath = "/img/token/boot.png";
+	private final String tokenImagePath = "/img/token/";
 
 	private JLabel tok1 = new JLabel();
 	private JLabel tok2 = new JLabel();
@@ -69,26 +69,75 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		this.setVisible(true);
         this.setExtendedState(Frame.NORMAL);
         
-        setUpImages();
+        setUpBoardImg();
         setUpButtons();
         setLabels();
 	}
 	
-	private void setUpImages(){
+	private void setUpBoardImg(){
 		//create LABEL that holds board IMAGE 
 		JLabel boardImage = new JLabel("");
 		boardImage.setBounds(6, 6, 594, 585);
 		Image img = new ImageIcon(this.getClass().getResource(boardImagePath)).getImage().getScaledInstance(600, 600, Image.SCALE_AREA_AVERAGING);    //import board.png file as an ImageIcon object
 		boardImage.setIcon(new ImageIcon(img));         //set the image of the board to be in the label 
 		contentPanel.add(boardImage, new Integer(1));
-
+	}
+	
+	private void setTok1(){
 		//create LABEL that holds token1 IMAGE : boot
 		tok1.setBounds(525, 491, 100, 100);
-		Image tokenImg = new ImageIcon(this.getClass().getResource(tokenImagePath)).getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING);    //import boot.png file as an ImageIcon object
+		Image tokenImg = new ImageIcon(this.getClass().getResource(tokenImagePath + "boot.png")).getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING);    //import boot.png file as an ImageIcon object
 		/*tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the token to be in the label 
 		* This is a scaling of the token image. */
 		tok1.setIcon(new ImageIcon(new ImageIcon(tokenImg).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
 		contentPanel.add(tok1, new Integer(2));                   //add the label to the board
+	}
+	
+	private void setTok2(){
+		//create LABEL that holds token2 IMAGE : car
+		tok2.setBounds(525, 491, 100, 100);
+		Image tokenImg2 = new ImageIcon(this.getClass().getResource(tokenImagePath + "car.png")).getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING);    //import boot.png file as an ImageIcon object
+		/*tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the token to be in the label 
+		* This is a scaling of the token image. */
+		tok2.setIcon(new ImageIcon(new ImageIcon(tokenImg2).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+		contentPanel.add(tok2, new Integer(2));                   //add the label to the boards
+	}
+	
+	private void setTok3(){
+		//create LABEL that holds token3 IMAGE : dog
+		tok3.setBounds(525, 491, 100, 100);
+		Image tokenImg3 = new ImageIcon(this.getClass().getResource(tokenImagePath + "dog.png")).getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING);    //import boot.png file as an ImageIcon object
+		/*tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the token to be in the label 
+		* This is a scaling of the token image. */
+		tok3.setIcon(new ImageIcon(new ImageIcon(tokenImg3).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+		contentPanel.add(tok3, new Integer(2));                   //add the label to the board
+	}
+	
+	private void setTok4(){
+		//create LABEL that holds token4 IMAGE : penguin
+				tok4.setBounds(525, 491, 100, 100);
+				Image tokenImg4 = new ImageIcon(this.getClass().getResource(tokenImagePath + "penguin.png")).getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING);    //import boot.png file as an ImageIcon object
+				/*tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the token to be in the label 
+				* This is a scaling of the token image. */
+				tok4.setIcon(new ImageIcon(new ImageIcon(tokenImg4).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+				contentPanel.add(tok4, new Integer(2));                   //add the label to the board
+	}
+	
+	private void setUpTokenImg(){
+		if(Integer.parseInt(numberOfPlayers) == 2){
+			setTok1();
+			setTok2();
+		}else if(Integer.parseInt(numberOfPlayers) == 3){
+			setTok1();
+			setTok2();
+			setTok3();
+		}else if(Integer.parseInt(numberOfPlayers) == 4){
+			setTok1();
+			setTok2();
+			setTok3();
+			setTok4();
+		}
+		
 		
 	}
 	
@@ -125,8 +174,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent arg0) {
 				//switch player to the next one
 				display.append(monopoly.getName(monopoly.getPlayer()) + " ended turn. \n");
-
-
+				
 				monopoly.changePlayer();
 				playerStatus();
 
@@ -174,13 +222,30 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		RollDiceButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int roll = monopoly.getDiceRoll();
+				JOptionPane.showMessageDialog(contentPanel.getComponent(0),"You got: "+Integer.valueOf(roll));
+				int newPosition = (monopoly.getCurrentPlayerPosition() + roll)%40;
+				switch(monopoly.getPlayer().getID()){
+					case 1: moveToken(tok1, newPosition);
+						break;
+					case 2: moveToken(tok2, newPosition);
+						break;
+					case 3:	moveToken(tok3,newPosition);
+						break;
+					case 4: moveToken(tok4, newPosition);
+						break;
+				}
+				display.append(monopoly.move());
 				JOptionPane.showMessageDialog(contentPanel.getComponent(0),"Dice: "+Integer.valueOf(roll));
-				
 			}
 		});
 		RollDiceButton.setBounds(369, 623, 117, 29);
 		contentPanel.add(RollDiceButton);
 	}
+	
+	public void moveToken(JLabel tok, int newPosition){
+		tok.setLocation(GUIposition.get(newPosition)[0], GUIposition.get(newPosition)[1]);
+	}
+
 
 	private void startButton(){
 		//START BUTTON:
@@ -242,8 +307,8 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 								break;
 							default: option = 0;
 					}
-						
 				JOptionPane.showMessageDialog(contentPanel.getComponent(0), "number of players: "+numberOfPlayers+"\nPlayer1 starts the game");
+				setUpTokenImg();
 				playerStatus();
 			}
 
@@ -386,10 +451,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		}
 	}
 	
-	public void moveToken(JLabel tok, int newPosition){
-		tok.setLocation(GUIposition.get(newPosition)[0], GUIposition.get(newPosition)[1]);
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -408,41 +469,41 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		
 		GUIposition.put(2, new int[]{424,490});
 		
-		GUIposition.put(3, new int[] {374,490});
+		GUIposition.put(3, new int[]{374,490});
 		
 		GUIposition.put(4, new int[]{328,490});
 		
-		GUIposition.put(5, new int[]{ 280, 490 });
+		GUIposition.put(5, new int[]{280, 490});
 		
 		GUIposition.put(6, new int[]{232 ,490 });
 		
-		GUIposition.put(7, new int[]{ 185, 490});
+		GUIposition.put(7, new int[]{185, 490});
 		
-		GUIposition.put(8, new int[]{ 138,490 });
+		GUIposition.put(8, new int[]{138,490 });
 		
-		GUIposition.put(9, new int[]{ 89, 490});
+		GUIposition.put(9, new int[]{89, 490});
 		
-		GUIposition.put(10, new int[]{ 89, 490});
+		GUIposition.put(10, new int[]{35, 490});
 		
-		GUIposition.put(11, new int[]{ 89, 438});
+		GUIposition.put(11, new int[]{35, 438});
 		
-		GUIposition.put(12, new int[]{ 89, 397});
+		GUIposition.put(12, new int[]{35, 397});
 		
-		GUIposition.put(13, new int[]{ 89, 343});
+		GUIposition.put(13, new int[]{35, 343});
 		
-		GUIposition.put(14, new int[]{ 89, 299});
+		GUIposition.put(14, new int[]{ 35, 299});
 		
-		GUIposition.put(15, new int[]{ 89, 251});
+		GUIposition.put(15, new int[]{ 35, 251});
 		
-		GUIposition.put(16, new int[]{ 89, 203});
+		GUIposition.put(16, new int[]{ 35, 203});
 		
-		GUIposition.put(17, new int[]{89 ,155 });
+		GUIposition.put(17, new int[]{35 ,155 });
 		
-		GUIposition.put(18, new int[]{ 89, 110});
+		GUIposition.put(18, new int[]{ 35, 110});
 		
-		GUIposition.put(19, new int[]{ 89, 57});
+		GUIposition.put(19, new int[]{ 35, 57});
 		
-		GUIposition.put(20, new int[]{ 89, 6});
+		GUIposition.put(20, new int[]{ 35, 6});
 		
 		GUIposition.put(21, new int[]{ 92, 6});
 		
