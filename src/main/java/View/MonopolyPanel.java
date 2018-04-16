@@ -7,6 +7,9 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,6 +29,8 @@ import java.awt.Font;
 import javax.swing.JScrollBar;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
+
 import java.awt.Color;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -43,6 +48,8 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private JLabel tok4 = new JLabel();
 	private JLabel lblPlayer;
 	private JLabel lblPrice;
+	private JLabel timer;
+	private int startTimeMin, startTimeSec, endTimeMin, endTimeSec;
 	private String numberOfPlayers;
 	
 	private JTextArea display;
@@ -309,6 +316,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(contentPanel.getComponent(0), "number of players: "+numberOfPlayers+"\nPlayer1 starts the game");
 				setUpTokenImg();
 				playerStatus();
+				startTimer();
 			}
 
 		});
@@ -318,15 +326,42 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		RollDiceButton.setFont(new Font("Avenir", Font.PLAIN, 13));
 	}
 	
+	private void startTimer(){
+		Calendar calendar = new GregorianCalendar();
+		startTimeMin = calendar.get(Calendar.MINUTE);
+		startTimeSec = calendar.get(Calendar.SECOND); 
+		endTimeMin = startTimeMin + 5;
+		Timer SimpleTimer = new Timer(1000, new ActionListener(){
+			@Override
+		    public void actionPerformed(ActionEvent e) {
+				Calendar calendar1 = new GregorianCalendar();
+		       if((calendar1.get(Calendar.MINUTE) < endTimeMin) ){
+		    	   timer.setText((endTimeMin - calendar1.get(Calendar.MINUTE)) +" minutes left");
+		       }else{
+		    	   timer.setText("Game Over");
+		    	   JOptionPane.showMessageDialog(contentPanel.getComponent(0),"Game is over!\nWinner is: " + monopoly.selectWinner().getName());
+		       }
+		    }
+		});
+		SimpleTimer.start();
+	}
+	
 	public void setLabels() {
 		lblPlayer = new JLabel("Player");
 		lblPlayer.setFont(new Font("Avenir", Font.PLAIN, 13));
 		lblPlayer.setBounds(615, 30, 69, 20);
 		contentPanel.add(lblPlayer);	
+		
 		lblPrice = new JLabel("Money");
 		lblPrice.setFont(new Font("Avenir", Font.PLAIN, 13));
 		lblPrice.setBounds(751, 30, 69, 20);
 		contentPanel.add(lblPrice);	
+		
+		timer = new JLabel("Timer");
+		timer.setFont(new Font("Avenir", Font.PLAIN, 13));
+		timer.setBounds(834, 621, 139, 29);
+		contentPanel.add(timer);
+		
 	}
 	
 	
