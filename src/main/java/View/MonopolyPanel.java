@@ -235,7 +235,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 						break;
 				}
 				display.append(monopoly.move());
-				JOptionPane.showMessageDialog(contentPanel.getComponent(0),"Dice: "+Integer.valueOf(roll));
 			}
 		});
 		RollDiceButton.setBounds(369, 623, 117, 29);
