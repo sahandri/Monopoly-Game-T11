@@ -125,8 +125,8 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		btnEndTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//switch player to the next one
-				display.append(monopoly.getName(monopoly.getPlayer()) + " ended turn. \n");
 				display.append(monopoly.move());
+				display.append(monopoly.getName(monopoly.getPlayer()) + " ended turn. \n");
 
 
 				monopoly.changePlayer();
