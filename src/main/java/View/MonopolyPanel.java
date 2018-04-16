@@ -49,6 +49,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private JLabel lblPlayer;
 	private JLabel lblPrice;
 	private JLabel timer;
+	private JButton buyBtn, btnEndTurn;
 	private int startTimeMin, startTimeSec, endTimeMin, endTimeSec;
 	private String numberOfPlayers;
 	
@@ -57,7 +58,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private static Monopoly monopoly;
 			
 	private JLayeredPane contentPanel;
-	private final JButton RollDiceButton = new JButton("Roll Dice");
+	private final JButton rollDiceBtn = new JButton("Roll Dice");
 
 
 	public MonopolyPanel(Monopoly monopoly) {
@@ -149,9 +150,9 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	}
 	
 	private void setUpButtons(){
-		startButton();
-		rollDiceButton();
 		buyPropertyButton();
+		startButton();
+		rollDiceBtn();
 		historyWindow();
 		//playerStatus();
 		EndTurnButton();
@@ -176,7 +177,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	}
 	
 	public void EndTurnButton() {
-		JButton btnEndTurn = new JButton("Next Player");
+		btnEndTurn = new JButton("Next Player");
 		btnEndTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//switch player to the next one
@@ -184,18 +185,20 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				
 				monopoly.changePlayer();
 				playerStatus();
-
+				buyBtn.setEnabled(false);
+				rollDiceBtn.setEnabled(true);
 			}
 		});
 		btnEndTurn.setBounds(539, 622, 115, 29);
 		contentPanel.add(btnEndTurn);
+		btnEndTurn.setEnabled(false);
 	}
 
 	private void buyPropertyButton() {
 		//create button to buy property
-		JButton BuyBtn = new JButton("Buy Property");
-		BuyBtn.setFont(new Font("Avenir", Font.PLAIN, 13));
-		BuyBtn.addActionListener(new ActionListener() {
+		buyBtn = new JButton("Buy Property");
+		buyBtn.setFont(new Font("Avenir", Font.PLAIN, 13));
+		buyBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                 //TODO: implement here what should happen when "Buy Property" button is pressed.
 				if(monopoly.getOwnerID(monopoly.getPlayer()) != monopoly.getPlayer().getID()
@@ -220,13 +223,14 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				}
 			}
 		});
-		BuyBtn.setBounds(136, 623, 117, 29);
-		contentPanel.add(BuyBtn);
+		buyBtn.setBounds(136, 623, 117, 29);
+		contentPanel.add(buyBtn);
+		buyBtn.setEnabled(false);
 	}
 
-	private void rollDiceButton() {
+	private void rollDiceBtn() {
 		//Roll dice and move player
-		RollDiceButton.addActionListener(new ActionListener() {
+		rollDiceBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int roll = monopoly.getDiceRoll();
 				JOptionPane.showMessageDialog(contentPanel.getComponent(0),"You got: "+Integer.valueOf(roll));
@@ -242,10 +246,14 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 						break;
 				}
 				display.append(monopoly.move());
+				buyBtn.setEnabled(true);
+				btnEndTurn.setEnabled(true);
+				rollDiceBtn.setEnabled(false);
 			}
 		});
-		RollDiceButton.setBounds(369, 623, 117, 29);
-		contentPanel.add(RollDiceButton);
+		rollDiceBtn.setBounds(369, 623, 117, 29);
+		contentPanel.add(rollDiceBtn);
+		rollDiceBtn.setEnabled(false);
 	}
 	
 	public void moveToken(JLabel tok, int newPosition){
@@ -317,13 +325,16 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				setUpTokenImg();
 				playerStatus();
 				startTimer();
+				startGameBtn.setEnabled(false);
+				buyBtn.setEnabled(false);
+				rollDiceBtn.setEnabled(true);
 			}
 
 		});
 		startGameBtn.setFont(new Font("Avenir", Font.PLAIN, 13));
 		startGameBtn.setBounds(19, 623, 117, 29);
 		contentPanel.add(startGameBtn);
-		RollDiceButton.setFont(new Font("Avenir", Font.PLAIN, 13));
+		rollDiceBtn.setFont(new Font("Avenir", Font.PLAIN, 13));
 	}
 	
 	private void startTimer(){
