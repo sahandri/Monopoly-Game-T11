@@ -151,6 +151,12 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		BuyBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                 //TODO: implement here what should happen when "Buy Property" button is pressed.
+				boolean success = monopoly.buyProperty(monopoly.getPlayer());
+				if(success) {
+					JOptionPane.showMessageDialog(contentPanel.getComponent(0), "Property Purchased Succesfully");
+				}else {
+					JOptionPane.showMessageDialog(contentPanel.getComponent(0), "can not purchase this property");
+				}
 			}
 		});
 		BuyBtn.setBounds(136, 623, 117, 29);
@@ -161,9 +167,8 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		//Roll dice and move player
 		RollDiceButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//int roll = monopoly.rollDice();
-				//JOptionPane.showMessageDialog(contentPanel.getComponent(0),
-				//"Dice: "+Integer.valueOf(roll));
+				int roll = monopoly.getDiceRoll();
+				JOptionPane.showMessageDialog(contentPanel.getComponent(0),"Dice: "+Integer.valueOf(roll));
 			}
 		});
 		RollDiceButton.setBounds(369, 623, 117, 29);
@@ -232,6 +237,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 					}
 						
 				JOptionPane.showMessageDialog(contentPanel.getComponent(0), "number of players: "+numberOfPlayers+"\nPlayer1 starts the game");
+				playerStatus();
 			}
 
 		});
