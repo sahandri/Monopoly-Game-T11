@@ -76,7 +76,7 @@ public class TestStreet {
         assertEquals(1498, player2.getMoney().money); //testing to pay rent for one street
 
         board.getSquares()[3].perform(player1,board); //player 1 buys second street from same color
-        assertEquals(1380, player1.getMoney().money); //testing to buy a street
+        assertEquals(1382, player1.getMoney().money); //testing to buy a street
         assertEquals(board.getSquares()[3].getOwner(), 1); // check the streets owner ID
         board.getSquares()[3].perform(player2,board); //player 2 moves to player1's street
         assertEquals(1490, player2.getMoney().money); //testing to pay rent for two streets
@@ -87,17 +87,8 @@ public class TestStreet {
         assertEquals(1490, player2.getMoney().money); //testing to not buy the street
     }
 
-
     @Test
     public void testToString(){
-        assertEquals("Brown", streetB.toString());
-        assertEquals("Light Blue", streetLB.toString());
-        assertEquals("Pink", streetP.toString());
-        assertEquals("Orange", streetO.toString());
-        assertEquals("Red", streetR.toString());
-        assertEquals("Yellow", streetY.toString());
-        assertEquals("Green", streetG.toString());
-        assertEquals("Dark Blue", streetDB.toString());
+    	assertEquals(" at Mediterranian Avenue. \n", board.getSquares()[1].toString());
     }
-
 }

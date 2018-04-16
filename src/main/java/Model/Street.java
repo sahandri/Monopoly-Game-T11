@@ -100,10 +100,13 @@ public class Street extends Square{
 	        int counter = numOfColorGroup(board); //gets the number of streets in the same color owned by a the owner
 	        switch (counter){
                 case 1: player.getMoney().sbustractMoney(rent);//subtract the rent amount
+                	board.getPropertyOwner(getPosition()).getMoney().addMoney(rent);
                     break;
                 case 2: player.getMoney().sbustractMoney(2*rent);//subtract the 2*rent amount
+                	board.getPropertyOwner(getPosition()).getMoney().addMoney(rent*2);
                     break;
                 case 3: player.getMoney().sbustractMoney(4*rent);// subtract the 4*rent amount
+                	board.getPropertyOwner(getPosition()).getMoney().addMoney(rent*4);
                     break;
             }
         }
@@ -124,16 +127,31 @@ public class Street extends Square{
 
 
     public String toString(){
-        switch(this.color){
-            case BROWN: return "Brown";
-            case LIGHT_BLUE: return "Light Blue";
-            case PINK: return "Pink";
-            case ORANGE: return "Orange";
-            case RED: return "Red";
-            case YELLOW: return "Yellow";
-            case GREEN: return "Green";
-            case DARK_BLUE: return "Dark Blue";
-            default: return "Type not defined.";
-        }
+    	switch(getPosition()) {
+        case 1: return " at Mediterranian Avenue. \n";
+        case 3: return " at Baltic Avenue. \n";
+        case 6: return " at Oriental Avenue. \n";
+        case 8: return " at Vermont Avenue. \n";
+        case 9: return " at Connecticut Avenue. \n";
+        case 11:return " at St. Charles Place. \n";
+        case 13:return " at States Avenue. \n";
+        case 14: return " at Virginia Avenue. \n";
+        case 16:return " at St. James Place. \n";
+        case 18:return " at Tennessee Avenue. \n";
+        case 19:return " at New York Avenue. \n";
+        case 21:return " at Kentucky Avenue. \n";
+        case 23:return " at Indiana Avenue. \n";
+        case 24:return " at Illinois Avenue. \n";
+        case 26:return " at Atlantic Avenue. \n";
+        case 27:return " at Ventnor Avenue. \n";
+        case 29:return " at Marvin Gardens. \n";
+        case 31:return " at Pacific Avenue. \n";
+        case 32:return " at North Carolina Avenue. \n";
+        case 34:return " at Pennsylvania Avenue. \n";
+        case 37:return " at Park Place. \n";
+        case 39:return " at Boardwalk. \n";
+        default:// throw error if wrong position is specified
+            throw new IllegalArgumentException("Unknown position");
+    }
     }
 }

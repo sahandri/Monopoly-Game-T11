@@ -45,6 +45,8 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private JLabel lblPrice;
 	private String numberOfPlayers;
 	
+	private JTextArea display;
+	
 	private static Monopoly monopoly;
 			
 	private JLayeredPane contentPanel;
@@ -102,9 +104,9 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 
 	private void historyWindow() {
 		/** History scroll area*/
-		JTextArea display = new JTextArea ( 16, 30 );
+		display = new JTextArea ( 16, 30 );
 		display.setFont(new Font("Avenir", Font.PLAIN, 13));
-		display.setText("This will hold previous actions.");
+		display.setText("Press Start to begin the game\n");
 		display.setEditable ( false );
 		JScrollPane scrollPane = new JScrollPane(display);
 		scrollPane.setBounds(610, 370, 364, 212);
@@ -123,8 +125,13 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		btnEndTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//switch player to the next one
+				display.append(monopoly.move());
+				display.append(monopoly.getName(monopoly.getPlayer()) + " ended turn. \n");
+
+
 				monopoly.changePlayer();
 				playerStatus();
+
 			}
 		});
 		btnEndTurn.setBounds(539, 622, 115, 29);
@@ -203,7 +210,9 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		JButton startGameBtn = new JButton("Start");
 		startGameBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+
 					numberOfPlayers = (String) JOptionPane.showInputDialog(contentPanel, "Enter Number Of Players", "Input", JOptionPane.QUESTION_MESSAGE, null, List, "Titan");
+
 					int option;
 					switch(Integer.valueOf(numberOfPlayers)){
 							case 2: 
