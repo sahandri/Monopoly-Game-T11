@@ -28,14 +28,28 @@ public class Monopoly{
     
     public void startGame(int numPlayers, ArrayList<String> names) {
     	board = new Board();
-    	for(int i = 1; i < numPlayers; i++) {
+    	for(int i = 1; i <= numPlayers; i++) {
     		Token token = new Token();
-    		players.add(board.addPlayer(i, token, names.get(i)));		//add player to board
+    		Player tempP = board.addPlayer(i, token, names.get(i-1));
+    		players.add(tempP);		//add player to board
     	}
+    	
     }
     
-    public void buyProperty(Player player, int position) {
-    	board.purchaseProperty(player, position);
+    public boolean buyProperty(Player player) {
+    	int position = player.getToken().getPosition();
+    	int[][] streets = board.getStreetArray();
+    	for(int i=0; i<streets.length;i++) {
+    		for(int j=0; j<streets[i].length;j++) {
+    			if(position==board.getStreetArray()[i][j]) {
+    				player.setDecision(true);
+    		    	board.getSquares()[position].perform(player, board);
+    		    	player.setDecision(false);
+    		    	return true;
+    			}
+    		}
+    	}
+    	return false;
     }
     
     public void sellProperty(Player buyer, int position) {
@@ -47,12 +61,9 @@ public class Monopoly{
     	return roll;
     }
     
-    public String getHistory(int position) {
-    	return board.getSquares()[position].toString();
-    }
-    
-    public void move(Player player) {
-    	board.getToken(player).move(roll);
+    /**Returns the history string and moves the player*/
+    public String move() {
+    	return board.move(players.get(currentPlayer), roll);
     }
     
     public ArrayList getProperty(Player player) {
@@ -82,13 +93,34 @@ public class Monopoly{
     	return players.get(currentPlayer);
     }
     
-    public Player changePlayer(Player player) {
-    	if(currentPlayer==players.size()-1) {
-    		currentPlayer = 0;
-    		return players.get(0);
-    	}else {
-    		currentPlayer++;
-    		return players.get(currentPlayer+1);
+    public void changePlayer() {
+    	if(players.size() == 2) {
+    		switch(currentPlayer) {
+	    		case 0: currentPlayer = 1;
+	    			break;
+	    		case 1: currentPlayer = 0;
+	    			break;
+    		}
+    	}
+    	if(players.size() == 3) {
+    		switch(currentPlayer) {
+	    		case 0: currentPlayer = 1;
+	    			break;
+	    		case 1: currentPlayer = 2;
+	    			break;
+	    		case 2: currentPlayer = 0;
+    		}
+    	}
+    	if(players.size() == 4) {
+    		switch(currentPlayer) {
+	    		case 0: currentPlayer = 1;
+					break;
+	    		case 1: currentPlayer = 2;
+					break;
+	    		case 2: currentPlayer = 3;
+	    			break;
+	    		case 3: currentPlayer = 0;
+    		}
     	}
     }
     

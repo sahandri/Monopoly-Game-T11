@@ -41,6 +41,11 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private JLabel tok2 = new JLabel();
 	private JLabel tok3 = new JLabel();
 	private JLabel tok4 = new JLabel();
+	private JLabel lblPlayer;
+	private JLabel lblPrice;
+	private String numberOfPlayers;
+	
+	private JTextArea display;
 	
 	private static Monopoly monopoly;
 			
@@ -66,6 +71,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
         
         setUpImages();
         setUpButtons();
+        setLabels();
 	}
 	
 	private void setUpImages(){
@@ -98,9 +104,9 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 
 	private void historyWindow() {
 		/** History scroll area*/
-		JTextArea display = new JTextArea ( 16, 30 );
+		display = new JTextArea ( 16, 30 );
 		display.setFont(new Font("Avenir", Font.PLAIN, 13));
-		display.setText("This will hold previous actions.");
+		display.setText("Press Start to begin the game\n");
 		display.setEditable ( false );
 		JScrollPane scrollPane = new JScrollPane(display);
 		scrollPane.setBounds(610, 370, 364, 212);
@@ -115,10 +121,17 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	}
 	
 	public void EndTurnButton() {
-		JButton btnEndTurn = new JButton("End Turn");
+		JButton btnEndTurn = new JButton("Next Player");
 		btnEndTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//switch player to the next one
+				display.append(monopoly.move());
+				display.append(monopoly.getName(monopoly.getPlayer()) + " ended turn. \n");
+
+
+				monopoly.changePlayer();
+				playerStatus();
+
 			}
 		});
 		btnEndTurn.setBounds(539, 622, 115, 29);
@@ -145,6 +158,12 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		BuyBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                 //TODO: implement here what should happen when "Buy Property" button is pressed.
+				boolean success = monopoly.buyProperty(monopoly.getPlayer());
+				if(success) {
+					JOptionPane.showMessageDialog(contentPanel.getComponent(0), "Property Purchased Succesfully");
+				}else {
+					JOptionPane.showMessageDialog(contentPanel.getComponent(0), "can not purchase this property");
+				}
 			}
 		});
 		BuyBtn.setBounds(136, 623, 117, 29);
@@ -155,9 +174,8 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		//Roll dice and move player
 		RollDiceButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//int roll = monopoly.rollDice();
-				//JOptionPane.showMessageDialog(contentPanel.getComponent(0),
-				//"Dice: "+Integer.valueOf(roll));
+				int roll = monopoly.getDiceRoll();
+				JOptionPane.showMessageDialog(contentPanel.getComponent(0),"Dice: "+Integer.valueOf(roll));
 			}
 		});
 		RollDiceButton.setBounds(369, 623, 117, 29);
@@ -192,7 +210,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		JButton startGameBtn = new JButton("Start");
 		startGameBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					String numberOfPlayers = (String) JOptionPane.showInputDialog(contentPanel, "Enter Number Of Players", "Input", JOptionPane.QUESTION_MESSAGE, null, List, "Titan");
+					numberOfPlayers = (String) JOptionPane.showInputDialog(contentPanel, "Enter Number Of Players", "Input", JOptionPane.QUESTION_MESSAGE, null, List, "Titan");
 					int option;
 					switch(Integer.valueOf(numberOfPlayers)){
 							case 2: 
@@ -226,6 +244,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 					}
 						
 				JOptionPane.showMessageDialog(contentPanel.getComponent(0), "number of players: "+numberOfPlayers+"\nPlayer1 starts the game");
+				playerStatus();
 			}
 
 		});
@@ -235,17 +254,21 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		RollDiceButton.setFont(new Font("Avenir", Font.PLAIN, 13));
 	}
 	
-	public void playerStatus() {
-		
-		JLabel lblPlayer = new JLabel("Player");
+	public void setLabels() {
+		lblPlayer = new JLabel("Player");
 		lblPlayer.setFont(new Font("Avenir", Font.PLAIN, 13));
 		lblPlayer.setBounds(615, 30, 69, 20);
-		contentPanel.add(lblPlayer);
-		
-		JLabel lblPrice = new JLabel("Money");
+		contentPanel.add(lblPlayer);	
+		lblPrice = new JLabel("Money");
 		lblPrice.setFont(new Font("Avenir", Font.PLAIN, 13));
 		lblPrice.setBounds(751, 30, 69, 20);
-		contentPanel.add(lblPrice);
+		contentPanel.add(lblPrice);	
+	}
+	
+	
+	public void playerStatus() {
+		lblPlayer.setText(monopoly.getPlayer().getName());
+		lblPrice.setText("$"+Integer.toString(monopoly.getPlayer().getMoney().getMoney()));
 		
 		int R, G, B;
 		int column = 599;
@@ -330,26 +353,36 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	            	G = 0;
 	            	B = 0;	
 			}
-			
 			StringBuilder name = new StringBuilder();
 			name.append(i).append(" ");
 			//String name = Integer.toString(x);
-			if (monopoly.checkOwner(i) == -1) {
+			if (monopoly.checkOwner(i) == -1) {//no one owns property
 				//if(true) {
 				JCheckBox checkBox = new JCheckBox(name.toString().trim());
 				checkBox.setName("CheckBox" + i);
 				checkBox.setBackground(new Color(R, G, B));
 				checkBox.setForeground(new Color(0, 0, 0));
 				checkBox.setBounds(column, row, 29, 29);
+				checkBox.setEnabled(false);
 				contentPanel.add(checkBox);
-			}else if(monopoly.checkOwner(i) == 0) {
+			}else if(monopoly.checkOwner(i) == 0) {//player ownes property
 				JCheckBox checkBox = new JCheckBox(name.toString().trim());
 				checkBox.setName("CheckBox" + i);
 				checkBox.setBackground(new Color(R, G, B));
 				checkBox.setForeground(new Color(0, 0, 0));
 				checkBox.setBounds(611, 75, 29, 29);
+				checkBox.setEnabled(false);
+				checkBox.setSelected(true);
 				contentPanel.add(checkBox);
-			}else {}
+			}else {//other player owns the property
+				JCheckBox checkBox = new JCheckBox(name.toString().trim());
+				checkBox.setName("CheckBox" + i);
+				checkBox.setBackground(new Color(250, 250, 250));
+				checkBox.setForeground(new Color(0, 0, 0));
+				checkBox.setBounds(611, 75, 29, 29);
+				checkBox.setEnabled(false);
+				contentPanel.add(checkBox);
+			}
 		}
 	}
 	

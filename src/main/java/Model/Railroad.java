@@ -9,16 +9,43 @@ package Model;
 public class Railroad extends Square{
 
 	private int ID;
+	
+	public enum railroads{
+		READING_RAILROAD,
+		PENNSYLVANIA_RAILROAD,
+		B_O_RAILROAD,
+		SHORT_LINE
+	}
+
+	private railroads railroad;
 
 	public Railroad(int price, int position) {
 		super(price, position);
-		ID = 8;
-		if(!(position ==5 || position ==15 ||
-				position ==25 || position ==35)){
-			throw new IllegalArgumentException("Unknown position");
+		try {
+			setRailroad(position);
+		}catch(IllegalArgumentException e){
+			System.err.println("invalid position"+e.getMessage());
 		}
 	}
 
+	public void setRailroad(int position) {
+		if(position == 5) {
+			railroad = railroads.READING_RAILROAD;
+		}
+		else if(position == 15) {
+			railroad = railroads.PENNSYLVANIA_RAILROAD;
+		}
+		else if(position == 25) {
+			railroad = railroads.B_O_RAILROAD;
+		}
+		else if(position == 35) {
+			railroad = railroads.SHORT_LINE;
+		}
+		else {
+			throw new IllegalArgumentException("Unknown position");
+		}
+	}
+	
 	public int getID(){
 		return ID;
 	}
@@ -34,12 +61,16 @@ public class Railroad extends Square{
 			int counter = numOfColorGroup(board); //gets the number of Railroads owned by a the owner
 			switch (counter){
 				case 1: player.getMoney().sbustractMoney(25);
+					board.getPropertyOwner(getOwner()).getMoney().addMoney(25);
 					break;
 				case 2: player.getMoney().sbustractMoney(50);
+					board.getPropertyOwner(getOwner()).getMoney().addMoney(50);
 					break;
 				case 3: player.getMoney().sbustractMoney(100);
+					board.getPropertyOwner(getOwner()).getMoney().addMoney(100);
 					break;
 				case 4: player.getMoney().sbustractMoney(200);
+					board.getPropertyOwner(getOwner()).getMoney().addMoney(200);
 					break;
 			}
 		}
@@ -60,6 +91,12 @@ public class Railroad extends Square{
 	
 
 	public String toString(){
-		return "Rail Road";
+		switch(this.railroad){
+			case READING_RAILROAD: return " at Reading Railroad. \n";
+			case PENNSYLVANIA_RAILROAD: return " at Pennsylvania Railroad. \n";
+			case B_O_RAILROAD: return " at B. & O. Railroad. \n";
+			case SHORT_LINE: return " at Short Line. \n";
+			default: return "Type not defined.";
+		}
 	}
 }
