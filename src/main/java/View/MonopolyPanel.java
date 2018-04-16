@@ -300,11 +300,11 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		JButton startGameBtn = new JButton("Start");
 		startGameBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					numberOfPlayers = (String) JOptionPane.showInputDialog(contentPanel, "Enter Number Of Players", "Input", JOptionPane.QUESTION_MESSAGE, MONOPOLY_ICON, List, "Titan");
+					numberOfPlayers = (String) JOptionPane.showInputDialog(contentPanel, "How many of you playing?", "select number of players", JOptionPane.QUESTION_MESSAGE, MONOPOLY_ICON, List, "Titan");
 					int option;
 					switch(Integer.valueOf(numberOfPlayers)){
 							case 2: 
-								option = JOptionPane.showConfirmDialog(null, playerNames2Q, "Insert Names", JOptionPane.OK_CANCEL_OPTION, JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
+								option = JOptionPane.showConfirmDialog(null, playerNames2Q, "insert players names", JOptionPane.OK_CANCEL_OPTION, JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
 								if (option == JOptionPane.OK_OPTION){
 									names.add(name1.getText());
 									names.add(name2.getText());
@@ -312,7 +312,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 								}
 								break;
 							case 3:
-								option = JOptionPane.showConfirmDialog(null, playerNames3Q, "Insert Names", JOptionPane.OK_CANCEL_OPTION, JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
+								option = JOptionPane.showConfirmDialog(null, playerNames3Q, "insert players names", JOptionPane.OK_CANCEL_OPTION, JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
 								if (option == JOptionPane.OK_OPTION){
 									names.add(name1.getText());
 									names.add(name2.getText());
@@ -321,7 +321,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 								}
 								break;
 							case 4:
-								option = JOptionPane.showConfirmDialog(null, playerNames4Q, "Insert Names", JOptionPane.OK_CANCEL_OPTION,JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
+								option = JOptionPane.showConfirmDialog(null, playerNames4Q, "insert players names", JOptionPane.OK_CANCEL_OPTION,JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
 								if (option == JOptionPane.OK_OPTION){
 									names.add(name1.getText());
 									names.add(name2.getText());
@@ -333,7 +333,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 							default: option = 0;
 					}
 				Object[] messageObj = {
-						"number of players: "+numberOfPlayers+"\n"+monopoly.getPlayer().getName()+" starts the game", 
+						"Number of players: "+numberOfPlayers+"\n"+monopoly.getPlayer().getName()+" starts the game", 
 				};
 				JOptionPane.showMessageDialog(contentPanel.getComponent(0), messageObj, "IT'S GAME TIME",JOptionPane.OK_CANCEL_OPTION,MONOPOLY_ICON);
 				setUpTokenImg();
@@ -361,7 +361,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		    public void actionPerformed(ActionEvent e) {
 				Calendar calendar1 = new GregorianCalendar();
 		       if((calendar1.get(Calendar.MINUTE) < endTimeMin) ){
-		    	   timer.setText((endTimeMin - calendar1.get(Calendar.MINUTE)) +" minutes left");
+		    	   timer.setText((endTimeMin - calendar1.get(Calendar.MINUTE)) +" min left");
 		       }else{
 		    	   timer.setText("Game Over");
 		    	   JOptionPane.showMessageDialog(contentPanel.getComponent(0),"Game is over!\nWinner is: " + monopoly.selectWinner().getName());
