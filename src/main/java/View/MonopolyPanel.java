@@ -282,30 +282,30 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 			switch(i) {
 				case 0:
 	            case 1:
-	            	R= 139;
-	            	G = 69;
-	            	B = 19;		
+	            	R= 25;
+	            	G = 25;
+	            	B = 112;		
 	                break;
 	            case 2:
 	            case 3:
 	            case 4:
-	            	R= 0;
-	            	G = 255;
-	            	B = 255;	
+	            	R= 128;
+	            	G = 0;
+	            	B = 128;	
 	                break;
 	            case 5:
 	            case 6:
 	            case 7:
 	            	R= 255;
-	            	G = 0;
-	            	B = 255;	
+	            	G = 105;
+	            	B = 180;	
 	                break;
 	            case 8:
 	            case 9:
 	            case 10:
 	            	R= 255;
-	            	G = 99;
-	            	B = 71;	
+	            	G = 165;
+	            	B = 0;	
 	                break;
 	            case 11:
 	            case 12:
@@ -317,22 +317,22 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	            case 14:
 	            case 15:
 	            case 16:
-	            	R= 0;
+	            	R= 255;
 	            	G = 255;
 	            	B = 0;	
 	                break;
 	            case 17:
 	            case 18:
 	            case 19:
-	            	R= 25;
-	            	G = 25;
-	            	B = 112;	
+	            	R= 0;
+	            	G = 255;
+	            	B = 0;	
 	                break;
 	            case 20:
 	            case 21:
-	            	R= 100;
-	            	G = 100;
-	            	B = 19;	
+	            	R= 132;
+	            	G = 112;
+	            	B = 255;	
 	            	break;
 	            case 22:
 	            case 23:
@@ -378,7 +378,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				JCheckBox checkBox = new JCheckBox(name.toString().trim());
 				checkBox.setName("CheckBox" + i);
 				checkBox.setBackground(new Color(250, 250, 250));
-				checkBox.setForeground(new Color(0, 0, 0));
+				checkBox.setForeground(new Color(255, 255, 255));
 				checkBox.setBounds(611, 75, 29, 29);
 				checkBox.setEnabled(false);
 				contentPanel.add(checkBox);
