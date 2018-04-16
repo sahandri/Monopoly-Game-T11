@@ -44,8 +44,8 @@ public class Tax extends Square{
 
 	public String toString(){
 		switch(this.tax){
-			case BUFFET_TAX: return " at Buffet Tax Pay $200. \n";
-			case CORPORATE_TAX: return " at Corporate Tax Pay $75. \n";
+			case BUFFET_TAX: return " at Income Tax Pay $200. \n";
+			case CORPORATE_TAX: return " at Luxury Tax Pay $75. \n";
 			default: return "Type not defined.";
 		}
 	}
