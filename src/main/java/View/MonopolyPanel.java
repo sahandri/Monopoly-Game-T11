@@ -304,7 +304,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 					int option;
 					switch(Integer.valueOf(numberOfPlayers)){
 							case 2: 
-								option = JOptionPane.showConfirmDialog(null, playerNames2Q, "insert players names", JOptionPane.OK_CANCEL_OPTION, JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
+								option = JOptionPane.showConfirmDialog(contentPanel, playerNames2Q, "insert players names", JOptionPane.OK_CANCEL_OPTION, JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
 								if (option == JOptionPane.OK_OPTION){
 									names.add(name1.getText());
 									names.add(name2.getText());
@@ -312,7 +312,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 								}
 								break;
 							case 3:
-								option = JOptionPane.showConfirmDialog(null, playerNames3Q, "insert players names", JOptionPane.OK_CANCEL_OPTION, JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
+								option = JOptionPane.showConfirmDialog(contentPanel, playerNames3Q, "insert players names", JOptionPane.OK_CANCEL_OPTION, JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
 								if (option == JOptionPane.OK_OPTION){
 									names.add(name1.getText());
 									names.add(name2.getText());
@@ -321,7 +321,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 								}
 								break;
 							case 4:
-								option = JOptionPane.showConfirmDialog(null, playerNames4Q, "insert players names", JOptionPane.OK_CANCEL_OPTION,JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
+								option = JOptionPane.showConfirmDialog(contentPanel, playerNames4Q, "insert players names", JOptionPane.OK_CANCEL_OPTION,JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
 								if (option == JOptionPane.OK_OPTION){
 									names.add(name1.getText());
 									names.add(name2.getText());
