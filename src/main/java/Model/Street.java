@@ -109,6 +109,10 @@ public class Street extends Square{
                 	board.getPropertyOwner(getPosition()).getMoney().addMoney(rent*4);
                     break;
             }
+	        if(player.getDecision() && board.getPropertyOwner(getPosition()).getDecision()) {
+				board.purchaseProperty(player, this.getPosition());
+				this.setOwner(player);
+			}
         }
 	}
 
