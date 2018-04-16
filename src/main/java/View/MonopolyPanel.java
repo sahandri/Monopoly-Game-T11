@@ -378,7 +378,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				JCheckBox checkBox = new JCheckBox(name.toString().trim());
 				checkBox.setName("CheckBox" + i);
 				checkBox.setBackground(new Color(250, 250, 250));
-				checkBox.setForeground(new Color(255, 255, 255));
+				checkBox.setForeground(new Color(0, 0, 0));
 				checkBox.setBounds(611, 75, 29, 29);
 				checkBox.setEnabled(false);
 				contentPanel.add(checkBox);
