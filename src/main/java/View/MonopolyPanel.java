@@ -145,7 +145,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		startButton();
 		rollDiceButton();
 		buyPropertyButton();
-		sellPropertyButton();
 		historyWindow();
 		//playerStatus();
 		EndTurnButton();
@@ -174,7 +173,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		btnEndTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//switch player to the next one
-				//display.append(monopoly.move());
 				display.append(monopoly.getName(monopoly.getPlayer()) + " ended turn. \n");
 				
 				monopoly.changePlayer();
@@ -186,19 +184,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		contentPanel.add(btnEndTurn);
 	}
 
-	private void sellPropertyButton() {
-		//create Sell Property
-		JButton SellPropertyBtn = new JButton("Sell Property");
-		SellPropertyBtn.setFont(new Font("Avenir", Font.PLAIN, 13));
-		SellPropertyBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-                //TODO: implement here what should happen when "End Game" button is pressed.
-			}
-		});
-		SellPropertyBtn.setBounds(252, 623, 117, 29);
-		contentPanel.add(SellPropertyBtn);
-	}
-
 	private void buyPropertyButton() {
 		//create button to buy property
 		JButton BuyBtn = new JButton("Buy Property");
@@ -206,11 +191,25 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		BuyBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                 //TODO: implement here what should happen when "Buy Property" button is pressed.
-				boolean success = monopoly.buyProperty(monopoly.getPlayer());
-				if(success) {
-					JOptionPane.showMessageDialog(contentPanel.getComponent(0), "Property Purchased Succesfully");
+				if(monopoly.getOwnerID(monopoly.getPlayer()) != monopoly.getPlayer().getID()
+						&& monopoly.getOwnerID(monopoly.getPlayer()) != -1) {
+					if(JOptionPane.showConfirmDialog(contentPanel.getComponent(0),"Player " +
+							Integer.toString(monopoly.getOwnerID(monopoly.getPlayer()))+" do you want to sell?")
+							==JOptionPane.YES_OPTION) {
+						boolean success = monopoly.buyProperty(monopoly.getPlayer());
+						if(success) {
+							JOptionPane.showMessageDialog(contentPanel.getComponent(0), "Property Purchased Succesfully");
+						}else {
+							JOptionPane.showMessageDialog(contentPanel.getComponent(0), "can not purchase this property");
+						}
+					}
 				}else {
-					JOptionPane.showMessageDialog(contentPanel.getComponent(0), "can not purchase this property");
+					boolean success = monopoly.buyProperty(monopoly.getPlayer());
+					if(success) {
+						JOptionPane.showMessageDialog(contentPanel.getComponent(0), "Property Purchased Succesfully");
+					}else {
+						JOptionPane.showMessageDialog(contentPanel.getComponent(0), "can not purchase this property");
+					}
 				}
 			}
 		});
@@ -236,6 +235,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 						break;
 				}
 				display.append(monopoly.move());
+				JOptionPane.showMessageDialog(contentPanel.getComponent(0),"Dice: "+Integer.valueOf(roll));
 			}
 		});
 		RollDiceButton.setBounds(369, 623, 117, 29);
@@ -347,30 +347,30 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 			switch(i) {
 				case 0:
 	            case 1:
-	            	R= 139;
-	            	G = 69;
-	            	B = 19;		
+	            	R= 25;
+	            	G = 25;
+	            	B = 112;		
 	                break;
 	            case 2:
 	            case 3:
 	            case 4:
-	            	R= 0;
-	            	G = 255;
-	            	B = 255;	
+	            	R= 128;
+	            	G = 0;
+	            	B = 128;	
 	                break;
 	            case 5:
 	            case 6:
 	            case 7:
 	            	R= 255;
-	            	G = 0;
-	            	B = 255;	
+	            	G = 105;
+	            	B = 180;	
 	                break;
 	            case 8:
 	            case 9:
 	            case 10:
 	            	R= 255;
-	            	G = 99;
-	            	B = 71;	
+	            	G = 165;
+	            	B = 0;	
 	                break;
 	            case 11:
 	            case 12:
@@ -382,22 +382,22 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	            case 14:
 	            case 15:
 	            case 16:
-	            	R= 0;
+	            	R= 255;
 	            	G = 255;
 	            	B = 0;	
 	                break;
 	            case 17:
 	            case 18:
 	            case 19:
-	            	R= 25;
-	            	G = 25;
-	            	B = 112;	
+	            	R= 0;
+	            	G = 255;
+	            	B = 0;	
 	                break;
 	            case 20:
 	            case 21:
-	            	R= 100;
-	            	G = 100;
-	            	B = 19;	
+	            	R= 132;
+	            	G = 112;
+	            	B = 255;	
 	            	break;
 	            case 22:
 	            case 23:
