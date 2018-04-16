@@ -37,24 +37,24 @@ public class Monopoly{
     }
     
     public boolean buyProperty(Player player) {
+    	int temp = player.getMoney().getMoney();
     	int position = player.getToken().getPosition();
-    	int[][] streets = board.getStreetArray();
-    	for(int i=0; i<streets.length;i++) {
-    		for(int j=0; j<streets[i].length;j++) {
-    			if(position==board.getStreetArray()[i][j]) {
-    				player.setDecision(true);
-    		    	board.getSquares()[position].perform(player, board);
-    		    	player.setDecision(false);
-    		    	return true;
-    			}
-    		}
+    	player.setDecision(true);
+    	board.getSquares()[position].perform(player, board);
+    	player.setDecision(false);
+    	if(player.getMoney().getMoney()==temp) {
+    		return false;
     	}
-    	return false;
+    	return true;
     }
     
-    public void sellProperty(Player buyer, int position) {
-    	board.getSquares()[position].sellProperty(buyer, board);
+   
+    public int getOwnerID(Player player) {
+    	int position = player.getToken().getPosition();
+    	return board.getSquares()[position].getOwner();
     }
+    
+    
     
     public int getDiceRoll() {
     	roll = board.roll();
