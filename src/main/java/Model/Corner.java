@@ -32,10 +32,10 @@ public class Corner extends Square{
 	
 	public String toString(){
 		switch(this.type){
-			case START: return "GO";
-			case JAIL: return "Jail";
-			case FREE_PARKING: return "Free Parking";
-			case GO_TO_JAIL: return "Go To Jail";
+			case START: return " Passes GO. \n";
+			case JAIL: return " at Jail. \n";
+			case FREE_PARKING: return " at Free Parking. \n";
+			case GO_TO_JAIL: return " Go To Jail! \n";
 			default: return "corner type not assigned";
 		}
 	}

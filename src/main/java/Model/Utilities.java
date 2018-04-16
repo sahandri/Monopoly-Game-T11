@@ -43,38 +43,30 @@ public class Utilities extends Square {
     
     public String toString(){
 		switch(this.utility){
-			case ELECTRICITY_COMPANY: return "Electricity Company";
-			case WATER_WORKS: return "Water Works";
+			case ELECTRICITY_COMPANY: return " at Electricity Company. \n";
+			case WATER_WORKS: return " at Water Works. \n";
 			default: return "Type not defined.";
 		}
 	}
 
 
 	public void perform(Player player, Board board) {
-		switch(this.utility){
-		case ELECTRICITY_COMPANY:
-			if(player.getDecision() == true){
-				player.getMoney().sbustractMoney(150);
-			}
-			/**else if(this.utility is owned){
-			 * payRent(player, board);
-			 * }
-			 */
-			break;
-		case WATER_WORKS:
-			if(player.getDecision() == true){
-				player.getMoney().sbustractMoney(150);
-			}
-			/**else if(this.utility is owned){
-			 * payRent(player, board);
-			 * }
-			 */
-			break;
+		if(this.getOwner() == -1 && player.getDecision()){ // if nobody owns the street and player wants to buy it
+			//player pays price and buy the property
+			board.purchaseProperty(player, this.getPosition());
+			this.setOwner(player);
+		}
+		else {
+			  payRent(player, board);
 		}
     }
 	
 	
 	public void payRent(Player player, Board board) {
-		player.getMoney().sbustractMoney(4 * board.roll());
+		int rent = 4 * board.roll();
+		player.getMoney().sbustractMoney(rent);
+		if(this.getOwner() != -1) {
+			board.getPropertyOwner(getPosition()).getMoney().addMoney(rent);
+		}
 	}
 }
