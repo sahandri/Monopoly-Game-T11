@@ -28,11 +28,12 @@ public class Monopoly{
     
     public void startGame(int numPlayers, ArrayList<String> names) {
     	board = new Board();
-    	for(int i = 1; i < numPlayers; i++) {
+    	for(int i = 1; i <= numPlayers; i++) {
     		Token token = new Token();
-    		board.addPlayer(i, token, names.get(i));		//add player to board
-    		players.add(board.addPlayer(i+1, token, names.get(i)));		//add player to board
+    		Player tempP = board.addPlayer(i, token, names.get(i-1));
+    		players.add(tempP);		//add player to board
     	}
+    	
     }
     
     public void buyProperty(Player player, int position) {
@@ -80,13 +81,34 @@ public class Monopoly{
     	return players.get(currentPlayer);
     }
     
-    public Player changePlayer(Player player) {
-    	if(currentPlayer==players.size()-1) {
-    		currentPlayer = 0;
-    		return players.get(0);
-    	}else {
-    		currentPlayer++;
-    		return players.get(currentPlayer+1);
+    public void changePlayer() {
+    	if(players.size() == 2) {
+    		switch(currentPlayer) {
+	    		case 0: currentPlayer = 1;
+	    			break;
+	    		case 1: currentPlayer = 0;
+	    			break;
+    		}
+    	}
+    	if(players.size() == 3) {
+    		switch(currentPlayer) {
+	    		case 0: currentPlayer = 1;
+	    			break;
+	    		case 1: currentPlayer = 2;
+	    			break;
+	    		case 2: currentPlayer = 0;
+    		}
+    	}
+    	if(players.size() == 4) {
+    		switch(currentPlayer) {
+	    		case 0: currentPlayer = 1;
+					break;
+	    		case 1: currentPlayer = 2;
+					break;
+	    		case 2: currentPlayer = 3;
+	    			break;
+	    		case 3: currentPlayer = 0;
+    		}
     	}
     }
     
