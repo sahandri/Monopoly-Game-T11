@@ -16,5 +16,7 @@ public class CommunityChest extends Card{
 		// TODO Auto-generated method stub
 		
 	}
-
+	public String toString() {
+				return " Community Chest! \n";
+			}
 }

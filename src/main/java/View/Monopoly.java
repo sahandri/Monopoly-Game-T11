@@ -48,12 +48,9 @@ public class Monopoly{
     	return roll;
     }
     
-    public String getHistory(int position) {
-    	return board.getSquares()[position].toString();
-    }
-    
-    public void move(Player player) {
-    	board.getToken(player).move(roll);
+    /**Returns the history string and moves the player*/
+    public String move() {
+    	return board.move(players.get(currentPlayer), roll);
     }
     
     public ArrayList getProperty(Player player) {

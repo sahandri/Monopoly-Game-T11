@@ -166,10 +166,11 @@ public class Board {
 	/*moves the player to the new position
 	 * and calls square.perform(Player) on the square at index=newPosition
 	 * */
-	public void move(Player player, int newPosition){
-		players.get(player).move(newPosition);		//change position of the player's token
-		squares[newPosition].perform(player, this);		//perform the instructions the new square position
-	}
+	public String move(Player player, int newPosition){
+ 		players.get(player).move(newPosition);		//change position of the player's token
+ 		squares[newPosition].perform(player, this);		//perform the instructions the new square position
+		return player.getName() + squares[newPosition].toString();
+ 	}
 	
 	/*rolls the dice ONCE and returns a random number between 1 and 6*/
 	public int roll(){

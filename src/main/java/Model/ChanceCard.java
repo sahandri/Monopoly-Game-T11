@@ -16,5 +16,7 @@ public class ChanceCard extends Card{
 		// TODO Auto-generated method stub
 		
 	}
-
+	public String toString() {
+				return " Chance! \n";
+			}
 }
