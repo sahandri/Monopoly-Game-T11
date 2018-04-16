@@ -40,9 +40,17 @@ public class Monopoly{
     	int temp = player.getMoney().getMoney();
     	int position = player.getToken().getPosition();
     	player.setDecision(true);
+    	Player owner = board.getPropertyOwner(position);
+    	if(owner != null) {
+    		owner.setDecision(true);
+    	}
+    	
     	board.getSquares()[position].perform(player, board);
+    	if(owner != null) {
+    		owner.setDecision(false);
+    	}
     	player.setDecision(false);
-    	if(player.getMoney().getMoney()==temp) {
+    	if(player.getMoney().getMoney() == temp){
     		return false;
     	}
     	return true;
