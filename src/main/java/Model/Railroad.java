@@ -73,6 +73,10 @@ public class Railroad extends Square{
 					board.getPropertyOwner(getOwner()).getMoney().addMoney(200);
 					break;
 			}
+			if(player.getDecision() && board.getPropertyOwner(getPosition()).getDecision()) {
+				board.purchaseProperty(player, this.getPosition());
+				this.setOwner(player);
+			}
 		}
 	}
 
