@@ -30,8 +30,7 @@ public class Monopoly{
     	board = new Board();
     	for(int i = 1; i < numPlayers; i++) {
     		Token token = new Token();
-    		board.addPlayer(i, token, names.get(i));		//add player to board
-    		players.add(board.addPlayer(i+1, token, names.get(i)));		//add player to board
+    		players.add(board.addPlayer(i, token, names.get(i)));		//add player to board
     	}
     }
     

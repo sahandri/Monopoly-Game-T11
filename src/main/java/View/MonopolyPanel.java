@@ -33,7 +33,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
 
 public class MonopolyPanel extends JFrame implements ActionListener {
-	private Map<Integer,ArrayList<Integer>> GUIposition = new HashMap<Integer,ArrayList<Integer>>();
+	private Map<Integer,int[]> GUIposition = new HashMap<Integer,int[]>();
 	private final String boardImagePath = "/img/board.jpg";
 	private final String tokenImagePath = "/img/token/boot.png";
 
@@ -74,10 +74,10 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		boardImage.setBounds(6, 6, 594, 585);
 		Image img = new ImageIcon(this.getClass().getResource(boardImagePath)).getImage().getScaledInstance(600, 600, Image.SCALE_AREA_AVERAGING);    //import board.png file as an ImageIcon object
 		boardImage.setIcon(new ImageIcon(img));         //set the image of the board to be in the label 
-		contentPanel.add(boardImage, new Integer(1));                   //add the label to the board
+		contentPanel.add(boardImage, new Integer(1));
 
 		//create LABEL that holds token1 IMAGE : boot
-		tok1.setBounds(517, 440, 100, 100);
+		tok1.setBounds(525, 491, 100, 100);
 		Image tokenImg = new ImageIcon(this.getClass().getResource(tokenImagePath)).getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING);    //import boot.png file as an ImageIcon object
 		/*tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the token to be in the label 
 		* This is a scaling of the token image. */
@@ -155,7 +155,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		//Roll dice and move player
 		RollDiceButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				moveToken(tok1, 20);
 				//int roll = monopoly.rollDice();
 				//JOptionPane.showMessageDialog(contentPanel.getComponent(0),
 				//"Dice: "+Integer.valueOf(roll));
@@ -355,7 +354,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	}
 	
 	public void moveToken(JLabel tok, int newPosition){
-		tok.setLocation(GUIposition.get(newPosition).get(0), GUIposition.get(newPosition).get(1));
+		tok.setLocation(GUIposition.get(newPosition)[0], GUIposition.get(newPosition)[1]);
 	}
 
 	@Override
@@ -368,170 +367,87 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		
 	}
 	
-	private Map<Integer, ArrayList<Integer>> createPositionMap() {
-		ArrayList<Integer> coordinates = new ArrayList<Integer>();
+	private void createPositionMap() {
 		
-		coordinates.add(0, 530);
-		coordinates.add(1, 490);
-		GUIposition.put(0, coordinates);
+		GUIposition.put(0, new int[]{530,490});
 		
-		coordinates.add(0, 470);
-		coordinates.add(1, 490);
-		GUIposition.put(1, coordinates);
+		GUIposition.put(1, new int[]{470,490});
 		
-		coordinates.add(0, 424);
-		coordinates.add(1, 490);
-		GUIposition.put(2, coordinates);
+		GUIposition.put(2, new int[]{424,490});
 		
-		coordinates.add(0, 374);
-		coordinates.add(1, 490);
-		GUIposition.put(3, coordinates);
+		GUIposition.put(3, new int[] {374,490});
 		
-		coordinates.add(0, 328);
-		coordinates.add(1, 490);
-		GUIposition.put(4, coordinates);
+		GUIposition.put(4, new int[]{328,490});
 		
-		coordinates.add(0, 280);
-		coordinates.add(1, 490);
-		GUIposition.put(5, coordinates);
+		GUIposition.put(5, new int[]{ 280, 490 });
 		
-		coordinates.add(0, 232);
-		coordinates.add(1, 490);
-		GUIposition.put(6, coordinates);
+		GUIposition.put(6, new int[]{232 ,490 });
 		
-		coordinates.add(0, 185);
-		coordinates.add(1, 490);
-		GUIposition.put(7, coordinates);
+		GUIposition.put(7, new int[]{ 185, 490});
 		
-		coordinates.add(0, 138);
-		coordinates.add(1, 490);
-		GUIposition.put(8, coordinates);
+		GUIposition.put(8, new int[]{ 138,490 });
 		
-		coordinates.add(0, 89);
-		coordinates.add(1, 490);
-		GUIposition.put(9, coordinates);
+		GUIposition.put(9, new int[]{ 89, 490});
 		
-		coordinates.add(0, 29);
-		coordinates.add(1, 490);
-		GUIposition.put(10, coordinates);
+		GUIposition.put(10, new int[]{ 89, 490});
 		
-		coordinates.add(0, 89);
-		coordinates.add(1, 438);
-		GUIposition.put(11, coordinates);
+		GUIposition.put(11, new int[]{ 89, 438});
 		
-		coordinates.add(0, 89);
-		coordinates.add(1, 397);
-		GUIposition.put(12, coordinates);
+		GUIposition.put(12, new int[]{ 89, 397});
 		
-		coordinates.add(0, 89);
-		coordinates.add(1, 343);
-		GUIposition.put(13, coordinates);
+		GUIposition.put(13, new int[]{ 89, 343});
 		
-		coordinates.add(0, 89);
-		coordinates.add(1, 299);
-		GUIposition.put(14, coordinates);
+		GUIposition.put(14, new int[]{ 89, 299});
 		
-		coordinates.add(0, 89);
-		coordinates.add(1, 251);
-		GUIposition.put(15, coordinates);
+		GUIposition.put(15, new int[]{ 89, 251});
 		
-		coordinates.add(0, 89);
-		coordinates.add(1, 203);
-		GUIposition.put(16, coordinates);
+		GUIposition.put(16, new int[]{ 89, 203});
 		
-		coordinates.add(0, 89);
-		coordinates.add(1, 155);
-		GUIposition.put(17, coordinates);
+		GUIposition.put(17, new int[]{89 ,155 });
 		
-		coordinates.add(0, 89);
-		coordinates.add(1, 110);
-		GUIposition.put(18, coordinates);
+		GUIposition.put(18, new int[]{ 89, 110});
 		
-		coordinates.add(0, 89);
-		coordinates.add(1, 57);
-		GUIposition.put(19, coordinates);
+		GUIposition.put(19, new int[]{ 89, 57});
 		
-		coordinates.add(0, 89);
-		coordinates.add(1, 6);
-		GUIposition.put(20, coordinates);
+		GUIposition.put(20, new int[]{ 89, 6});
 		
-		coordinates.add(0, 92);
-		coordinates.add(1, 6);
-		GUIposition.put(21, coordinates);
+		GUIposition.put(21, new int[]{ 92, 6});
 		
-		coordinates.add(0, 136);
-		coordinates.add(1, 6);
-		GUIposition.put(22, coordinates);
+		GUIposition.put(22, new int[]{ 136, 6});
 		
-		coordinates.add(0, 184);
-		coordinates.add(1, 6);
-		GUIposition.put(23, coordinates);
+		GUIposition.put(23, new int[]{ 184, 6});
 		
-		coordinates.add(0, 232);
-		coordinates.add(1, 6);
-		GUIposition.put(24, coordinates);
+		GUIposition.put(24, new int[]{ 232, 6});
 		
-		coordinates.add(0, 279);
-		coordinates.add(1, 6);
-		GUIposition.put(25, coordinates);
+		GUIposition.put(25, new int[]{ 279, 6});
 		
-		coordinates.add(0, 325);
-		coordinates.add(1, 6);
-		GUIposition.put(26, coordinates);
+		GUIposition.put(26, new int[]{ 325, 6});
 		
-		coordinates.add(0, 375);
-		coordinates.add(1, 6);
-		GUIposition.put(27, coordinates);
+		GUIposition.put(27, new int[]{ 375, 6});
 		
-		coordinates.add(0, 421);
-		coordinates.add(1, 6);
-		GUIposition.put(28, coordinates);
+		GUIposition.put(28, new int[]{ 421, 6});
 		
-		coordinates.add(0, 468);
-		coordinates.add(1, 6);
-		GUIposition.put(29, coordinates);
+		GUIposition.put(29, new int[]{ 468, 6});
 		
-		coordinates.add(0, 519);
-		coordinates.add(1, 6);
-		GUIposition.put(30, coordinates);
+		GUIposition.put(30, new int[]{ 519, 6});
 		
-		coordinates.add(0, 519);
-		coordinates.add(1, 66);
-		GUIposition.put(31, coordinates);
+		GUIposition.put(31, new int[]{ 519, 66});
 		
-		coordinates.add(0, 519);
-		coordinates.add(1, 110);
-		GUIposition.put(32, coordinates);
+		GUIposition.put(32, new int[]{ 519, 110});
 		
-		coordinates.add(0, 519);
-		coordinates.add(1, 155);
-		GUIposition.put(33, coordinates);
+		GUIposition.put(33, new int[]{ 519, 155});
 		
-		coordinates.add(0, 519);
-		coordinates.add(1, 205);
-		GUIposition.put(34, coordinates);
+		GUIposition.put(34, new int[]{ 519, 205});
 		
-		coordinates.add(0, 519);
-		coordinates.add(1, 249);
-		GUIposition.put(35, coordinates);
+		GUIposition.put(35, new int[]{519 , 249});
 		
-		coordinates.add(0, 519);
-		coordinates.add(1, 300);
-		GUIposition.put(36, coordinates);
+		GUIposition.put(36, new int[]{ 519, 300});
 		
-		coordinates.add(0, 519);
-		coordinates.add(1, 345);
-		GUIposition.put(37, coordinates);
+		GUIposition.put(37, new int[]{ 519, 345});
 		
-		coordinates.add(0, 519);
-		coordinates.add(1, 392);
-		GUIposition.put(38, coordinates);
+		GUIposition.put(38, new int[]{ 519, 392});
 		
-		coordinates.add(0, 519);
-		coordinates.add(1, 440);
-		GUIposition.put(39, coordinates);
-		
-		return null;
+		GUIposition.put(39, new int[]{ 519, 440});
 	}
 	
 	/**
