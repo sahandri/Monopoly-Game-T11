@@ -33,6 +33,7 @@ public class Monopoly{
     		board.addPlayer(i, token, names.get(i));		//add player to board
     		players.add(board.addPlayer(i+1, token, names.get(i)));		//add player to board
     	}
+    	
     }
     
     public void buyProperty(Player player, int position) {
@@ -83,13 +84,11 @@ public class Monopoly{
     	return players.get(currentPlayer);
     }
     
-    public Player changePlayer(Player player) {
-    	if(currentPlayer==players.size()-1) {
+    public void changePlayer() {
+    	if(currentPlayer == players.size()-1) {
     		currentPlayer = 0;
-    		return players.get(0);
     	}else {
     		currentPlayer++;
-    		return players.get(currentPlayer+1);
     	}
     }
     
