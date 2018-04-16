@@ -35,8 +35,19 @@ public class Monopoly{
     	}
     	
     }
-    
+    //------>check for if we can buy that square
     public boolean buyProperty(Player player) {
+    	boolean b=false;
+    	int squares[][] = board.getStreetArray();
+    	for(int i=0; i<squares.length; i++) {
+    		for(int j=0; j<squares[i].length; j++) {
+    			if(squares[i][j] == player.getToken().getPosition()) {
+    				b = true;
+    			}
+    		}
+    	}
+    	if(b==false) {return false;}
+    	
     	int temp = player.getMoney().getMoney();
     	int position = player.getToken().getPosition();
     	player.setDecision(true);

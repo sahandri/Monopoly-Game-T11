@@ -218,6 +218,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 						JOptionPane.showMessageDialog(contentPanel.getComponent(0), "can not purchase this property");
 					}
 				}
+				playerStatus();
 			}
 		});
 		BuyBtn.setBounds(136, 623, 117, 29);
@@ -469,7 +470,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				checkBox.setName("CheckBox" + i);
 				checkBox.setBackground(new Color(R, G, B));
 				checkBox.setForeground(new Color(0, 0, 0));
-				checkBox.setBounds(611, 75, 29, 29);
+				checkBox.setBounds(column, row, 29, 29);
 				checkBox.setEnabled(false);
 				checkBox.setSelected(true);
 				contentPanel.add(checkBox);
@@ -478,7 +479,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				checkBox.setName("CheckBox" + i);
 				checkBox.setBackground(new Color(250, 250, 250));
 				checkBox.setForeground(new Color(0, 0, 0));
-				checkBox.setBounds(611, 75, 29, 29);
+				checkBox.setBounds(column, row, 29, 29);
 				checkBox.setEnabled(false);
 				contentPanel.add(checkBox);
 			}
