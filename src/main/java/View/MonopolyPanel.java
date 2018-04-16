@@ -96,7 +96,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		startButton();
 		rollDiceButton();
 		buyPropertyButton();
-		sellPropertyButton();
 		historyWindow();
 		//playerStatus();
 		EndTurnButton();
@@ -138,19 +137,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		contentPanel.add(btnEndTurn);
 	}
 
-	private void sellPropertyButton() {
-		//create Sell Property
-		JButton SellPropertyBtn = new JButton("Sell Property");
-		SellPropertyBtn.setFont(new Font("Avenir", Font.PLAIN, 13));
-		SellPropertyBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-                //TODO: implement here what should happen when "End Game" button is pressed.
-			}
-		});
-		SellPropertyBtn.setBounds(252, 623, 117, 29);
-		contentPanel.add(SellPropertyBtn);
-	}
-
 	private void buyPropertyButton() {
 		//create button to buy property
 		JButton BuyBtn = new JButton("Buy Property");
@@ -158,11 +144,25 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		BuyBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                 //TODO: implement here what should happen when "Buy Property" button is pressed.
-				boolean success = monopoly.buyProperty(monopoly.getPlayer());
-				if(success) {
-					JOptionPane.showMessageDialog(contentPanel.getComponent(0), "Property Purchased Succesfully");
+				if(monopoly.getOwnerID(monopoly.getPlayer()) != monopoly.getPlayer().getID()
+						&& monopoly.getOwnerID(monopoly.getPlayer()) != -1) {
+					if(JOptionPane.showConfirmDialog(contentPanel.getComponent(0),"Player " +
+							Integer.toString(monopoly.getOwnerID(monopoly.getPlayer()))+" do you want to sell?")
+							==JOptionPane.YES_OPTION) {
+						boolean success = monopoly.buyProperty(monopoly.getPlayer());
+						if(success) {
+							JOptionPane.showMessageDialog(contentPanel.getComponent(0), "Property Purchased Succesfully");
+						}else {
+							JOptionPane.showMessageDialog(contentPanel.getComponent(0), "can not purchase this property");
+						}
+					}
 				}else {
-					JOptionPane.showMessageDialog(contentPanel.getComponent(0), "can not purchase this property");
+					boolean success = monopoly.buyProperty(monopoly.getPlayer());
+					if(success) {
+						JOptionPane.showMessageDialog(contentPanel.getComponent(0), "Property Purchased Succesfully");
+					}else {
+						JOptionPane.showMessageDialog(contentPanel.getComponent(0), "can not purchase this property");
+					}
 				}
 			}
 		});
