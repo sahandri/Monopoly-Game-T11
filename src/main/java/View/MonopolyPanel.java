@@ -125,7 +125,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		btnEndTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//switch player to the next one
-				display.append(monopoly.move());
 				display.append(monopoly.getName(monopoly.getPlayer()) + " ended turn. \n");
 
 
@@ -176,6 +175,8 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent arg0) {
 				int roll = monopoly.getDiceRoll();
 				JOptionPane.showMessageDialog(contentPanel.getComponent(0),"Dice: "+Integer.valueOf(roll));
+				moveToken(tok1, monopoly.getToken(monopoly.getPlayer()).getPosition() + roll);
+				display.append(monopoly.move());
 			}
 		});
 		RollDiceButton.setBounds(369, 623, 117, 29);
