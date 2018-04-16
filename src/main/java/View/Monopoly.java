@@ -3,7 +3,7 @@ package View;
 import javax.swing.*;
 import Model.*;
 
-import java.awt.*;
+
 import java.util.ArrayList;
 
 public class Monopoly{
@@ -123,6 +123,16 @@ public class Monopoly{
 	    		case 3: currentPlayer = 0;
     		}
     	}
+    }
+    
+    public Player selectWinner(){
+    	Player winner = players.get(0);
+    	for(int i=0; i<players.size();i++){
+    		if(players.get(i).getMoney().getMoney() > winner.getMoney().getMoney()){
+    			winner = players.get(i);
+    		}
+    	}
+    	return winner;
     }
     
     public int getCurrentPlayerPosition(){

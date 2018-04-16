@@ -16,7 +16,9 @@ public class Money {
     }
 
     public void sbustractMoney(int money){
-        this.money -= money;
+    	if((this.money-money) >=0)
+    		this.money -= money;
+    	else this.money = 0;
     }
 
     public int getMoney() {
