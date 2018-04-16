@@ -63,7 +63,8 @@ public class Monopoly{
     
     /**Returns the history string and moves the player*/
     public String move() {
-    	return board.move(players.get(currentPlayer), roll);
+    	int newPosition = (players.get(currentPlayer).getToken().getPosition()+roll)%40;
+    	return board.move(players.get(currentPlayer), newPosition);
     }
     
     public ArrayList getProperty(Player player) {
@@ -122,6 +123,10 @@ public class Monopoly{
 	    		case 3: currentPlayer = 0;
     		}
     	}
+    }
+    
+    public int getCurrentPlayerPosition(){
+    	return board.getToken(players.get(currentPlayer)).getPosition();
     }
     
     public int checkOwner(int position) {
