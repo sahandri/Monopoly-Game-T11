@@ -43,6 +43,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private JLabel tok4 = new JLabel();
 	private JLabel lblPlayer;
 	private JLabel lblPrice;
+	private String numberOfPlayers;
 	
 	private static Monopoly monopoly;
 			
@@ -197,7 +198,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		JButton startGameBtn = new JButton("Start");
 		startGameBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					String numberOfPlayers = (String) JOptionPane.showInputDialog(contentPanel, "Enter Number Of Players", "Input", JOptionPane.QUESTION_MESSAGE, null, List, "Titan");
+					numberOfPlayers = (String) JOptionPane.showInputDialog(contentPanel, "Enter Number Of Players", "Input", JOptionPane.QUESTION_MESSAGE, null, List, "Titan");
 					int option;
 					switch(Integer.valueOf(numberOfPlayers)){
 							case 2: 
