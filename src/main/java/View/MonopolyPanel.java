@@ -251,6 +251,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 						if(success) {
 							Object[] messageObj = {"Property purchased succesfully"};
 							JOptionPane.showMessageDialog(contentPanel, messageObj,"Hooray!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
+							display.append(monopoly.getName(monopoly.getPlayer()) + " Purchased Property " + monopoly.getSquareName(monopoly.getCurrentPlayerPosition()));
 						}else {
 							Object[] messageObj = {"Can not purchase this property"};
 							JOptionPane.showMessageDialog(contentPanel,messageObj ,"Oops!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
@@ -261,6 +262,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 					if(success) {
 						Object[] messageObj = {"Property purchased succesfully"};
 						JOptionPane.showMessageDialog(contentPanel, messageObj,"Hooray!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
+						display.append(monopoly.getName(monopoly.getPlayer()) + " Purchased Property " + monopoly.getSquareName(monopoly.getCurrentPlayerPosition()));
 					}else {
 						Object[] messageObj = {"Can not purchase this property"};
 						JOptionPane.showMessageDialog(contentPanel,messageObj ,"Oops!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
