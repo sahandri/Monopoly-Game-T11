@@ -58,7 +58,40 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private static Monopoly monopoly;
 			
 	private JLayeredPane contentPanel;
+
+	
+	private ArrayList<JCheckBox> c = new ArrayList<JCheckBox>();
+	private JCheckBox checkBox0 = new JCheckBox("");
+	private JCheckBox checkBox1 = new JCheckBox("");
+	private JCheckBox checkBox2 = new JCheckBox("");
+	private JCheckBox checkBox3 = new JCheckBox("");
+	private JCheckBox checkBox4 = new JCheckBox("");
+	private JCheckBox checkBox5 = new JCheckBox("");
+	private JCheckBox checkBox6 = new JCheckBox("");
+	private JCheckBox checkBox7 = new JCheckBox("");
+	private JCheckBox checkBox8 = new JCheckBox("");
+	private JCheckBox checkBox9 = new JCheckBox("");
+	private JCheckBox checkBox10 = new JCheckBox("");
+	private JCheckBox checkBox11 = new JCheckBox("");
+	private JCheckBox checkBox12 = new JCheckBox("");
+	private JCheckBox checkBox13 = new JCheckBox("");
+	private JCheckBox checkBox14 = new JCheckBox("");
+	private JCheckBox checkBox15 = new JCheckBox("");
+	private JCheckBox checkBox16 = new JCheckBox("");
+	private JCheckBox checkBox17 = new JCheckBox("");
+	private JCheckBox checkBox18 = new JCheckBox("");
+	private JCheckBox checkBox19 = new JCheckBox("");
+	private JCheckBox checkBox20 = new JCheckBox("");
+	private JCheckBox checkBox21 = new JCheckBox("");
+	private JCheckBox checkBox22 = new JCheckBox("");
+	private JCheckBox checkBox23 = new JCheckBox("");
+	private JCheckBox checkBox24 = new JCheckBox("");
+	private JCheckBox checkBox25 = new JCheckBox("");
+	private JCheckBox checkBox26 = new JCheckBox("");
+	private JCheckBox checkBox27 = new JCheckBox("");
+
 	private final JButton rollDiceBtn = new JButton("Roll Dice");
+
 
 
 	public MonopolyPanel(Monopoly monopoly) {
@@ -85,6 +118,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
         setUpBoardImg();
         setUpButtons();
         setLabels();
+        setCheckBoxes();
 	}
 	
 	private void setUpBoardImg(){
@@ -372,6 +406,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		SimpleTimer.start();
 	}
 	
+	
 	public void setLabels() {
 		lblPlayer = new JLabel("Player");
 		lblPlayer.setFont(new Font("Avenir", Font.PLAIN, 13));
@@ -388,6 +423,41 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		timer.setBounds(834, 621, 139, 29);
 		contentPanel.add(timer);
 		
+	}
+	
+	
+	public void setCheckBoxes() {
+		c.add(checkBox0);
+		c.add(checkBox1);
+		c.add(checkBox2);
+		c.add(checkBox3);
+		c.add(checkBox4);
+		c.add(checkBox5);
+		c.add(checkBox6);
+		c.add(checkBox7);
+		c.add(checkBox8);
+		c.add(checkBox9);
+		c.add(checkBox10);
+		c.add(checkBox11);
+		c.add(checkBox12);
+		c.add(checkBox13);
+		c.add(checkBox14);
+		c.add(checkBox15);
+		c.add(checkBox16);
+		c.add(checkBox17);
+		c.add(checkBox18);
+		c.add(checkBox19);
+		c.add(checkBox20);
+		c.add(checkBox21);
+		c.add(checkBox22);
+		c.add(checkBox23);
+		c.add(checkBox24);
+		c.add(checkBox25);
+		c.add(checkBox26);
+		c.add(checkBox27);
+		for(int i=0; i<28; i++) {
+			contentPanel.add(c.get(i));
+		}
 	}
 	
 	
@@ -478,35 +548,22 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	            	G = 0;
 	            	B = 0;	
 			}
-			StringBuilder name = new StringBuilder();
-			name.append(i).append(" ");
-			//String name = Integer.toString(x);
 			if (monopoly.checkOwner(i) == -1) {//no one owns property
-				//if(true) {
-				JCheckBox checkBox = new JCheckBox(name.toString().trim());
-				checkBox.setName("CheckBox" + i);
-				checkBox.setBackground(new Color(R, G, B));
-				checkBox.setForeground(new Color(0, 0, 0));
-				checkBox.setBounds(column, row, 29, 29);
-				checkBox.setEnabled(false);
-				contentPanel.add(checkBox);
+				c.get(i).setBackground(new Color(R, G, B));
+				c.get(i).setForeground(new Color(0, 0, 0));
+				c.get(i).setBounds(column, row, 29, 29);
+				c.get(i).setEnabled(false);
 			}else if(monopoly.checkOwner(i) == 0) {//player ownes property
-				JCheckBox checkBox = new JCheckBox(name.toString().trim());
-				checkBox.setName("CheckBox" + i);
-				checkBox.setBackground(new Color(R, G, B));
-				checkBox.setForeground(new Color(0, 0, 0));
-				checkBox.setBounds(column, row, 29, 29);
-				checkBox.setEnabled(false);
-				checkBox.setSelected(true);
-				contentPanel.add(checkBox);
+				c.get(i).setBackground(new Color(R, G, B));
+				c.get(i).setForeground(new Color(0, 0, 0));
+				c.get(i).setBounds(column, row, 29, 29);
+				c.get(i).setEnabled(false);
+				c.get(i).setSelected(true);
 			}else {//other player owns the property
-				JCheckBox checkBox = new JCheckBox(name.toString().trim());
-				checkBox.setName("CheckBox" + i);
-				checkBox.setBackground(new Color(250, 250, 250));
-				checkBox.setForeground(new Color(0, 0, 0));
-				checkBox.setBounds(column, row, 29, 29);
-				checkBox.setEnabled(false);
-				contentPanel.add(checkBox);
+				c.get(i).setBackground(new Color(250, 250, 250));
+				c.get(i).setForeground(new Color(0, 0, 0));
+				c.get(i).setBounds(column, row, 29, 29);
+				c.get(i).setEnabled(false);
 			}
 		}
 	}
