@@ -94,6 +94,9 @@ public class Monopoly{
     	return board.move(players.get(currentPlayer), newPosition);
     }
     
+    public String getSquareName(int position) {
+    	return board.getSquares()[position].toString();
+    }
     public ArrayList getProperty(Player player) {
     	ArrayList<Integer> property = new ArrayList<>();
     	for (int i = 0; i < 38; i ++) {
