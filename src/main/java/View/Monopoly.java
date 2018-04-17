@@ -73,6 +73,15 @@ public class Monopoly{
     	return board.getSquares()[position].getOwner();
     }
     
+    public String getOwnerName(Player player){
+    	int position = player.getToken().getPosition();
+    	int ownerID = board.getSquares()[position].getOwner();
+    	for(Player p : players){
+    		if(p.getID() == ownerID){return p.getName();}
+    	}
+    	return "Owner not found";
+    }
+    
     
     
     public int getDiceRoll() {
