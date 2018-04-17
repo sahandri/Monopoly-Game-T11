@@ -35,7 +35,6 @@ public class Monopoly{
     	}
     	
     }
-    //------>check for if we can buy that square
     public boolean buyProperty(Player player) {
     	boolean b=false;
     	int squares[][] = board.getStreetArray();
@@ -160,12 +159,14 @@ public class Monopoly{
     
     public int checkOwner(int position) {
     	int s=0;
+    	int counter = 0;
     	int[][] streets = board.getStreetArray(); 
     	for(int i=0; i<streets.length;i++) {
     		for(int j=0; j<streets[i].length;j++) {
-    			if(i+j == position) {
+    			if(counter == position) {
     				s = streets[i][j];
     			}
+    			counter++;
     		}
     	}
     	if(board.getSquares()[s].getOwner()==getPlayer().getID()) {//player owns property
