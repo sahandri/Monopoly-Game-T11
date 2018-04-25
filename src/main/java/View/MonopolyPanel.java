@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 
 public class MonopolyPanel extends JFrame implements ActionListener {
 	private final String boardImagePath = "/img/board.jpg";
+	private final String iconImagePath = "/img/monopolyIcon.png";
 	private ImageIcon MONOPOLY_ICON;
 	private int startTimeMin, endTimeMin;
 	private String numberOfPlayers;
@@ -47,7 +48,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		
 		setUpGUI();
 		
-		MONOPOLY_ICON = new ImageIcon(this.getClass().getResource("/img/monopolyIcon.png"));
+		MONOPOLY_ICON = new ImageIcon(this.getClass().getResource(iconImagePath));
 		Image image = MONOPOLY_ICON.getImage(); 
 		Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_AREA_AVERAGING); 
 		MONOPOLY_ICON = new ImageIcon(newimg);
@@ -65,25 +66,22 @@ public class MonopolyPanel extends JFrame implements ActionListener {
         
         checkBoxPanel = new CheckBoxPanel(contentPanel, monopoly);
         
-        setUpBoardImg();
-        setUpButtons();
+        setUpBoardAndButtons();
         setLabels();
         checkBoxPanel.setCheckBoxes();
 	}
 	
-	private void setUpButtons(){
+	private void setUpBoardAndButtons(){
+		//setup buttons:
 		buyPropertyButton();
 		startButton();
 		rollDiceBtn();
 		historyWindow();
 		EndTurnButton();
-	}
-	
-	private void setUpBoardImg(){
-		//create LABEL that holds board IMAGE 
+		//create LABEL that holds board IMAGE:
 		JLabel boardImage = new JLabel("");
 		boardImage.setBounds(6, 6, 594, 585);
-		Image img = new ImageIcon(this.getClass().getResource(boardImagePath)).getImage().getScaledInstance(600, 600, Image.SCALE_AREA_AVERAGING);    //import board.png file as an ImageIcon object
+		Image img = new ImageIcon(this.getClass().getResource(boardImagePath)).getImage().getScaledInstance(600, 600, Image.SCALE_AREA_AVERAGING);
 		boardImage.setIcon(new ImageIcon(img));         //set the image of the board to be in the label 
 		contentPanel.add(boardImage, new Integer(1));
 	}
@@ -192,8 +190,8 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		StartGameBtn startGameBtn = new StartGameBtn();
 		startGameBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					numberOfPlayers = startGameBtn.clicked(contentPanel, monopoly);		//Returns the number of players after asking for their names and after starting the game
-					//do the set up necessary for the start of the game 
+					numberOfPlayers = startGameBtn.clicked(contentPanel, monopoly);
+					
 					setUpTokenImg();
 					playerStatus();
 					startTimer();
