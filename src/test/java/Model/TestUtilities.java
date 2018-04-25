@@ -27,9 +27,9 @@ public class TestUtilities {
     public void testPerform(){
     	player1.setDecision(true);
         electricCompany.perform(player1, board);
-        assertEquals(player1.getMoney().money,1350);
+        assertEquals(player1.getMoney().getMoney(),1350);
         
         waterWorks.perform(player1, board);
-        assertEquals(player1.getMoney().money, 1350-150);
+        assertEquals(player1.getMoney().getMoney(), 1350-150);
     }
 }

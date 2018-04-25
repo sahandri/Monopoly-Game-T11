@@ -1,7 +1,7 @@
 package Model;
 
 public class Money {
-    int money;
+    private int money;
 
     public Money(){
         this.money = 0;

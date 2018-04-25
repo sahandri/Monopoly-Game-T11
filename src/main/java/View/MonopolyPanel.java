@@ -1,6 +1,5 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Frame;
 import java.awt.Image;
@@ -8,17 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import Model.Street.colors;
 
 
 import javax.swing.JLabel;
@@ -26,31 +20,28 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Font;
-import javax.swing.JScrollBar;
-import javax.swing.JCheckBox;
-import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
-import java.awt.Color;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
 
 public class MonopolyPanel extends JFrame implements ActionListener {
-	private Map<Integer,int[]> GUIposition = new HashMap<Integer,int[]>();
 	private final String boardImagePath = "/img/board.jpg";
-	private final String tokenImagePath = "/img/token/";
 
-	private JLabel tok1 = new JLabel();
-	private JLabel tok2 = new JLabel();
-	private JLabel tok3 = new JLabel();
-	private JLabel tok4 = new JLabel();
+	private Tok tok1;
+	private Tok tok2;
+	private Tok tok3;
+	private Tok tok4;
 	private JLabel lblPlayer;
 	private JLabel lblPrice;
 	private JLabel timer;
+	private CheckBoxPanel checkBoxPanel;
+	private PositionMap positionMap;
+	
 	private JButton buyBtn, btnEndTurn;
-	private int startTimeMin, startTimeSec, endTimeMin, endTimeSec;
+	private int startTimeMin, endTimeMin;
 	private String numberOfPlayers;
 	private ImageIcon MONOPOLY_ICON;
 	private JTextArea display;
@@ -59,43 +50,10 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 			
 	private JLayeredPane contentPanel;
 
-	
-	private ArrayList<JCheckBox> c = new ArrayList<JCheckBox>();
-	private JCheckBox checkBox0 = new JCheckBox("");
-	private JCheckBox checkBox1 = new JCheckBox("");
-	private JCheckBox checkBox2 = new JCheckBox("");
-	private JCheckBox checkBox3 = new JCheckBox("");
-	private JCheckBox checkBox4 = new JCheckBox("");
-	private JCheckBox checkBox5 = new JCheckBox("");
-	private JCheckBox checkBox6 = new JCheckBox("");
-	private JCheckBox checkBox7 = new JCheckBox("");
-	private JCheckBox checkBox8 = new JCheckBox("");
-	private JCheckBox checkBox9 = new JCheckBox("");
-	private JCheckBox checkBox10 = new JCheckBox("");
-	private JCheckBox checkBox11 = new JCheckBox("");
-	private JCheckBox checkBox12 = new JCheckBox("");
-	private JCheckBox checkBox13 = new JCheckBox("");
-	private JCheckBox checkBox14 = new JCheckBox("");
-	private JCheckBox checkBox15 = new JCheckBox("");
-	private JCheckBox checkBox16 = new JCheckBox("");
-	private JCheckBox checkBox17 = new JCheckBox("");
-	private JCheckBox checkBox18 = new JCheckBox("");
-	private JCheckBox checkBox19 = new JCheckBox("");
-	private JCheckBox checkBox20 = new JCheckBox("");
-	private JCheckBox checkBox21 = new JCheckBox("");
-	private JCheckBox checkBox22 = new JCheckBox("");
-	private JCheckBox checkBox23 = new JCheckBox("");
-	private JCheckBox checkBox24 = new JCheckBox("");
-	private JCheckBox checkBox25 = new JCheckBox("");
-	private JCheckBox checkBox26 = new JCheckBox("");
-	private JCheckBox checkBox27 = new JCheckBox("");
-
 	private final JButton rollDiceBtn = new JButton("Roll Dice");
 
-
-
 	public MonopolyPanel(Monopoly monopoly) {
-		createPositionMap();
+		positionMap = new PositionMap();
 		this.monopoly = monopoly;
 		setUpGUI();
 		
@@ -115,10 +73,12 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		this.setVisible(true);
         this.setExtendedState(Frame.NORMAL);
         
+        checkBoxPanel = new CheckBoxPanel(contentPanel, monopoly);
+        
         setUpBoardImg();
         setUpButtons();
         setLabels();
-        setCheckBoxes();
+        checkBoxPanel.setCheckBoxes();
 	}
 	
 	private void setUpBoardImg(){
@@ -130,62 +90,39 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		contentPanel.add(boardImage, new Integer(1));
 	}
 	
-	private void setTok1(){
-		//create LABEL that holds token1 IMAGE : boot
-		tok1.setBounds(525, 491, 100, 100);
-		Image tokenImg = new ImageIcon(this.getClass().getResource(tokenImagePath + "boot.png")).getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING);    //import boot.png file as an ImageIcon object
-		/*tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the token to be in the label 
-		* This is a scaling of the token image. */
-		tok1.setIcon(new ImageIcon(new ImageIcon(tokenImg).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
-		contentPanel.add(tok1, new Integer(2));                   //add the label to the board
-	}
-	
-	private void setTok2(){
-		//create LABEL that holds token2 IMAGE : car
-		tok2.setBounds(525, 491, 100, 100);
-		Image tokenImg2 = new ImageIcon(this.getClass().getResource(tokenImagePath + "car.png")).getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING);    //import boot.png file as an ImageIcon object
-		/*tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the token to be in the label 
-		* This is a scaling of the token image. */
-		tok2.setIcon(new ImageIcon(new ImageIcon(tokenImg2).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
-		contentPanel.add(tok2, new Integer(2));                   //add the label to the boards
-	}
-	
-	private void setTok3(){
-		//create LABEL that holds token3 IMAGE : dog
-		tok3.setBounds(525, 491, 100, 100);
-		Image tokenImg3 = new ImageIcon(this.getClass().getResource(tokenImagePath + "dog.png")).getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING);    //import boot.png file as an ImageIcon object
-		/*tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the token to be in the label 
-		* This is a scaling of the token image. */
-		tok3.setIcon(new ImageIcon(new ImageIcon(tokenImg3).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
-		contentPanel.add(tok3, new Integer(2));                   //add the label to the board
-	}
-	
-	private void setTok4(){
-		//create LABEL that holds token4 IMAGE : penguin
-				tok4.setBounds(525, 491, 100, 100);
-				Image tokenImg4 = new ImageIcon(this.getClass().getResource(tokenImagePath + "penguin.png")).getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING);    //import boot.png file as an ImageIcon object
-				/*tokenImage.setIcon(new ImageIcon(tokenImg));         //set the image of the token to be in the label 
-				* This is a scaling of the token image. */
-				tok4.setIcon(new ImageIcon(new ImageIcon(tokenImg4).getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
-				contentPanel.add(tok4, new Integer(2));                   //add the label to the board
-	}
 	
 	private void setUpTokenImg(){
 		if(Integer.parseInt(numberOfPlayers) == 2){
-			setTok1();
-			setTok2();
+			//setUp tok1 and add it to panel:
+			tok1 = new Tok("boot");
+			contentPanel.add(tok1, new Integer(2));
+			//setUp tok2 and add it to panel:
+			tok2 = new Tok("car");
+			contentPanel.add(tok2, new Integer(2));
 		}else if(Integer.parseInt(numberOfPlayers) == 3){
-			setTok1();
-			setTok2();
-			setTok3();
+			//setUp tok1 and add it to panel:
+			tok1 = new Tok("boot");
+			contentPanel.add(tok1, new Integer(2));
+			//setUp tok2 and add it to panel:
+			tok2 = new Tok("car");
+			contentPanel.add(tok2, new Integer(2));
+			//setUp tok3 and add it to panel:
+			tok3 = new Tok("dog");
+			contentPanel.add(tok3, new Integer(2));
 		}else if(Integer.parseInt(numberOfPlayers) == 4){
-			setTok1();
-			setTok2();
-			setTok3();
-			setTok4();
+			//setUp tok1 and add it to panel:
+			tok1 = new Tok("boot");
+			contentPanel.add(tok1, new Integer(2));
+			//setUp tok2 and add it to panel:
+			tok2 = new Tok("car");
+			contentPanel.add(tok2, new Integer(2));
+			//setUp tok3 and add it to panel:
+			tok3 = new Tok("dog");
+			contentPanel.add(tok3, new Integer(2));
+			//setUp tok3 and add it to panel:
+			tok4 = new Tok("penguin");
+			contentPanel.add(tok4, new Integer(2));
 		}
-		
-		
 	}
 	
 	private void setUpButtons(){
@@ -193,7 +130,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		startButton();
 		rollDiceBtn();
 		historyWindow();
-		//playerStatus();
 		EndTurnButton();
 	}
 
@@ -305,80 +241,26 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	}
 	
 	public void moveToken(JLabel tok, int newPosition){
-		tok.setLocation(GUIposition.get(newPosition)[0], GUIposition.get(newPosition)[1]);
+		tok.setLocation(positionMap.getX(newPosition), positionMap.getY(newPosition));
 	}
 
 
 	private void startButton(){
-		//START BUTTON:
-		String[] List = new String[] {"2","3","4"};
-		ArrayList<String> names = new ArrayList<>();
-		JTextField name1 = new JTextField();
-		JTextField name2 = new JTextField();
-		JTextField name3 = new JTextField();
-		JTextField name4 = new JTextField();
-		Object[] playerNames2Q = {
-				"Player 1 name: ", name1,
-				"Player 2 name: ", name2
-		};
-		Object[] playerNames3Q = {
-				"Player 1 name: ", name1,
-				"Player 2 name: ", name2,
-				"Player 3 name: ", name3
-		};
-		Object[] playerNames4Q = {
-				"Player 1 name: ", name1,
-				"Player 2 name: ", name2,
-				"Player 3 name: ", name3,
-				"Player 4 name: ", name4
-		};
-				
 		//create button to start game
-		JButton startGameBtn = new JButton("Start");
+		StartGameBtn startGameBtn = new StartGameBtn();
 		startGameBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					numberOfPlayers = (String) JOptionPane.showInputDialog(contentPanel, "How many of you playing?", "select number of players", JOptionPane.QUESTION_MESSAGE, MONOPOLY_ICON, List, "Titan");
-					int option;
-					switch(Integer.valueOf(numberOfPlayers)){
-							case 2: 
-								option = JOptionPane.showConfirmDialog(contentPanel, playerNames2Q, "insert players names", JOptionPane.OK_CANCEL_OPTION, JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
-								if (option == JOptionPane.OK_OPTION){
-									names.add(name1.getText());
-									names.add(name2.getText());
-									monopoly.startGame(Integer.valueOf(numberOfPlayers), names);
-								}
-								break;
-							case 3:
-								option = JOptionPane.showConfirmDialog(contentPanel, playerNames3Q, "insert players names", JOptionPane.OK_CANCEL_OPTION, JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
-								if (option == JOptionPane.OK_OPTION){
-									names.add(name1.getText());
-									names.add(name2.getText());
-									names.add(name3.getText());
-									monopoly.startGame(Integer.valueOf(numberOfPlayers), names);
-								}
-								break;
-							case 4:
-								option = JOptionPane.showConfirmDialog(contentPanel, playerNames4Q, "insert players names", JOptionPane.OK_CANCEL_OPTION,JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
-								if (option == JOptionPane.OK_OPTION){
-									names.add(name1.getText());
-									names.add(name2.getText());
-									names.add(name3.getText());
-									names.add(name4.getText());
-									monopoly.startGame(Integer.valueOf(numberOfPlayers), names);
-								}
-								break;
-							default: option = 0;
-					}
-				Object[] messageObj = {
-						"Number of players: "+numberOfPlayers+"\n"+monopoly.getPlayer().getName()+" starts the game", 
-				};
-				JOptionPane.showMessageDialog(contentPanel, messageObj, "IT'S GAME TIME",JOptionPane.OK_CANCEL_OPTION,MONOPOLY_ICON);
-				setUpTokenImg();
-				playerStatus();
-				startTimer();
-				startGameBtn.setEnabled(false);
-				buyBtn.setEnabled(false);
-				rollDiceBtn.setEnabled(true);
+					numberOfPlayers = startGameBtn.clicked(contentPanel, monopoly);		//Returns the number of players after asking for their names and after starting the game
+
+					Object[] messageObj = {"Number of players: "+numberOfPlayers+"\n"+monopoly.getPlayer().getName()+" starts the game"};
+					JOptionPane.showMessageDialog(contentPanel, messageObj, "IT'S GAME TIME",JOptionPane.OK_CANCEL_OPTION,MONOPOLY_ICON);
+					//do the set up necessary for the start of the game 
+					setUpTokenImg();
+					playerStatus();
+					startTimer();
+					startGameBtn.setEnabled(false);
+					buyBtn.setEnabled(false);
+					rollDiceBtn.setEnabled(true);
 			}
 
 		});
@@ -391,7 +273,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private void startTimer(){
 		Calendar calendar = new GregorianCalendar();
 		startTimeMin = calendar.get(Calendar.MINUTE);
-		startTimeSec = calendar.get(Calendar.SECOND); 
 		endTimeMin = startTimeMin + 5;
 		Timer SimpleTimer = new Timer(1000, new ActionListener(){
 			@Override
@@ -427,148 +308,12 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		
 	}
 	
-	
-	public void setCheckBoxes() {
-		c.add(checkBox0);
-		c.add(checkBox1);
-		c.add(checkBox2);
-		c.add(checkBox3);
-		c.add(checkBox4);
-		c.add(checkBox5);
-		c.add(checkBox6);
-		c.add(checkBox7);
-		c.add(checkBox8);
-		c.add(checkBox9);
-		c.add(checkBox10);
-		c.add(checkBox11);
-		c.add(checkBox12);
-		c.add(checkBox13);
-		c.add(checkBox14);
-		c.add(checkBox15);
-		c.add(checkBox16);
-		c.add(checkBox17);
-		c.add(checkBox18);
-		c.add(checkBox19);
-		c.add(checkBox20);
-		c.add(checkBox21);
-		c.add(checkBox22);
-		c.add(checkBox23);
-		c.add(checkBox24);
-		c.add(checkBox25);
-		c.add(checkBox26);
-		c.add(checkBox27);
-		for(int i=0; i<28; i++) {
-			contentPanel.add(c.get(i));
-		}
-	}
-	
-	
 	public void playerStatus() {
 		lblPlayer.setText(monopoly.getPlayer().getName());
 		lblPrice.setText("$"+Integer.toString(monopoly.getPlayer().getMoney().getMoney()));
-		
-		int R, G, B;
-		int column = 599;
-		int row = 75;
-		for(int i=0; i<28; i++) {
-			if(i%8==0) {
-				column = 599;
-				row += 42;
-			}
-			column+= 40;
-			switch(i) {
-				case 0:
-	            case 1:
-	            	R= 25;
-	            	G = 25;
-	            	B = 112;		
-	                break;
-	            case 2:
-	            case 3:
-	            case 4:
-	            	R= 128;
-	            	G = 0;
-	            	B = 128;	
-	                break;
-	            case 5:
-	            case 6:
-	            case 7:
-	            	R= 255;
-	            	G = 105;
-	            	B = 180;	
-	                break;
-	            case 8:
-	            case 9:
-	            case 10:
-	            	R= 255;
-	            	G = 165;
-	            	B = 0;	
-	                break;
-	            case 11:
-	            case 12:
-	            case 13:
-	            	R= 255;
-	            	G = 0;
-	            	B = 0;	
-	                break;
-	            case 14:
-	            case 15:
-	            case 16:
-	            	R= 255;
-	            	G = 255;
-	            	B = 0;	
-	                break;
-	            case 17:
-	            case 18:
-	            case 19:
-	            	R= 0;
-	            	G = 255;
-	            	B = 0;	
-	                break;
-	            case 20:
-	            case 21:
-	            	R= 132;
-	            	G = 112;
-	            	B = 255;	
-	            	break;
-	            case 22:
-	            case 23:
-	            case 24:
-	            case 25:
-	            	R= 0;
-	            	G = 0;
-	            	B = 0;	
-	            	break;
-	            case 26:
-	            case 27:	
-	            	R= 100;
-	            	G = 100;
-	            	B = 100;	
-	                break;
-	            default:
-	            	R= 0;
-	            	G = 0;
-	            	B = 0;	
-			}
-			if (monopoly.checkOwner(i) == -1) {//no one owns property
-				c.get(i).setBackground(new Color(R, G, B));
-				c.get(i).setForeground(new Color(0, 0, 0));
-				c.get(i).setBounds(column, row, 29, 29);
-				c.get(i).setEnabled(false);
-			}else if(monopoly.checkOwner(i) == 0) {//player ownes property
-				c.get(i).setBackground(new Color(R, G, B));
-				c.get(i).setForeground(new Color(0, 0, 0));
-				c.get(i).setBounds(column, row, 29, 29);
-				c.get(i).setEnabled(false);
-				c.get(i).setSelected(true);
-			}else {//other player owns the property
-				c.get(i).setBackground(new Color(250, 250, 250));
-				c.get(i).setForeground(new Color(0, 0, 0));
-				c.get(i).setBounds(column, row, 29, 29);
-				c.get(i).setEnabled(false);
-			}
-		}
+		checkBoxPanel.playerStatus();
 	}
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -578,89 +323,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
          * This class (MonopolyPanel) implements ActionListener.
         */
 		
-	}
-	
-	private void createPositionMap() {
-		
-		GUIposition.put(0, new int[]{530,490});
-		
-		GUIposition.put(1, new int[]{470,490});
-		
-		GUIposition.put(2, new int[]{424,490});
-		
-		GUIposition.put(3, new int[]{374,490});
-		
-		GUIposition.put(4, new int[]{328,490});
-		
-		GUIposition.put(5, new int[]{280, 490});
-		
-		GUIposition.put(6, new int[]{232 ,490 });
-		
-		GUIposition.put(7, new int[]{185, 490});
-		
-		GUIposition.put(8, new int[]{138,490 });
-		
-		GUIposition.put(9, new int[]{89, 490});
-		
-		GUIposition.put(10, new int[]{35, 490});
-		
-		GUIposition.put(11, new int[]{35, 438});
-		
-		GUIposition.put(12, new int[]{35, 397});
-		
-		GUIposition.put(13, new int[]{35, 343});
-		
-		GUIposition.put(14, new int[]{ 35, 299});
-		
-		GUIposition.put(15, new int[]{ 35, 251});
-		
-		GUIposition.put(16, new int[]{ 35, 203});
-		
-		GUIposition.put(17, new int[]{35 ,155 });
-		
-		GUIposition.put(18, new int[]{ 35, 110});
-		
-		GUIposition.put(19, new int[]{ 35, 57});
-		
-		GUIposition.put(20, new int[]{ 35, 6});
-		
-		GUIposition.put(21, new int[]{ 92, 6});
-		
-		GUIposition.put(22, new int[]{ 136, 6});
-		
-		GUIposition.put(23, new int[]{ 184, 6});
-		
-		GUIposition.put(24, new int[]{ 232, 6});
-		
-		GUIposition.put(25, new int[]{ 279, 6});
-		
-		GUIposition.put(26, new int[]{ 325, 6});
-		
-		GUIposition.put(27, new int[]{ 375, 6});
-		
-		GUIposition.put(28, new int[]{ 421, 6});
-		
-		GUIposition.put(29, new int[]{ 468, 6});
-		
-		GUIposition.put(30, new int[]{ 519, 6});
-		
-		GUIposition.put(31, new int[]{ 519, 66});
-		
-		GUIposition.put(32, new int[]{ 519, 110});
-		
-		GUIposition.put(33, new int[]{ 519, 155});
-		
-		GUIposition.put(34, new int[]{ 519, 205});
-		
-		GUIposition.put(35, new int[]{519 , 249});
-		
-		GUIposition.put(36, new int[]{ 519, 300});
-		
-		GUIposition.put(37, new int[]{ 519, 345});
-		
-		GUIposition.put(38, new int[]{ 519, 392});
-		
-		GUIposition.put(39, new int[]{ 519, 440});
 	}
 	
 	/**
