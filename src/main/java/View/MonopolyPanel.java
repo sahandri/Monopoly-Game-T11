@@ -36,9 +36,8 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private Tok tok4;
 	private JLabel lblPlayer;
 	private JLabel lblPrice;
-	private JLabel timer;
+	private GameTimer timer;
 	private CheckBoxPanel checkBoxPanel;
-	private PositionMap positionMap;
 	
 	private JButton buyBtn, btnEndTurn;
 	private int startTimeMin, endTimeMin;
@@ -49,11 +48,9 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private static Monopoly monopoly;
 			
 	private JLayeredPane contentPanel;
-
-	private final JButton rollDiceBtn = new JButton("Roll Dice");
+	private RollDiceBtn rollDiceBtn;
 
 	public MonopolyPanel(Monopoly monopoly) {
-		positionMap = new PositionMap();
 		this.monopoly = monopoly;
 		setUpGUI();
 		
@@ -214,36 +211,19 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 
 	private void rollDiceBtn() {
 		//Roll dice and move player
+		rollDiceBtn = new RollDiceBtn();
 		rollDiceBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int roll = monopoly.getDiceRoll();
-				JOptionPane.showMessageDialog(contentPanel,"You got: "+Integer.valueOf(roll), "Dice Rolled..", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
-				int newPosition = (monopoly.getCurrentPlayerPosition() + roll)%40;
-				switch(monopoly.getPlayer().getID()){
-					case 1: moveToken(tok1, newPosition);
-						break;
-					case 2: moveToken(tok2, newPosition);
-						break;
-					case 3:	moveToken(tok3,newPosition);
-						break;
-					case 4: moveToken(tok4, newPosition);
-						break;
-				}
+				rollDiceBtn.clicked(contentPanel, monopoly, tok1, tok2, tok3, tok4);
 				display.append(monopoly.move());
 				buyBtn.setEnabled(true);
 				btnEndTurn.setEnabled(true);
 				rollDiceBtn.setEnabled(false);
 			}
 		});
-		rollDiceBtn.setBounds(369, 623, 117, 29);
 		contentPanel.add(rollDiceBtn);
 		rollDiceBtn.setEnabled(false);
 	}
-	
-	public void moveToken(JLabel tok, int newPosition){
-		tok.setLocation(positionMap.getX(newPosition), positionMap.getY(newPosition));
-	}
-
 
 	private void startButton(){
 		//create button to start game
@@ -251,9 +231,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		startGameBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 					numberOfPlayers = startGameBtn.clicked(contentPanel, monopoly);		//Returns the number of players after asking for their names and after starting the game
-
-					Object[] messageObj = {"Number of players: "+numberOfPlayers+"\n"+monopoly.getPlayer().getName()+" starts the game"};
-					JOptionPane.showMessageDialog(contentPanel, messageObj, "IT'S GAME TIME",JOptionPane.OK_CANCEL_OPTION,MONOPOLY_ICON);
 					//do the set up necessary for the start of the game 
 					setUpTokenImg();
 					playerStatus();
@@ -262,12 +239,8 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 					buyBtn.setEnabled(false);
 					rollDiceBtn.setEnabled(true);
 			}
-
 		});
-		startGameBtn.setFont(new Font("Avenir", Font.PLAIN, 13));
-		startGameBtn.setBounds(19, 623, 117, 29);
 		contentPanel.add(startGameBtn);
-		rollDiceBtn.setFont(new Font("Avenir", Font.PLAIN, 13));
 	}
 	
 	private void startTimer(){
@@ -277,35 +250,26 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		Timer SimpleTimer = new Timer(1000, new ActionListener(){
 			@Override
 		    public void actionPerformed(ActionEvent e) {
-				Calendar calendar1 = new GregorianCalendar();
-		       if((calendar1.get(Calendar.MINUTE) < endTimeMin) ){
-		    	   timer.setText((endTimeMin - calendar1.get(Calendar.MINUTE)) +" min left");
-		       }else{
-		    	   timer.setText("Game Over");
-		    	   JOptionPane.showMessageDialog(contentPanel,"Game is over!\nWinner is: " + monopoly.selectWinner().getName());
-		       }
-		    }
+				timer.startTimer(startTimeMin, endTimeMin);
+			}
 		});
 		SimpleTimer.start();
 	}
 	
-	
 	public void setLabels() {
+		//label to display current player name:
 		lblPlayer = new JLabel("Player");
 		lblPlayer.setFont(new Font("Avenir", Font.PLAIN, 13));
 		lblPlayer.setBounds(615, 30, 69, 20);
-		contentPanel.add(lblPlayer);	
-		
+		contentPanel.add(lblPlayer);
+		//label to display current player money:
 		lblPrice = new JLabel("Money");
 		lblPrice.setFont(new Font("Avenir", Font.PLAIN, 13));
 		lblPrice.setBounds(751, 30, 69, 20);
 		contentPanel.add(lblPrice);	
-		
-		timer = new JLabel("Timer");
-		timer.setFont(new Font("Avenir", Font.PLAIN, 13));
-		timer.setBounds(834, 621, 139, 29);
+		//timer:
+		timer = new GameTimer(contentPanel, monopoly);
 		contentPanel.add(timer);
-		
 	}
 	
 	public void playerStatus() {
@@ -314,16 +278,8 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		checkBoxPanel.playerStatus();
 	}
 	
-	
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-        /*
-         * Method of ActionListener.
-         * This class (MonopolyPanel) implements ActionListener.
-        */
-		
-	}
+	public void actionPerformed(ActionEvent e) {/*ignore this -> only present cause class implements ActionListener*/}
 	
 	/**
 	 * Launch the application.

@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,7 +40,8 @@ public class StartGameBtn extends JButton implements ActionListener{
 	
 	public StartGameBtn(){
 		super("start");
-		
+		this.setFont(new Font("Avenir", Font.PLAIN, 13));
+		this.setBounds(19, 623, 117, 29);
 		MONOPOLY_ICON = new ImageIcon(this.getClass().getResource("/img/monopolyIcon.png"));
 		Image image = MONOPOLY_ICON.getImage(); 
 		Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_AREA_AVERAGING); 
@@ -80,12 +82,12 @@ public class StartGameBtn extends JButton implements ActionListener{
 					break;
 				default: option = 0;
 		}
+		Object[] messageObj = {"Number of players: "+numberOfPlayers+"\n"+monopoly.getPlayer().getName()+" starts the game"};
+		JOptionPane.showMessageDialog(contentPanel, messageObj, "IT'S GAME TIME",JOptionPane.OK_CANCEL_OPTION,MONOPOLY_ICON);
 		return numP;
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-	}
+	public void actionPerformed(ActionEvent e) {}
 	
 }
