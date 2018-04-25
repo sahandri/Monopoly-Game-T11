@@ -15,9 +15,13 @@ public class Street extends Square{
     private colors color;
     private int ID; //every color group has and ID
     private int rent;
+    private boolean house; //if this street has house
+    private boolean hotel; //if this street has hotel
 
 	public Street(int price, int position, int rent) {
 		super(price, position);
+		house = false;
+		hotel = false;
 		this.rent = rent;
 		try {
             setColor(position);
@@ -89,6 +93,14 @@ public class Street extends Square{
     public int getID(){
         return ID;
     }
+    
+    //if player owns all the color groups can buy a house
+    public void buyHouse(Player player, Board board, int price) {
+    	if(checkColorOwnership(player, board)) {
+    		player.getMoney().sbustractMoney(price);
+    		house = true;
+    	}
+    }
 
 	@Override
 	public void perform(Player player, Board board) {
@@ -114,6 +126,19 @@ public class Street extends Square{
 				this.setOwner(player);
 			}
         }
+	}
+	
+	
+	//checks if player owns all the color groups
+	public boolean checkColorOwnership(Player player, Board board) {
+		boolean allColors = true;
+    	int[][] street = board.getStreetArray();
+        for(int i=0; i<street[this.getID()].length; i++){
+        	if(this.getOwner() != board.getSquares()[street[this.getID()][i]].getOwner()){
+                allColors = false;
+            }
+        }
+        return allColors;
 	}
 
 	//returns number of same color groups owned by the same player(owner of this street)
