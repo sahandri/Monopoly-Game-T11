@@ -5,31 +5,26 @@ import java.awt.Frame;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.border.EmptyBorder;
-
-
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.Timer;
-
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
 
 public class MonopolyPanel extends JFrame implements ActionListener {
 	private final String boardImagePath = "/img/board.jpg";
-
+	private ImageIcon MONOPOLY_ICON;
+	private int startTimeMin, endTimeMin;
+	private String numberOfPlayers;
+	
 	private Tok tok1;
 	private Tok tok2;
 	private Tok tok3;
@@ -38,20 +33,18 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private JLabel lblPrice;
 	private GameTimer timer;
 	private CheckBoxPanel checkBoxPanel;
-	
-	private JButton buyBtn, btnEndTurn;
-	private int startTimeMin, endTimeMin;
-	private String numberOfPlayers;
-	private ImageIcon MONOPOLY_ICON;
-	private JTextArea display;
-	
-	private static Monopoly monopoly;
-			
-	private JLayeredPane contentPanel;
 	private RollDiceBtn rollDiceBtn;
-
+	private BuyPropertyBtn buyBtn;
+	private JTextArea display;
+	private JButton btnEndTurn;
+	
+	private static Monopoly monopoly;		
+	private JLayeredPane contentPanel;
+	
+	/*constructor of MonopolyPanel*/
 	public MonopolyPanel(Monopoly monopoly) {
 		this.monopoly = monopoly;
+		
 		setUpGUI();
 		
 		MONOPOLY_ICON = new ImageIcon(this.getClass().getResource("/img/monopolyIcon.png"));
@@ -78,6 +71,14 @@ public class MonopolyPanel extends JFrame implements ActionListener {
         checkBoxPanel.setCheckBoxes();
 	}
 	
+	private void setUpButtons(){
+		buyPropertyButton();
+		startButton();
+		rollDiceBtn();
+		historyWindow();
+		EndTurnButton();
+	}
+	
 	private void setUpBoardImg(){
 		//create LABEL that holds board IMAGE 
 		JLabel boardImage = new JLabel("");
@@ -86,7 +87,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		boardImage.setIcon(new ImageIcon(img));         //set the image of the board to be in the label 
 		contentPanel.add(boardImage, new Integer(1));
 	}
-	
 	
 	private void setUpTokenImg(){
 		if(Integer.parseInt(numberOfPlayers) == 2){
@@ -121,14 +121,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 			contentPanel.add(tok4, new Integer(2));
 		}
 	}
-	
-	private void setUpButtons(){
-		buyPropertyButton();
-		startButton();
-		rollDiceBtn();
-		historyWindow();
-		EndTurnButton();
-	}
 
 	private void historyWindow() {
 		/** History scroll area*/
@@ -141,14 +133,13 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		contentPanel.add(scrollPane);
 		scrollPane.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
 		
-		
 		JLabel lblHistory = new JLabel("History");
 		lblHistory.setFont(new Font("Avenir", Font.BOLD, 18));
 		lblHistory.setBounds(611, 330, 75, 29);
 		contentPanel.add(lblHistory);
 	}
 	
-	public void EndTurnButton() {
+	private void EndTurnButton() {
 		btnEndTurn = new JButton("Next Player");
 		btnEndTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -169,42 +160,13 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 
 	private void buyPropertyButton() {
 		//create button to buy property
-		buyBtn = new JButton("Buy Property");
-		buyBtn.setFont(new Font("Avenir", Font.PLAIN, 13));
+		buyBtn = new BuyPropertyBtn();
 		buyBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-                //TODO: implement here what should happen when "Buy Property" button is pressed.
-				if(monopoly.getOwnerID(monopoly.getPlayer()) != monopoly.getPlayer().getID()
-						&& monopoly.getOwnerID(monopoly.getPlayer()) != -1) {
-					if(JOptionPane.showConfirmDialog(contentPanel,
-							monopoly.getOwnerName(monopoly.getPlayer())+" do you want to sell?", "",
-							JOptionPane.OK_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, MONOPOLY_ICON)
-							==JOptionPane.YES_OPTION) {
-						boolean success = monopoly.buyProperty(monopoly.getPlayer());
-						if(success) {
-							Object[] messageObj = {"Property purchased succesfully"};
-							JOptionPane.showMessageDialog(contentPanel, messageObj,"Hooray!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
-							display.append(monopoly.getName(monopoly.getPlayer()) + " Purchased Property " + monopoly.getSquareName(monopoly.getCurrentPlayerPosition()));
-						}else {
-							Object[] messageObj = {"Can not purchase this property"};
-							JOptionPane.showMessageDialog(contentPanel,messageObj ,"Oops!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
-						}
-					}
-				}else {
-					boolean success = monopoly.buyProperty(monopoly.getPlayer());
-					if(success) {
-						Object[] messageObj = {"Property purchased succesfully"};
-						JOptionPane.showMessageDialog(contentPanel, messageObj,"Hooray!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
-						display.append(monopoly.getName(monopoly.getPlayer()) + " Purchased Property " + monopoly.getSquareName(monopoly.getCurrentPlayerPosition()));
-					}else {
-						Object[] messageObj = {"Can not purchase this property"};
-						JOptionPane.showMessageDialog(contentPanel,messageObj ,"Oops!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
-					}
-				}
+				display = buyBtn.clicked(contentPanel, monopoly, display);
 				playerStatus();
 			}
 		});
-		buyBtn.setBounds(136, 623, 117, 29);
 		contentPanel.add(buyBtn);
 		buyBtn.setEnabled(false);
 	}
@@ -256,7 +218,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		SimpleTimer.start();
 	}
 	
-	public void setLabels() {
+	private void setLabels() {
 		//label to display current player name:
 		lblPlayer = new JLabel("Player");
 		lblPlayer.setFont(new Font("Avenir", Font.PLAIN, 13));
@@ -272,7 +234,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		contentPanel.add(timer);
 	}
 	
-	public void playerStatus() {
+	private void playerStatus() {
 		lblPlayer.setText(monopoly.getPlayer().getName());
 		lblPrice.setText("$"+Integer.toString(monopoly.getPlayer().getMoney().getMoney()));
 		checkBoxPanel.playerStatus();
