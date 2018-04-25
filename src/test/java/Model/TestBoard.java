@@ -84,7 +84,7 @@ public class TestBoard {
 		board.purchaseProperty(p, 3);
 		
 		assertEquals(p, board.getPropertyOwner(3));			//check the deed was created successfully 
-		assertEquals((1500-60), p.getMoney().money);			//check player got charged
+		assertEquals((1500-60), p.getMoney().getMoney());			//check player got charged
 	}
 	
 }

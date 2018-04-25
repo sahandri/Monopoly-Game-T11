@@ -59,7 +59,7 @@ public class Tax extends Square{
 					player.getMoney().sbustractMoney(200);
 				}
 				else{
-					player.getMoney().sbustractMoney((int)tenPercent(player.getMoney().money));
+					player.getMoney().sbustractMoney((int)tenPercent(player.getMoney().getMoney()));
 				}
 				break;
 			case CORPORATE_TAX:
