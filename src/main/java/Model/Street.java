@@ -15,13 +15,13 @@ public class Street extends Square{
     private colors color;
     private int ID; //every color group has and ID
     private int rent;
-    private boolean house; //if this street has house
-    private boolean hotel; //if this street has hotel
+    private int house; //number of houses on the street
+    private int hotel; //number of hotels on the street
 
 	public Street(int price, int position, int rent) {
 		super(price, position);
-		house = false;
-		hotel = false;
+		house = 0;
+		hotel = 0;
 		this.rent = rent;
 		try {
             setColor(position);
@@ -95,12 +95,61 @@ public class Street extends Square{
     }
     
     //if player owns all the color groups can buy a house
-    public void buyHouse(Player player, Board board, int price) {
-    	if(checkColorOwnership(player, board)) {
-    		player.getMoney().sbustractMoney(price);
-    		house = true;
+    public boolean buyHouse(Player player, Board board, int price) {
+    	if(house <=3) {
+	    	if(checkColorOwnership(player, board)) {
+	    		player.getMoney().sbustractMoney(price);
+	    		house++;
+	    		return true;
+	    	}
     	}
+    	return false;
     }
+    
+    
+  //if player owns 4 houses can buy a hotel
+    public boolean buyHotel(Player player, Board board, int price) {
+    	if(hotel==0 && house==4) {
+    		player.getMoney().sbustractMoney(price);
+    		house++;
+    		house = 0;
+    		return true;
+    	}
+    	return false;
+    }
+    
+    //if property has houses or hotels we call this method to calculate
+    //the amount of rent
+    public int calculateRent(Board board) {
+    	int r =0;
+    	if(house > 0) { //player owns house
+    		switch(house) {
+    		case 1: r=rent*5;
+    			break;
+    		case 2: r=rent*15;
+    			break;
+    		case 3: r=rent*45;
+    			break;
+    		case 4: r=rent*65;
+    			break;
+    		}
+    	}else if(hotel>0) { //player owns hotel
+    		r=rent*85;	
+    	}
+    	else {//player owns the street without house or hotel
+    		int counter = numOfColorGroup(board); //gets the number of streets in the same color owned by a the owner
+	        switch (counter){
+                case 1: r=rent;
+                    break;
+                case 2: r=rent*2;
+                	break;
+                case 3: r=rent*4;
+                    break;
+            }
+    	}
+    	return r;
+    }
+    
 
 	@Override
 	public void perform(Player player, Board board) {
@@ -109,19 +158,9 @@ public class Street extends Square{
             board.purchaseProperty(player, this.getPosition());
             this.setOwner(player);
         }else if(this.getOwner() != -1 && this.getOwner()!=player.getID()){ //if street owns by somebody else
-	        int counter = numOfColorGroup(board); //gets the number of streets in the same color owned by a the owner
-	        switch (counter){
-                case 1: player.getMoney().sbustractMoney(rent);//subtract the rent amount
-                	board.getPropertyOwner(getPosition()).getMoney().addMoney(rent);
-                    break;
-                case 2: player.getMoney().sbustractMoney(2*rent);//subtract the 2*rent amount
-                	board.getPropertyOwner(getPosition()).getMoney().addMoney(rent*2);
-                    break;
-                case 3: player.getMoney().sbustractMoney(4*rent);// subtract the 4*rent amount
-                	board.getPropertyOwner(getPosition()).getMoney().addMoney(rent*4);
-                    break;
-            }
-	        if(player.getDecision() && board.getPropertyOwner(getPosition()).getDecision()) {
+            player.getMoney().sbustractMoney(calculateRent(board));//subtract the rent amount
+            board.getPropertyOwner(getPosition()).getMoney().addMoney(calculateRent(board));//adds the rent amount to the owner
+	        if(player.getDecision() && board.getPropertyOwner(getPosition()).getDecision()) {//player buys the property from other player
 				board.purchaseProperty(player, this.getPosition());
 				this.setOwner(player);
 			}
