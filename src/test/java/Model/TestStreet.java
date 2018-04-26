@@ -70,21 +70,21 @@ public class TestStreet {
         player1.setDecision(true);
         //test buying street
         board.getSquares()[1].perform(player1,board);
-        assertEquals(1440, player1.getMoney().money); //testing to buy a street
+        assertEquals(1440, player1.getMoney().getMoney()); //testing to buy a street
         assertEquals(board.getSquares()[1].getOwner(), 1); // check the streets owner ID
         board.getSquares()[1].perform(player2,board); //player 2 moves to player1's street
-        assertEquals(1498, player2.getMoney().money); //testing to pay rent for one street
+        assertEquals(1498, player2.getMoney().getMoney()); //testing to pay rent for one street
 
         board.getSquares()[3].perform(player1,board); //player 1 buys second street from same color
-        assertEquals(1382, player1.getMoney().money); //testing to buy a street
+        assertEquals(1382, player1.getMoney().getMoney()); //testing to buy a street
         assertEquals(board.getSquares()[3].getOwner(), 1); // check the streets owner ID
         board.getSquares()[3].perform(player2,board); //player 2 moves to player1's street
-        assertEquals(1490, player2.getMoney().money); //testing to pay rent for two streets
+        assertEquals(1490, player2.getMoney().getMoney()); //testing to pay rent for two streets
 
         player2.setDecision(false);
         board.getSquares()[6].perform(player2,board); //player2 moves to a street without owner
         assertEquals(board.getSquares()[6].getOwner(), -1); // check the streets owner ID
-        assertEquals(1490, player2.getMoney().money); //testing to not buy the street
+        assertEquals(1490, player2.getMoney().getMoney()); //testing to not buy the street
     }
 
     @Test

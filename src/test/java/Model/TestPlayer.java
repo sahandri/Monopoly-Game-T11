@@ -27,8 +27,8 @@ public class TestPlayer {
 
     @Test
     public void testGetMoney(){
-        assertEquals(1500, player1.getMoney().money);
-        assertEquals(1500, player2.getMoney().money);
+        assertEquals(1500, player1.getMoney().getMoney());
+        assertEquals(1500, player2.getMoney().getMoney());
     }
 
     @Test

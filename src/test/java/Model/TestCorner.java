@@ -64,14 +64,14 @@ public class TestCorner {
 		when(boardMock.getToken(any(Player.class))).thenReturn(temp);
 		when(boardMock.roll()).thenReturn(1);
 		jail.perform(p, boardMock);				//test perform() with player in jail if he rolls 2 equal numbers
-		assertEquals(1500, p.getMoney().money); //check the money wasn't subtracted
+		assertEquals(1500, p.getMoney().getMoney()); //check the money wasn't subtracted
 		assertFalse(temp.inJail()); 			//check the player's token is no longer in jail mode
 		
 		temp.move(10);
 		temp.imprison();
 		p.setDecision(false);						//set player decision to pay = false
 		jail.perform(p, boardMock);					//test perform() with player in jail if he DOES NOT roll 2 equal numbers and he DOES NOT DECIDE to pay
-		assertEquals(1500, p.getMoney().money);	//check the money was subtracted
+		assertEquals(1500, p.getMoney().getMoney());	//check the money was subtracted
 		assertFalse(temp.inJail());	
 		
 		temp.move(10);
@@ -80,7 +80,7 @@ public class TestCorner {
 		when(boardMock.getToken(any(Player.class))).thenReturn(temp);
 		p.setDecision(true);						//set player decision to pay = true
 		jail.perform(p, boardMock);					//test perform() with player in jail if he DOES NOT roll 2 equal numbers and he DECIDES to pay
-		assertEquals(1500-50, p.getMoney().money);	//check the money was subtracted
+		assertEquals(1500-50, p.getMoney().getMoney());	//check the money was subtracted
 		assertFalse(temp.inJail());					//check the player's token is no longer in jail mode
 			
 		

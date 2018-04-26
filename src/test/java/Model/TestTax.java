@@ -26,16 +26,16 @@ public class TestTax {
     @Test
     public void testPerform(){
         buffetTax.perform(player1, board);
-        assertEquals(player1.getMoney().money,1300);
+        assertEquals(player1.getMoney().getMoney(),1300);
         corporateTax.perform(player1, board);
-        assertEquals(player1.getMoney().money, 1225);
+        assertEquals(player1.getMoney().getMoney(), 1225);
     }
 
     @Test
     public void testTenPercent() {
-        assert(150.0 == buffetTax.tenPercent(player1.getMoney().money));
+        assert(150.0 == buffetTax.tenPercent(player1.getMoney().getMoney()));
         player1.setDecision(true);
         buffetTax.perform(player1, board);
-        assertEquals(1350, player1.getMoney().money);
+        assertEquals(1350, player1.getMoney().getMoney());
     }
 }

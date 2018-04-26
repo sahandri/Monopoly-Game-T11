@@ -81,8 +81,6 @@ public class Monopoly{
     	return "Owner not found";
     }
     
-    
-    
     public int getDiceRoll() {
     	roll = board.roll();
     	return roll;
