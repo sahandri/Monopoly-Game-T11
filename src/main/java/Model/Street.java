@@ -107,7 +107,8 @@ public class Street extends Square{
     }
     
     
-  //if player owns 4 houses can buy a hotel
+    //if player owns 4 houses can buy a hotel
+    //------------????all properties or just this one
     public boolean buyHotel(Player player, Board board, int price) {
     	if(hotel==0 && house==4) {
     		player.getMoney().sbustractMoney(price);
