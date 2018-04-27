@@ -17,11 +17,13 @@ public class Street extends Square{
     private int rent;
     private int house; //number of houses on the street
     private int hotel; //number of hotels on the street
+    private boolean mortgage;
 
 	public Street(int price, int position, int rent) {
 		super(price, position);
 		house = 0;
 		hotel = 0;
+		mortgage = false;
 		this.rent = rent;
 		try {
             setColor(position);
@@ -119,34 +121,54 @@ public class Street extends Square{
     	return false;
     }
     
+    public boolean mortgage(Player player) {
+    	if(this.getOwner()==player.getID() && house==0 && hotel==0) {
+    		player.getMoney().addMoney(this.getPrice()/2);
+    		mortgage=true;
+    		return true;
+    	}
+    	return false;
+    }
+    
+    public boolean unmortgage(Player player) {
+    	if(this.getOwner()==player.getID()) {
+    		player.getMoney().sbustractMoney((this.getPrice()/2)+(this.getPrice()/10));
+    		mortgage=false;
+    		return true;
+    	}
+    	return false;
+    }
+    
     //if property has houses or hotels we call this method to calculate
     //the amount of rent
     public int calculateRent(Board board) {
     	int r =0;
-    	if(house > 0) { //player owns house
-    		switch(house) {
-    		case 1: r=rent*5;
-    			break;
-    		case 2: r=rent*15;
-    			break;
-    		case 3: r=rent*45;
-    			break;
-    		case 4: r=rent*65;
-    			break;
-    		}
-    	}else if(hotel>0) { //player owns hotel
-    		r=rent*85;	
-    	}
-    	else {//player owns the street without house or hotel
-    		int counter = numOfColorGroup(board); //gets the number of streets in the same color owned by a the owner
-	        switch (counter){
-                case 1: r=rent;
-                    break;
-                case 2: r=rent*2;
-                	break;
-                case 3: r=rent*4;
-                    break;
-            }
+    	if(mortgage==false) {
+	    	if(house > 0) { //player owns house
+	    		switch(house) {
+	    		case 1: r=rent*5;
+	    			break;
+	    		case 2: r=rent*15;
+	    			break;
+	    		case 3: r=rent*45;
+	    			break;
+	    		case 4: r=rent*65;
+	    			break;
+	    		}
+	    	}else if(hotel>0) { //player owns hotel
+	    		r=rent*85;	
+	    	}
+	    	else {//player owns the street without house or hotel
+	    		int counter = numOfColorGroup(board); //gets the number of streets in the same color owned by a the owner
+		        switch (counter){
+	                case 1: r=rent;
+	                    break;
+	                case 2: r=rent*2;
+	                	break;
+	                case 3: r=rent*4;
+	                    break;
+	            }
+	    	}
     	}
     	return r;
     }
