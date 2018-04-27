@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLayeredPane;
 
 public class UnMortgageBtn extends JButton implements ActionListener{
 
@@ -15,7 +16,7 @@ public class UnMortgageBtn extends JButton implements ActionListener{
 		this.setBounds(252, 642, 117, 29);
 	}
 	
-	public void clicked(){
+	public void clicked(JLayeredPane contentPanel, Monopoly monopoly){
 		
 	}
 	

@@ -9,6 +9,7 @@ public abstract class Square{
     // position starts from 0 to 39. For instance, 0 represents to Go, 1 can represent street, etc
     private int position;
     private int owner;
+    private String nameOfSquare;
 
     Square(int price, int position){
         this.price = price;
@@ -22,6 +23,14 @@ public abstract class Square{
 
     public int getPosition() {
         return position;
+    }
+    
+    public void setName(String name){
+    	this.nameOfSquare = name;
+    }
+    
+    public String getName(){
+    	return this.nameOfSquare;
     }
 
     //sets property owner
