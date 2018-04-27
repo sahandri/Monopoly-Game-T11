@@ -39,6 +39,13 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private JTextArea display;
 	private JButton btnEndTurn;
 	
+	private MortgageBtn btnMortgage;
+	private UnMortgageBtn btnUnmortgage;
+	private BuyHouseBtn btnBuyHouse;
+	private SellHouseBtn btnSellHouse;
+	private BuyHotelBtn btnBuyHotel;
+	private SellHotelBtn btnSellHotel;
+	
 	private static Monopoly monopoly;		
 	private JLayeredPane contentPanel;
 	
@@ -151,7 +158,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				btnEndTurn.setEnabled(false);;
 			}
 		});
-		btnEndTurn.setBounds(539, 622, 115, 29);
+		btnEndTurn.setBounds(726, 622, 115, 29);
 		contentPanel.add(btnEndTurn);
 		btnEndTurn.setEnabled(false);
 	}
@@ -172,6 +179,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private void rollDiceBtn() {
 		//Roll dice and move player
 		rollDiceBtn = new RollDiceBtn();
+		rollDiceBtn.setLocation(610, 623);
 		rollDiceBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				rollDiceBtn.clicked(contentPanel, monopoly, tok1, tok2, tok3, tok4);
@@ -187,20 +195,21 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 
 	private void startButton(){
 		//create button to start game
-		StartGameBtn startGameBtn = new StartGameBtn();
-		startGameBtn.addActionListener(new ActionListener() {
+		StartGameBtn strtgmbtnStart = new StartGameBtn();
+		strtgmbtnStart.setText("Start");
+		strtgmbtnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					numberOfPlayers = startGameBtn.clicked(contentPanel, monopoly);
+					numberOfPlayers = strtgmbtnStart.clicked(contentPanel, monopoly);
 					
 					setUpTokenImg();
 					playerStatus();
 					startTimer();
-					startGameBtn.setEnabled(false);
+					strtgmbtnStart.setEnabled(false);
 					buyBtn.setEnabled(false);
 					rollDiceBtn.setEnabled(true);
 			}
 		});
-		contentPanel.add(startGameBtn);
+		contentPanel.add(strtgmbtnStart);
 	}
 	
 	private void startTimer(){
@@ -229,7 +238,26 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		contentPanel.add(lblPrice);	
 		//timer:
 		timer = new GameTimer(contentPanel, monopoly);
+		timer.setBounds(866, 622, 108, 29);
 		contentPanel.add(timer);
+		
+		btnMortgage = new MortgageBtn();
+		contentPanel.add(btnMortgage);
+		
+		btnUnmortgage = new UnMortgageBtn();
+		contentPanel.add(btnUnmortgage);
+		
+		btnBuyHouse = new BuyHouseBtn();
+		contentPanel.add(btnBuyHouse);
+		
+		btnSellHouse = new SellHouseBtn();
+		contentPanel.add(btnSellHouse);
+		
+		btnBuyHotel = new BuyHotelBtn();
+		contentPanel.add(btnBuyHotel);
+		
+		btnSellHotel = new SellHotelBtn();
+		contentPanel.add(btnSellHotel);
 	}
 	
 	private void playerStatus() {

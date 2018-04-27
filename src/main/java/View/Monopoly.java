@@ -35,6 +35,7 @@ public class Monopoly{
     	}
     	
     }
+    
     public boolean buyProperty(Player player) {
     	boolean b=false;
     	int squares[][] = board.getStreetArray();
