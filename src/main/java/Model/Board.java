@@ -199,4 +199,43 @@ public class Board {
 	public Square[] getSquares() {
 		return squares;
 	}
+	
+	public ArrayList getOwnedStreets(Player player) {
+    	ArrayList<Integer> streets = new ArrayList<>();
+    	int squares[][] = getStreetArray();
+    	for(int i=0; i<8; i++) {
+    		for(int j=0; j<squares[i].length; j++) {
+    			if(getPropertyOwner(squares[i][j]).equals(player)) {
+    				streets.add(squares[i][j]);
+    			}
+    		}
+    	}
+    	return streets;
+    }
+    
+    public ArrayList getOwnedHouses(Player player) {
+    	ArrayList<Integer> houses = new ArrayList<>();
+    	int squares[][] = getStreetArray();
+    	for(int i=0; i<8; i++) {
+    		for(int j=0; j<squares[i].length; j++) {
+    			if(getPropertyOwner(squares[i][j]).equals(player) && ((Street) getSquares()[squares[i][j]]).getHouse() > 0) {
+    				houses.add(squares[i][j]);
+    			}
+    		}
+    	}
+    	return houses;
+    }
+    
+    public ArrayList getOwnedHotels(Player player) {
+    	ArrayList<Integer> hotels = new ArrayList<>();
+    	int squares[][] = getStreetArray();
+    	for(int i=0; i<8; i++) {
+    		for(int j=0; j<squares[i].length; j++) {
+    			if(getPropertyOwner(squares[i][j]).equals(player) && ((Street) getSquares()[squares[i][j]]).getHotel() > 0) {
+    				hotels.add(squares[i][j]);
+    			}
+    		}
+    	}
+    	return hotels;
+    }
 }

@@ -213,41 +213,14 @@ public class Monopoly{
     }
     
     public ArrayList getOwnedStreets() {
-    	ArrayList<Integer> streets = new ArrayList<>();
-    	int squares[][] = board.getStreetArray();
-    	for(int i=0; i<8; i++) {
-    		for(int j=0; j<squares[i].length; j++) {
-    			if(board.getPropertyOwner(squares[i][j]).equals(getPlayer())) {
-    				streets.add(squares[i][j]);
-    			}
-    		}
-    	}
-    	return streets;
+    	return board.getOwnedStreets(getPlayer());
     }
     
     public ArrayList getOwnedHouses() {
-    	ArrayList<Integer> houses = new ArrayList<>();
-    	int squares[][] = board.getStreetArray();
-    	for(int i=0; i<8; i++) {
-    		for(int j=0; j<squares[i].length; j++) {
-    			if(board.getPropertyOwner(squares[i][j]).equals(getPlayer()) && ((Street) board.getSquares()[squares[i][j]]).getHouse() > 0) {
-    				houses.add(squares[i][j]);
-    			}
-    		}
-    	}
-    	return houses;
+    	return board.getOwnedHouses(getPlayer());
     }
     
     public ArrayList getOwnedHotels() {
-    	ArrayList<Integer> hotels = new ArrayList<>();
-    	int squares[][] = board.getStreetArray();
-    	for(int i=0; i<8; i++) {
-    		for(int j=0; j<squares[i].length; j++) {
-    			if(board.getPropertyOwner(squares[i][j]).equals(getPlayer()) && ((Street) board.getSquares()[squares[i][j]]).getHotel() > 0) {
-    				hotels.add(squares[i][j]);
-    			}
-    		}
-    	}
-    	return hotels;
+    	return board.getOwnedHotels(getPlayer());
     }
 }
