@@ -82,7 +82,7 @@ public class Monopoly{
     }
     
     public int getDiceRoll() {
-    	roll = board.roll();
+    	roll = board.roll() + board.roll();
     	return roll;
     }
     
