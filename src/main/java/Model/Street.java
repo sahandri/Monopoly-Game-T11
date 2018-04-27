@@ -95,12 +95,19 @@ public class Street extends Square{
     public int getID(){
         return ID;
     }
+    public int getHouse() {
+    	return house;
+    }
+    
+    public int getHotel() {
+    	return hotel;
+    }
     
     //if player owns all the color groups can buy a house
-    public boolean buyHouse(Player player, Board board, int price) {
+    public boolean buyHouse(Player player, Board board) {
     	if(house <=3) {
 	    	if(checkColorOwnership(player, board)) {
-	    		player.getMoney().sbustractMoney(price);
+	    		player.getMoney().sbustractMoney(200);
 	    		house++;
 	    		return true;
 	    	}
@@ -111,15 +118,34 @@ public class Street extends Square{
     
     //if player owns 4 houses can buy a hotel
     //------------????all properties or just this one
-    public boolean buyHotel(Player player, Board board, int price) {
+    public boolean buyHotel(Player player) {
     	if(hotel==0 && house==4) {
-    		player.getMoney().sbustractMoney(price);
+    		player.getMoney().sbustractMoney(200);
     		house++;
     		house = 0;
     		return true;
     	}
     	return false;
     }
+    
+    public boolean sellHouse(Player player) {
+    	if(house > 0) {
+    		player.getMoney().addMoney(100);
+    		house--;
+    		return true;
+    	}
+    	return false;
+    }
+    
+    public boolean sellHotel(Player player) {
+    	if(hotel > 0) {
+    		player.getMoney().addMoney(100);
+    		hotel--;
+    		return true;
+    	}
+    	return false;
+    }
+    
     
     public boolean mortgage(Player player) {
     	if(this.getOwner()==player.getID() && house==0 && hotel==0) {
