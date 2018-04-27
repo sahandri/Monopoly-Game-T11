@@ -95,15 +95,6 @@ public class Monopoly{
     public String getSquareName(int position) {
     	return board.getSquares()[position].toString();
     }
-    public ArrayList getProperty(Player player) {
-    	ArrayList<Integer> property = new ArrayList<>();
-    	for (int i = 0; i < 38; i ++) {
-    		if(board.getPropertyOwner(i).equals(player)){
-    			property.add(i);
-    		}
-    	}
-    	return property;
-    }
     
     public int getMoney(Player player) {
     	return player.getMoney().getMoney();
@@ -185,5 +176,78 @@ public class Monopoly{
     	else if(board.getSquares()[s].getOwner()==-1) {//no one owns property
     		return -1;
     	}else {return 1;}//some body else owns property
+    }
+    
+    public ArrayList getProperty(Player player) {
+    	ArrayList<Integer> property = new ArrayList<>();
+    	for (int i = 0; i < 38; i ++) {
+    		if(board.getPropertyOwner(i).equals(player)){
+    			property.add(i);
+    		}
+    	}
+    	return property;
+    }
+    
+    public boolean mortgage(int location) {
+    	return ((Street) board.getSquares()[location]).mortgage(getPlayer());
+    }
+   
+    public boolean unmortgage(int location) {
+    	return ((Street) board.getSquares()[location]).unmortgage(getPlayer());
+    }
+    
+    public boolean buyHouse(int location) {
+    	return ((Street) board.getSquares()[location]).buyHouse(getPlayer(),board);
+    }
+    
+    public boolean buyHotel(int location) {
+    	return ((Street) board.getSquares()[location]).buyHotel(getPlayer());
+    }
+    
+    public boolean sellHouse(int location) {
+    	return ((Street) board.getSquares()[location]).sellHouse(getPlayer());
+    }
+    
+    public boolean sellHotel(int location) {
+    	return ((Street) board.getSquares()[location]).sellHotel(getPlayer());
+    }
+    
+    public ArrayList getOwnedStreets() {
+    	ArrayList<Integer> streets = new ArrayList<>();
+    	int squares[][] = board.getStreetArray();
+    	for(int i=0; i<8; i++) {
+    		for(int j=0; j<squares[i].length; j++) {
+    			if(board.getPropertyOwner(squares[i][j]).equals(getPlayer())) {
+    				streets.add(squares[i][j]);
+    			}
+    		}
+    	}
+    	return streets;
+    }
+    
+    public ArrayList getOwnedHouses() {
+    	ArrayList<Integer> houses = new ArrayList<>();
+    	int squares[][] = board.getStreetArray();
+    	for(int i=0; i<8; i++) {
+    		for(int j=0; j<squares[i].length; j++) {
+    			if(board.getPropertyOwner(squares[i][j]).equals(getPlayer()) && ((Street) board.getSquares()[squares[i][j]]).getHouse() > 0) {
+    				houses.add(squares[i][j]);
+    			}
+    		}
+    	}
+    	return houses;
+    }
+    
+    public ArrayList getOwnedHotels() {
+    	ArrayList<Integer> hotels = new ArrayList<>();
+    	int squares[][] = board.getStreetArray();
+    	for(int i=0; i<8; i++) {
+    		for(int j=0; j<squares[i].length; j++) {
+    			if(board.getPropertyOwner(squares[i][j]).equals(getPlayer()) && ((Street) board.getSquares()[squares[i][j]]).getHotel() > 0) {
+    				hotels.add(squares[i][j]);
+    			}
+    		}
+    	}
+    	return hotels;
     }
 }
