@@ -12,10 +12,12 @@ public class TestCard {
 	public void initialize(){
 		chance = new ChanceCard(0,0);
 		com_chest = new CommunityChest(0,0);
+		Player player = new Player(0, new Token(), "elliott");
+		Board board  = new Board();
 	}
 	
 	@Test
-	public void testMethods(){
+	public void testChanceCard(){
 		
 	}
 }

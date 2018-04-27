@@ -8,6 +8,7 @@ public class Player {
 	 * such as to pay the whole tax or 10% of total worth, to buy a property or not, etc. **/
 	private boolean decision;
 	private Token token;
+	private boolean getOutOfJail;
 
 
 	/**
@@ -50,5 +51,13 @@ public class Player {
 	public Token getToken(){
 		return this.token;
 	}
-
+	
+	public void setGetOutOfJail(boolean card) {
+		this.getOutOfJail = card;
+	}
+	
+	
+	public boolean getOutOfJailCard() {
+		return getOutOfJail;
+	}
 }
