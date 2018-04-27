@@ -12,10 +12,6 @@ public class CommunityChest extends Card{
 
 	}
 
-	public void perform(Player player) {
-		// TODO Auto-generated method stub
-		
-	}
 	public String toString() {
 				return " Community Chest! \n";
 			}

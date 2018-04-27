@@ -10,4 +10,5 @@ abstract class Card extends Square{
 		// TODO Auto-generated constructor stub
 	}
 	
+	
 }
