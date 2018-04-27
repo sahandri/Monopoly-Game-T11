@@ -95,14 +95,7 @@ public class ChanceCard extends Card{
 		case 9:
 			int houses = 0;
 			int hotels = 0;
-			for(int i = 0; i < board.getStreetArray().length; i++) {
-				for(int j = 0; j < board.getStreetArray()[i].length; j++) {
-					if(player.equals(board.getPropertyOwner(board.getStreetArray()[i][j]))){
-					//TODO	
-					}
-				}
-				
-			}
+			
 			message =  "Make general repairs on all your property – For each house pay $25 – For each hotel $100 (Consulting a \"How to Fix It\" brochure, a hammer-wielding Mr. M sits astride a house not much larger than he is; it buckles under his weight)";
 			break;
 		case 10:
