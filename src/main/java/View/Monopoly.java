@@ -93,8 +93,13 @@ public class Monopoly{
     	return board.move(players.get(currentPlayer), newPosition);
     }
     
+    
     public String getSquareName(int position) {
     	return board.getSquares()[position].toString();
+    }
+    
+    public String getStreetName(int position){
+    	return board.getSquares()[position].getName();
     }
     
     public int getMoney(Player player) {

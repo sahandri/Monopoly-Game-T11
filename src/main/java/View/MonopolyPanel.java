@@ -85,6 +85,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		rollDiceBtn();
 		historyWindow();
 		EndTurnButton();
+		MortgageButton();
 		//create LABEL that holds board IMAGE:
 		JLabel boardImage = new JLabel("");
 		boardImage.setBounds(6, 6, 594, 585);
@@ -212,6 +213,26 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		contentPanel.add(strtgmbtnStart);
 	}
 	
+	private void MortgageButton(){
+		btnMortgage = new MortgageBtn();
+		btnMortgage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnMortgage.clicked(contentPanel, monopoly);
+			}
+		});
+		contentPanel.add(btnMortgage);
+	}
+	
+	private void UnMortgageButton(){
+		btnUnmortgage = new UnMortgageBtn();
+		btnUnmortgage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnUnmortgage.clicked(contentPanel, monopoly);
+			}
+		});
+		contentPanel.add(btnUnmortgage);
+	}
+	
 	private void startTimer(){
 		Calendar calendar = new GregorianCalendar();
 		startTimeMin = calendar.get(Calendar.MINUTE);
@@ -240,12 +261,6 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		timer = new GameTimer(contentPanel, monopoly);
 		timer.setBounds(866, 622, 108, 29);
 		contentPanel.add(timer);
-		
-		btnMortgage = new MortgageBtn();
-		contentPanel.add(btnMortgage);
-		
-		btnUnmortgage = new UnMortgageBtn();
-		contentPanel.add(btnUnmortgage);
 		
 		btnBuyHouse = new BuyHouseBtn();
 		contentPanel.add(btnBuyHouse);
