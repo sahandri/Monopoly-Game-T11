@@ -12,15 +12,15 @@ public class TestTax {
     public void initialize(){
         buffetTax = new Tax(200,4);
         corporateTax = new Tax(75, 38);
-        player1 = new Player(1);
+        player1 = new Player(1, null);
         board = new Board();
         player1.setDecision(false);
     }
 
     @Test
     public void testToString(){
-        assertEquals("Buffet Tax",buffetTax.toString());
-        assertEquals("Corporate Tax",corporateTax.toString());
+        assertEquals(" at Income Tax Pay $200, or 10% of total worth. \n",buffetTax.toString());
+        assertEquals(" at Luxury Tax Pay $75. \n",corporateTax.toString());
     }
 
     @Test

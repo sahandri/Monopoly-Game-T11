@@ -12,15 +12,15 @@ public class TestUtilities {
     public void initialize(){
         electricCompany = new Utilities(150, 12);
         waterWorks = new Utilities(150, 28);
-        player1 = new Player(1);
+        player1 = new Player(1, null);
         board = new Board();
         player1.setDecision(true);
     }
     
     @Test
     public void testToString(){
-        assertEquals("Electricity Company",electricCompany.toString());
-        assertEquals("Water Works",waterWorks.toString());
+        assertEquals(" at Electricity Company. \n",electricCompany.toString());
+        assertEquals(" at Water Works. \n",waterWorks.toString());
     }
 
     @Test

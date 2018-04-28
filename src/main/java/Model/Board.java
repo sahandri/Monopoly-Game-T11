@@ -1,5 +1,6 @@
 package Model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +12,7 @@ public class Board {
 	private Dice dice;					//dice
 	long initialTime = System.currentTimeMillis(), endTime;
 	private int[][] streetArray;           //contains position and color group ID of each street
+	private ArrayList<Player> playersP = new ArrayList<Player>();
 	
 	/*constructor*/
 	public Board(){
@@ -189,9 +191,9 @@ public class Board {
 	 * */
 	public Player addPlayer(int id, Token tok){
 		tok.move(0);								//set token position to start
-		Player player = new Player(id);			//create a new player with given id
+		Player player = new Player(id, tok);			//create a new player with given id
 		players.put(player, tok);				//add the player to the game and map it to the token.
-		
+		playersP.add(player);
 		return player;
 	}
 	
@@ -199,7 +201,7 @@ public class Board {
 		tok.move(0);								//set token position to start
 		Player player = new Player(id, tok, name);			//create a new player with given id, token and name
 		players.put(player, tok);						//add the player to the game and map it to the token.
-		
+		playersP.add(player);
 		return player;
 	}
 	
@@ -277,5 +279,9 @@ public class Board {
     		}
     	}
     	return hotels;
+    }
+    
+    public ArrayList<Player> getPlayers(){
+    	return playersP;
     }
 }

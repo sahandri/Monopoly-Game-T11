@@ -27,10 +27,10 @@ public class TestCorner {
 	
 	@Test
 	public void testToString() {
-		assertEquals("GO", start.toString());
-		assertEquals("Jail", jail.toString());
-		assertEquals("Free Parking", free_parking.toString());
-		assertEquals("Go To Jail", go_to_jail.toString());
+		assertEquals(" Passes GO. \n", start.toString());
+		assertEquals(" at Jail. \n", jail.toString());
+		assertEquals(" at Free Parking. \n", free_parking.toString());
+		assertEquals(" Go To Jail! \n", go_to_jail.toString());
 	}
 	
 	@Test
