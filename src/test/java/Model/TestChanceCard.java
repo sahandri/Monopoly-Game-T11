@@ -242,12 +242,4 @@ public class TestChanceCard {
 		assertEquals(1500, player.getMoney().getMoney()); // Did player's money change?
 		assertEquals(0, player.getToken().getPosition()); // Is player in correct position?
 	}
-	
-	@Test
-	public void testPerformNext(){
-		int previousCard = chance36.getCard();
-		chance36.perform(player, board);
-		assertNotEquals(previousCard, chance36.getCard()); 
-	}
-	
 }
