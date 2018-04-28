@@ -19,8 +19,8 @@ public class TestUtilities {
     
     @Test
     public void testToString(){
-        assertEquals("Electricity Company",electricCompany.toString());
-        assertEquals("Water Works",waterWorks.toString());
+        assertEquals(" at Electricity Company. \n",electricCompany.toString());
+        assertEquals(" at Water Works. \n",waterWorks.toString());
     }
 
     @Test

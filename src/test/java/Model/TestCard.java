@@ -20,7 +20,7 @@ public class TestCard {
 		chance36 = new ChanceCard(0,36);
 		board = new Board();
 		tok = new Token();
-		player = board.addPlayer(1, tok);
+		player = board.addPlayer(0, tok);
 	}
 	
 	@Test
@@ -128,6 +128,7 @@ public class TestCard {
 		assertEquals(1500, player.getMoney().getMoney()); // Did player's money change?
 		assertEquals(0, player.getToken().getPosition()); // Is player in correct position?
 		assertEquals(true, player.getOutOfJailCard());
+		player.setGetOutOfJail(false);
 	}
 	
 	@Test
@@ -143,11 +144,13 @@ public class TestCard {
 	@Test
 	public void testPerform8(){
 		chance36.setCard(8);
+		assertFalse(player.getToken().inJail());
 		chance36.perform(player, board);
 		assertEquals("Go to Jail – Go directly to Jail – Do not pass Go, do not collect $200", chance36.getMessage()); 
 		assertEquals(1500, player.getMoney().getMoney()); // Did player's money change?
 		assertEquals(10, player.getToken().getPosition()); // Is player in correct position?
-		assertEquals(true, player.getToken().inJail());
+		//assertTrue(player.getToken().inJail());
+		player.getToken().release();
 	}
 	
 	@Test
@@ -157,5 +160,89 @@ public class TestCard {
 		assertEquals("Make general repairs on all your property – For each house pay $25 – For each hotel $100", chance36.getMessage()); 
 		assertEquals(1500, player.getMoney().getMoney()); // Did player's money change?
 		assertEquals(0, player.getToken().getPosition()); // Is player in correct position?
+	}
+	
+	@Test
+	public void testPerform10(){
+		chance36.setCard(10);
+		chance36.perform(player, board);
+		assertEquals("Pay poor tax of $15", chance36.getMessage()); 
+		assertEquals(1485, player.getMoney().getMoney()); // Did player's money change?
+		assertEquals(0, player.getToken().getPosition()); // Is player in correct position?
+	}
+	
+	@Test
+	public void testPerform11_0(){
+		chance36.setCard(11);
+		chance36.perform(player, board);
+		assertEquals("Take a trip to Reading Railroad – If you pass Go, collect $200", chance36.getMessage()); 
+		assertEquals(1500, player.getMoney().getMoney()); // Did player's money change?
+		assertEquals(5, player.getToken().getPosition()); // Is player in correct position?
+	}
+	
+	@Test
+	public void testPerform11_1(){
+		chance36.setCard(11);
+		board.move(player, 6);
+		chance36.perform(player, board);
+		assertEquals("Take a trip to Reading Railroad – If you pass Go, collect $200", chance36.getMessage()); 
+		assertEquals(1700, player.getMoney().getMoney()); // Did player's money change?
+		assertEquals(5, player.getToken().getPosition()); // Is player in correct position?
+	}
+	
+	@Test
+	public void testPerform12(){
+		chance36.setCard(12);
+		chance36.perform(player, board);
+		assertEquals("Take a walk on the Boardwalk – Advance token to Boardwalk.", chance36.getMessage()); 
+		assertEquals(1500, player.getMoney().getMoney()); // Did player's money change?
+		assertEquals(39, player.getToken().getPosition()); // Is player in correct position?
+	}
+	
+	@Test
+	public void testPerform13(){
+		chance36.setCard(13);
+		board.addPlayer(1, new Token());
+		board.addPlayer(2, new Token());
+		chance36.perform(player, board);
+		assertEquals("You have been elected Chairman of the Board – Pay each player $50", chance36.getMessage()); 
+		assertEquals(1400, player.getMoney().getMoney()); // Did player's money change?
+		assertEquals(1550, board.getPlayers().get(1).getMoney().getMoney()); // Did player's money change?
+		assertEquals(1550, board.getPlayers().get(2).getMoney().getMoney()); // Did player's money change?
+		assertEquals(0, player.getToken().getPosition()); // Is player in correct position?
+	}
+	
+	@Test
+	public void testPerform14(){
+		chance36.setCard(14);
+		chance36.perform(player, board);
+		assertEquals("Your building loan matures – Collect $150", chance36.getMessage()); 
+		assertEquals(1650, player.getMoney().getMoney()); // Did player's money change?
+		assertEquals(0, player.getToken().getPosition()); // Is player in correct position?
+	}
+	
+	@Test
+	public void testPerform15(){
+		chance36.setCard(15);
+		chance36.perform(player, board);
+		assertEquals("You have won a crossword competition - Collect $100", chance36.getMessage()); 
+		assertEquals(1600, player.getMoney().getMoney()); // Did player's money change?
+		assertEquals(0, player.getToken().getPosition()); // Is player in correct position?
+	}
+	
+	@Test
+	public void testPerformDefault(){
+		chance36.setCard(16);
+		chance36.perform(player, board);
+		assertEquals("Card not in deck!", chance36.getMessage()); 
+		assertEquals(1500, player.getMoney().getMoney()); // Did player's money change?
+		assertEquals(0, player.getToken().getPosition()); // Is player in correct position?
+	}
+	
+	@Test
+	public void testPerformNext(){
+		int previousCard = chance36.getCard();
+		chance36.perform(player, board);
+		assertNotEquals(previousCard, chance36.getCard()); 
 	}
 }

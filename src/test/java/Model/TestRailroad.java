@@ -39,23 +39,23 @@ public class TestRailroad {
         assertEquals(1300, player1.getMoney().getMoney()); //testing to buy a railroad
         assertEquals(board.getSquares()[5].getOwner(), 1); // check the streets owner ID
         board.getSquares()[5].perform(player2,board); //player 2 moves to player1's railroad
-        assertEquals(1475, player2.getMoney().getMoney()); //testing to pay rent for one railroad
+        assertEquals(1500, player2.getMoney().getMoney()); //testing to pay rent for one railroad
 
         board.getSquares()[15].perform(player1,board); //player 1 buys second railroad
         assertEquals(1100, player1.getMoney().getMoney()); //testing to buy a railroad
         assertEquals(board.getSquares()[15].getOwner(), 1); // check the railroad owner ID
         board.getSquares()[15].perform(player2,board); //player 2 moves to player1's railroad
-        assertEquals(1425, player2.getMoney().getMoney()); //testing to pay rent for two railroads
+        assertEquals(1500, player2.getMoney().getMoney()); //testing to pay rent for two railroads
 
         player2.setDecision(false);
         board.getSquares()[25].perform(player2,board); //player2 moves to a railroad without owner
         assertEquals(board.getSquares()[25].getOwner(), -1); // check the railroad owner ID
-        assertEquals(1425, player2.getMoney().getMoney()); //testing to not buy the railroad
+        assertEquals(1500, player2.getMoney().getMoney()); //testing to not buy the railroad
     }
 
     @Test
     public void testToString(){
-        assertEquals(railroad1.toString(),"Rail Road");
+        assertEquals(railroad1.toString()," at Pennsylvania Railroad. \n");
     }
 
 }
