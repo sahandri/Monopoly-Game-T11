@@ -229,4 +229,27 @@ public class Monopoly{
     public ArrayList getOwnedHotels() {
     	return board.getOwnedHotels(getPlayer());
     }
+    
+    public ArrayList getPossibleHotels(){
+    	ArrayList<Integer> ownedHouses = getOwnedHouses();
+    	ArrayList<Integer> result = new ArrayList<>();
+    	for(int i=0; i< ownedHouses.size(); i++){
+    		int count =0;
+    		for(int j=1; j<ownedHouses.size(); j++){
+    			if(ownedHouses.get(i) == ownedHouses.get(j))
+    				count++;
+    			if((count == 4) && notInArray(i, result))
+    				result.add(i);
+    		}
+    	}
+    	return result;
+    }
+    
+    private boolean notInArray(int v, ArrayList<Integer> array){
+    	for(int a : array){
+    		if(a == v)
+    			return false;
+    	}
+    	return true;
+    }
 }

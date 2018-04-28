@@ -11,35 +11,20 @@ import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 
-public class MortgageBtn extends JButton implements ActionListener{
-	private ImageIcon MONOPOLY_ICON;
+public class MortgageBtn extends ActionButtons implements ActionListener{
+	
 	public MortgageBtn(){
 		super("Mortgage");
 		
 		this.setFont(new Font("Avenir", Font.PLAIN, 13));
 		this.setBounds(252, 603, 117, 29);
-		
-		MONOPOLY_ICON = new ImageIcon(this.getClass().getResource("/img/monopolyIcon.png"));
-		Image image = MONOPOLY_ICON.getImage(); 
-		Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_AREA_AVERAGING); 
-		MONOPOLY_ICON = new ImageIcon(newimg);
-		
 	}
 	
-	public void clicked(JLayeredPane contentPanel, Monopoly monopoly){
-		ArrayList<Integer> positionProperties = monopoly.getOwnedStreets();
-		String[] nameOfProperties = new String[positionProperties.size()];
-		for(int i=0; i<nameOfProperties.length; i++){
-			nameOfProperties[i] = monopoly.getStreetName(positionProperties.get(i));
-		}
-		
+	@Override
+	protected void performClick(JLayeredPane contentPanel, Monopoly monopoly, String[] nameOfProperties) {
 		String mortgageProperty = (String) JOptionPane.showInputDialog(contentPanel, "What property do you want to mortgage?", "select one of your properties", JOptionPane.QUESTION_MESSAGE, MONOPOLY_ICON, nameOfProperties, "Titan");
 		int mortgagePosition = monopoly.getPropertyPosition(mortgageProperty);
-		//for(int i=0; i<nameOfProperties.length; i++){
-			//if(mortgageProperty.equals(nameOfProperties[i])){
-				//mortgagePosition = i; break;
-			//}
-		//}
+		
 		if(monopoly.mortgage(mortgagePosition)){
 			JOptionPane.showMessageDialog(contentPanel, "Property Mortgaged","Hooray!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
 		}else{
@@ -47,8 +32,5 @@ public class MortgageBtn extends JButton implements ActionListener{
 		}
 		
 	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {}
 
 }
