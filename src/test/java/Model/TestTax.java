@@ -12,7 +12,7 @@ public class TestTax {
     public void initialize(){
         buffetTax = new Tax(200,4);
         corporateTax = new Tax(75, 38);
-        player1 = new Player(1);
+        player1 = new Player(1, null);
         board = new Board();
         player1.setDecision(false);
     }

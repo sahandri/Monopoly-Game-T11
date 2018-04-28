@@ -100,6 +100,9 @@ public class ChanceCard extends Card{
 			break;
 		case 7:
 			int threeBack = player.getToken().getPosition()-3;
+			if(threeBack < 0) {
+				threeBack += 39;
+			}
 			board.move(player, threeBack);
 			message =  "Go Back 3 Spaces";
 			break;
