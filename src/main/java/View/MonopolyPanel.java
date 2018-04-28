@@ -38,6 +38,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private BuyPropertyBtn buyBtn;
 	private JTextArea display;
 	private JButton btnEndTurn;
+	private JButton btnGetOutOfJail;
 	
 	private ActionButtons btnMortgage;
 	private ActionButtons btnUnmortgage;
@@ -90,7 +91,11 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		BuyHouseButton();
 		SellHouseButton();
 		BuyHotelButton();
+
+		GetOutButton();
+
 		SellHotelButton();
+
 		//create LABEL that holds board IMAGE:
 		JLabel boardImage = new JLabel("");
 		boardImage.setBounds(6, 6, 594, 585);
@@ -160,11 +165,22 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				monopoly.changePlayer();
 				playerStatus();
 				buyBtn.setEnabled(false);
-				rollDiceBtn.setEnabled(true);
-				btnEndTurn.setEnabled(false);;
+				if(!monopoly.getPlayer().getToken().inJail()) {
+					rollDiceBtn.setEnabled(true);
+					btnEndTurn.setEnabled(false);
+				}else {
+					rollDiceBtn.setEnabled(false);
+					btnEndTurn.setEnabled(true);
+				}
+				
+				if(monopoly.getPlayer().getToken().inJail() && monopoly.getPlayer().getOutOfJailCard()) {
+					btnGetOutOfJail.setEnabled(true);
+				}else {
+					btnGetOutOfJail.setEnabled(false);
+				}
 			}
 		});
-		btnEndTurn.setBounds(726, 622, 115, 29);
+		btnEndTurn.setBounds(726, 624, 115, 29);
 		contentPanel.add(btnEndTurn);
 		btnEndTurn.setEnabled(false);
 	}
@@ -189,7 +205,11 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		rollDiceBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				rollDiceBtn.clicked(contentPanel, monopoly, tok1, tok2, tok3, tok4);
+				int previousPosition = monopoly.getCurrentPlayerPosition();
+				
 				display.append(monopoly.move());
+				rollDiceBtn.moveToken(getCurrentToken(monopoly.getPlayer().getID()), monopoly.getCurrentPlayerPosition());//Called again just incase Chance or Community Chest moved token again!
+
 				buyBtn.setEnabled(true);
 				btnEndTurn.setEnabled(true);
 				rollDiceBtn.setEnabled(false);
@@ -197,6 +217,16 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		});
 		contentPanel.add(rollDiceBtn);
 		rollDiceBtn.setEnabled(false);
+	}
+	
+	private Tok getCurrentToken(int playerID) {
+		switch(playerID){
+		case 1: return tok1;
+		case 2: return tok2;
+		case 3: return tok3;
+		case 4: return tok4;
+	}
+		return null;
 	}
 
 	private void startButton(){
@@ -296,6 +326,20 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		btnSellHotel.setEnabled(false);
 	}
 	
+	private void GetOutButton() {
+		btnGetOutOfJail = new JButton("Get Out of Jail");
+		btnGetOutOfJail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				monopoly.getPlayer().getToken().release();
+				monopoly.getPlayer().setGetOutOfJail(false);
+			}
+		});
+		btnGetOutOfJail.setBounds(610, 593, 109, 23);
+		contentPanel.add(btnGetOutOfJail);
+		btnGetOutOfJail.setEnabled(false);
+	}
+	
+	
 	private void startTimer(){
 		Calendar calendar = new GregorianCalendar();
 		startTimeMin = calendar.get(Calendar.MINUTE);
@@ -324,10 +368,8 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		timer = new GameTimer(contentPanel, monopoly);
 		timer.setBounds(866, 622, 108, 29);
 		contentPanel.add(timer);
-		/*
 		
-		btnSellHotel = new SellHotelBtn();
-		contentPanel.add(btnSellHotel);*/
+		
 	}
 	
 	private void playerStatus() {

@@ -37,12 +37,16 @@ public class RollDiceBtn extends JButton implements ActionListener {
 		int newPosition = (monopoly.getCurrentPlayerPosition() + roll)%40;
 		switch(monopoly.getPlayer().getID()){
 			case 1: moveToken(tok1, newPosition);
+			
 				break;
 			case 2: moveToken(tok2, newPosition);
+			
 				break;
 			case 3:	moveToken(tok3,newPosition);
+			
 				break;
 			case 4: moveToken(tok4, newPosition);
+			
 				break;
 		}
 	}

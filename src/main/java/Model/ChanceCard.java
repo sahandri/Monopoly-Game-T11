@@ -160,7 +160,7 @@ public class ChanceCard extends Card{
 	}
 
 	public String toString() {
-				return " Chance! \n";
+				return " Chance! \n" + getMessage() + "\n";
 			}
 	
 	public String getMessage() {
