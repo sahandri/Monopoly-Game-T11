@@ -8,7 +8,8 @@ import junit.framework.JUnit4TestAdapter;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         TestBoard.class,
-	TestCard.class,
+	TestChanceCard.class,
+	TestCommunityChest.class,
 	TestCorner.class,
 	TestDice.class,
 	TestMonopoly.class,

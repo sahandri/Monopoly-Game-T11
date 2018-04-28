@@ -3,11 +3,10 @@ package Model;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class TestCard {
+public class TestChanceCard {
 	private ChanceCard chance7;
 	private ChanceCard chance22;
 	private ChanceCard chance36;
-	private CommunityChest com_chest;
 	private Board board;
 	private Player player;
 	private Token tok;
@@ -31,7 +30,7 @@ public class TestCard {
 		chance7.perform(player, board);
 		assertEquals(1700, player.getMoney().getMoney());
 		assertEquals("Advance to Go (Collect $200)", chance7.getMessage());
-		assertEquals(0, player.getToken().getPosition()); //Should have position 24
+		assertEquals(0, player.getToken().getPosition()); 
 	}
 	
 	@Test

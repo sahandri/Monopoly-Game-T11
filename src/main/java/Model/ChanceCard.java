@@ -2,8 +2,6 @@ package Model;
 
 import java.util.Random;
 
-import Model.Tax.taxes;
-
 public class ChanceCard extends Card{
 	
 	private Random rand = new Random();
