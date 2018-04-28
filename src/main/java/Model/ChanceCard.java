@@ -133,11 +133,13 @@ public class ChanceCard extends Card{
 			message =  "Take a walk on the Boardwalk – Advance token to Boardwalk.";
 			break;
 		case 13:
+
 			int numPlayers = board.getPlayers().size()-1;
 			for(int i = 0; i <= numPlayers; i ++) {
 				if(!(i == player.getID())) {
 					board.getPlayers().get(i).getMoney().addMoney(50);
 				}
+
 			}
 			player.getMoney().sbustractMoney(50*numPlayers);
 			message = "You have been elected Chairman of the Board – Pay each player $50";
@@ -147,7 +149,9 @@ public class ChanceCard extends Card{
 			message =  "Your building loan matures – Collect $150";
 			break;
 		case 15:
+
 			player.getMoney().addMoney(100);
+
 			message =  "You have won a crossword competition - Collect $100";
 			break;
 		default:
@@ -168,9 +172,11 @@ public class ChanceCard extends Card{
 	public void setCard(int card) {
 		this.randomNumber = card;
 	}
+
 	
 	public int getCard() {
 		return this.randomNumber;
 	}
+
 
 }

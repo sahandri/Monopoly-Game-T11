@@ -21,6 +21,7 @@ public class TestCard {
 		board = new Board();
 		tok = new Token();
 		player = board.addPlayer(0, tok);
+
 	}
 	
 	@Test
@@ -129,6 +130,7 @@ public class TestCard {
 		assertEquals(0, player.getToken().getPosition()); // Is player in correct position?
 		assertEquals(true, player.getOutOfJailCard());
 		player.setGetOutOfJail(false);
+
 	}
 	
 	@Test
@@ -144,11 +146,14 @@ public class TestCard {
 	@Test
 	public void testPerform8(){
 		chance36.setCard(8);
+
 		assertFalse(player.getToken().inJail());
+
 		chance36.perform(player, board);
 		assertEquals("Go to Jail – Go directly to Jail – Do not pass Go, do not collect $200", chance36.getMessage()); 
 		assertEquals(1500, player.getMoney().getMoney()); // Did player's money change?
 		assertEquals(10, player.getToken().getPosition()); // Is player in correct position?
+
 		//assertTrue(player.getToken().inJail());
 		player.getToken().release();
 	}
@@ -245,4 +250,5 @@ public class TestCard {
 		chance36.perform(player, board);
 		assertNotEquals(previousCard, chance36.getCard()); 
 	}
+	
 }
