@@ -222,7 +222,7 @@ public class Street extends Square{
 		boolean allColors = true;
     	int[][] street = board.getStreetArray();
         for(int i=0; i<street[this.getID()].length; i++){
-        	if(this.getOwner() != board.getSquares()[street[this.getID()][i]].getOwner()){
+        	if(this.getOwner() != player.getID()){
                 allColors = false;
             }
         }
