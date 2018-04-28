@@ -183,15 +183,15 @@ public class Monopoly{
     		return -1;
     	}else {return 1;}//some body else owns property
     }
+  
     
-    public ArrayList getProperty(Player player) {
-    	ArrayList<Integer> property = new ArrayList<>();
-    	for (int i = 0; i < 38; i ++) {
-    		if(board.getPropertyOwner(i).equals(player)){
-    			property.add(i);
+    public int getPropertyPosition(String name) {
+    	for(int i=0; i<=39;i++) {
+    		if (board.getSquares()[i].getName().equals(name)) {
+    			return i;
     		}
     	}
-    	return property;
+    	return 0;
     }
     
     public boolean mortgage(int location) {

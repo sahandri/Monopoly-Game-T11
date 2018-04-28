@@ -34,12 +34,12 @@ public class MortgageBtn extends JButton implements ActionListener{
 		}
 		
 		String mortgageProperty = (String) JOptionPane.showInputDialog(contentPanel, "What property do you want to mortgage?", "select one of your properties", JOptionPane.QUESTION_MESSAGE, MONOPOLY_ICON, nameOfProperties, "Titan");
-		int mortgagePosition = 0;
-		for(int i=0; i<nameOfProperties.length; i++){
-			if(mortgageProperty.equals(nameOfProperties[i])){
-				mortgagePosition = i; break;
-			}
-		}
+		int mortgagePosition = monopoly.getPropertyPosition(mortgageProperty);
+		//for(int i=0; i<nameOfProperties.length; i++){
+			//if(mortgageProperty.equals(nameOfProperties[i])){
+				//mortgagePosition = i; break;
+			//}
+		//}
 		if(monopoly.mortgage(mortgagePosition)){
 			JOptionPane.showMessageDialog(contentPanel, "Property Mortgaged","Hooray!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
 		}else{
