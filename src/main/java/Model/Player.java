@@ -15,10 +15,10 @@ public class Player {
 	 * constructor that takes integer ID as argument,
 	 * each player is given $1500 to start.
 	 */
-	public Player(int id){
+	public Player(int id, Token token){
 		this.id = id;
 		this.money = new Money(1500);
-		this.token = new Token();
+		this.token = token;
 	}
 
 	public Player(int id, Token token, String name){

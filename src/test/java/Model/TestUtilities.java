@@ -12,7 +12,7 @@ public class TestUtilities {
     public void initialize(){
         electricCompany = new Utilities(150, 12);
         waterWorks = new Utilities(150, 28);
-        player1 = new Player(1);
+        player1 = new Player(1, null);
         board = new Board();
         player1.setDecision(true);
     }
