@@ -148,7 +148,7 @@ public class Street extends Square{
     
     
     public boolean mortgage(Player player) {
-    	if(this.getOwner()==player.getID() && house==0 && hotel==0) {
+    	if(this.getOwner()==player.getID() && house==0 && hotel==0 && mortgage==false) {
     		player.getMoney().addMoney(this.getPrice()/2);
     		mortgage=true;
     		return true;
@@ -157,7 +157,7 @@ public class Street extends Square{
     }
     
     public boolean unmortgage(Player player) {
-    	if(this.getOwner()==player.getID()) {
+    	if(this.getOwner()==player.getID() && mortgage==true) {
     		player.getMoney().sbustractMoney((this.getPrice()/2)+(this.getPrice()/10));
     		mortgage=false;
     		return true;

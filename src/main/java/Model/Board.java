@@ -245,7 +245,7 @@ public class Board {
     	int squares[][] = getStreetArray();
     	for(int i=0; i<8; i++) {
     		for(int j=0; j<squares[i].length; j++) {
-    			if(getPropertyOwner(squares[i][j]).equals(player)) {
+    			if(getSquares()[squares[i][j]].getOwner()==player.getID()) {
     				streets.add(squares[i][j]);
     			}
     		}
@@ -258,7 +258,7 @@ public class Board {
     	int squares[][] = getStreetArray();
     	for(int i=0; i<8; i++) {
     		for(int j=0; j<squares[i].length; j++) {
-    			if(getPropertyOwner(squares[i][j]).equals(player) && ((Street) getSquares()[squares[i][j]]).getHouse() > 0) {
+    			if(getSquares()[squares[i][j]].getOwner()==player.getID() && ((Street) getSquares()[squares[i][j]]).getHouse() > 0) {
     				houses.add(squares[i][j]);
     			}
     		}
@@ -271,7 +271,7 @@ public class Board {
     	int squares[][] = getStreetArray();
     	for(int i=0; i<8; i++) {
     		for(int j=0; j<squares[i].length; j++) {
-    			if(getPropertyOwner(squares[i][j]).equals(player) && ((Street) getSquares()[squares[i][j]]).getHotel() > 0) {
+    			if(getSquares()[squares[i][j]].getOwner()==player.getID() && ((Street) getSquares()[squares[i][j]]).getHotel() > 0) {
     				hotels.add(squares[i][j]);
     			}
     		}
