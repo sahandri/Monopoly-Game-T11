@@ -186,11 +186,4 @@ public class TestCommunityChest{
 		assertEquals(0, player.getToken().getPosition()); // Is player in correct position?
 	}
 	
-	@Test
-	public void testPerformNext(){
-		int previousCard = communityChest33.getCard();
-		communityChest33.perform(player, board);
-		assertNotEquals(previousCard, communityChest33.getCard()); 
-	}
-	
 }

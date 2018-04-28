@@ -125,7 +125,7 @@ public class CommunityChest extends Card{
 	}
 
 	public String toString() {
-				return " Community Chest! \n";
+				return " Community Chest! \n" + getMessage() + "\n";
 			}
 	
 	public String getMessage() {

@@ -188,7 +188,13 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		rollDiceBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				rollDiceBtn.clicked(contentPanel, monopoly, tok1, tok2, tok3, tok4);
+				int previousPosition = monopoly.getCurrentPlayerPosition();
+				
 				display.append(monopoly.move());
+				rollDiceBtn.moveToken(getCurrentToken(monopoly.getPlayer().getID()), monopoly.getCurrentPlayerPosition());//Called again just incase Chance or Community Chest moved token again!
+
+
+				
 				buyBtn.setEnabled(true);
 				btnEndTurn.setEnabled(true);
 				rollDiceBtn.setEnabled(false);
@@ -196,6 +202,16 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		});
 		contentPanel.add(rollDiceBtn);
 		rollDiceBtn.setEnabled(false);
+	}
+	
+	private Tok getCurrentToken(int playerID) {
+		switch(playerID){
+		case 1: return tok1;
+		case 2: return tok2;
+		case 3: return tok3;
+		case 4: return tok4;
+	}
+		return null;
 	}
 
 	private void startButton(){
