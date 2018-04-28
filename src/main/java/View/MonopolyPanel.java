@@ -91,7 +91,11 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		BuyHouseButton();
 		SellHouseButton();
 		BuyHotelButton();
+
 		GetOutButton();
+
+		SellHotelButton();
+
 		//create LABEL that holds board IMAGE:
 		JLabel boardImage = new JLabel("");
 		boardImage.setBounds(6, 6, 594, 585);
@@ -239,6 +243,12 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 					strtgmbtnStart.setEnabled(false);
 					buyBtn.setEnabled(false);
 					rollDiceBtn.setEnabled(true);
+					btnMortgage.setEnabled(true);
+					btnUnmortgage.setEnabled(true);
+					btnBuyHouse.setEnabled(true);
+					btnSellHouse.setEnabled(true);
+					btnBuyHotel.setEnabled(true);
+					btnSellHotel.setEnabled(true);
 			}
 		});
 		contentPanel.add(strtgmbtnStart);
@@ -253,6 +263,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 			}
 		});
 		contentPanel.add(btnMortgage);
+		btnMortgage.setEnabled(false);
 	}
 	
 	private void UnMortgageButton(){
@@ -264,6 +275,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 			}
 		});
 		contentPanel.add(btnUnmortgage);
+		btnUnmortgage.setEnabled(false);
 	}
 	
 	private void BuyHouseButton(){
@@ -275,6 +287,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 			}
 		});
 		contentPanel.add(btnBuyHouse);
+		btnBuyHouse.setEnabled(false);
 	}
 	
 	private void SellHouseButton() {
@@ -286,6 +299,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 			}
 		});
 		contentPanel.add(btnSellHouse);
+		btnSellHouse.setEnabled(false);
 	}
 	
 	private void BuyHotelButton(){
@@ -297,6 +311,19 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 			}
 		});
 		contentPanel.add(btnBuyHotel);
+		btnBuyHotel.setEnabled(false);
+	}
+	
+	private void SellHotelButton(){
+		btnSellHotel = new SellHotelBtn();
+		btnSellHotel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnSellHotel.clicked(contentPanel, monopoly);
+				playerStatus();
+			}
+		});
+		contentPanel.add(btnSellHotel);
+		btnSellHotel.setEnabled(false);
 	}
 	
 	private void GetOutButton() {

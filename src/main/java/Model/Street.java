@@ -121,7 +121,7 @@ public class Street extends Square{
     public boolean buyHotel(Player player) {
     	if(hotel==0 && house==4) {
     		player.getMoney().sbustractMoney(200);
-    		house++;
+    		hotel++;
     		house = 0;
     		return true;
     	}
@@ -167,7 +167,7 @@ public class Street extends Square{
     
     //if property has houses or hotels we call this method to calculate
     //the amount of rent
-    public int calculateRent(Board board) {
+    private int calculateRent(Board board) {
     	int r =0;
     	if(mortgage==false) {
 	    	if(house > 0) { //player owns house
@@ -218,11 +218,11 @@ public class Street extends Square{
 	
 	
 	//checks if player owns all the color groups
-	public boolean checkColorOwnership(Player player, Board board) {
+	private boolean checkColorOwnership(Player player, Board board) {
 		boolean allColors = true;
     	int[][] street = board.getStreetArray();
         for(int i=0; i<street[this.getID()].length; i++){
-        	if(this.getOwner() != player.getID()){
+        	if(board.getSquares()[street[this.getID()][i]].getOwner()!=player.getID()){
                 allColors = false;
             }
         }
