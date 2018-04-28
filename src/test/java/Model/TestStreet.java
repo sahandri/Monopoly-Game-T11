@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 public class TestStreet {
 
     private Street streetB, streetLB, streetP, streetO,
-        streetR, streetY,streetG,streetDB;
+        streetR, streetY,streetG,streetG2,streetG3,streetDB;
     private Player player1;
     private Player player2;
     private Board board;
@@ -19,6 +19,8 @@ public class TestStreet {
         streetR = new Street(220,21, 18); //Red
         streetY = new Street(260, 26, 22); //Yellow
         streetG = new Street(300,31, 26); //Green
+        streetG2 = new Street(300,32, 26);
+        streetG3 = new Street(320,34, 28);
         streetDB = new Street(350,37, 35); //DarkBlue
         board = new Board();
         Token token = new Token();
@@ -67,7 +69,9 @@ public class TestStreet {
     
     @Test
     public void testBuyHouse() {
-    	streetG.buyHouse(player1, board);
+    	streetG2.setOwner(player1);
+    	streetG3.setOwner(player1);
+    	assertTrue(streetG.buyHouse(player1, board));
     	assertEquals(1,streetG.getHouse());
     }
 
