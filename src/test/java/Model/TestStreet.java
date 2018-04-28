@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 public class TestStreet {
 
     private Street streetB, streetLB, streetP, streetO,
-        streetR, streetY,streetG,streetG2,streetG3,streetDB;
+        streetR, streetY,streetG,streetDB;
     private Player player1;
     private Player player2;
     private Board board;
@@ -19,8 +19,6 @@ public class TestStreet {
         streetR = new Street(220,21, 18); //Red
         streetY = new Street(260, 26, 22); //Yellow
         streetG = new Street(300,31, 26); //Green
-        streetG2 = new Street(300,32, 26);
-        streetG3 = new Street(320,34, 28);
         streetDB = new Street(350,37, 35); //DarkBlue
         board = new Board();
         Token token = new Token();
@@ -68,30 +66,71 @@ public class TestStreet {
     }
     
     @Test
-    public void testMorgage() {
+    public void testMortgage() {
     	assertTrue(streetG.mortgage(player1));
+    	assertEquals(1650,player1.getMoney().getMoney());
+    	assertFalse(streetG.mortgage(player1));
+    }
+    
+    @Test
+    public void testUnMortgage() {
+    	assertTrue(streetG.mortgage(player1));
+    	assertTrue(streetG.unmortgage(player1));
+    	assertEquals(1470,player1.getMoney().getMoney());
+    	assertFalse(streetG.unmortgage(player1));
     }
     
     @Test
     public void testBuyHotel() {
-    	streetG2.setOwner(player1);
-    	streetG3.setOwner(player1);
-    	streetG.buyHouse(player1, board);
-    	streetG.buyHouse(player1, board);
-    	streetG.buyHouse(player1, board);
-    	streetG.buyHouse(player1, board);
-    	assertTrue(streetG.buyHotel(player1));
-    	assertEquals(1,streetG.getHotel());
-    	assertEquals(0,streetG.getHouse());
+    	board.getSquares()[31].setOwner(player1);
+    	assertFalse(((Street) board.getSquares()[31]).buyHotel(player1));
+    	board.getSquares()[32].setOwner(player1);
+    	board.getSquares()[34].setOwner(player1);
+    	((Street) board.getSquares()[31]).buyHouse(player1, board);
+    	assertFalse(((Street) board.getSquares()[31]).buyHotel(player1));
+    	((Street) board.getSquares()[31]).buyHouse(player1, board);
+    	((Street) board.getSquares()[31]).buyHouse(player1, board);
+    	((Street) board.getSquares()[31]).buyHouse(player1, board);
+    	((Street) board.getSquares()[31]).buyHotel(player1);
+    	assertEquals(1,((Street) board.getSquares()[31]).getHotel());
     }
     
     @Test
     public void testBuyHouse() {
-    	streetG2.setOwner(player1);
-    	streetG3.setOwner(player1);
-    	assertTrue(streetG.buyHouse(player1, board));
-    	assertEquals(1,streetG.getHouse());
+    	board.getSquares()[31].setOwner(player1);
+    	assertFalse(((Street) board.getSquares()[31]).buyHouse(player1, board));
+    	board.getSquares()[32].setOwner(player1);
+    	board.getSquares()[34].setOwner(player1);
+    	assertTrue(((Street) board.getSquares()[31]).buyHouse(player1, board));
+    	assertEquals(1,((Street) board.getSquares()[31]).getHouse());
     }
+    
+    @Test
+    public void testSellhouse() {
+    	assertFalse(((Street) board.getSquares()[31]).sellHouse(player1));
+    	board.getSquares()[31].setOwner(player1);
+    	board.getSquares()[32].setOwner(player1);
+    	board.getSquares()[34].setOwner(player1);
+    	((Street) board.getSquares()[31]).buyHouse(player1, board);
+    	assertTrue(((Street) board.getSquares()[31]).sellHouse(player1));
+    	assertEquals(0,((Street) board.getSquares()[31]).getHouse());
+    }
+    
+    @Test
+    public void testSellHotel() {
+    	board.getSquares()[31].setOwner(player1);
+    	board.getSquares()[32].setOwner(player1);
+    	board.getSquares()[34].setOwner(player1);
+    	((Street) board.getSquares()[31]).buyHouse(player1, board);
+    	((Street) board.getSquares()[31]).buyHouse(player1, board);
+    	((Street) board.getSquares()[31]).buyHouse(player1, board);
+    	((Street) board.getSquares()[31]).buyHouse(player1, board);
+    	assertFalse(((Street) board.getSquares()[31]).sellHotel(player1));
+    	((Street) board.getSquares()[31]).buyHotel(player1);
+    	assertTrue(((Street) board.getSquares()[31]).sellHotel(player1));
+    	assertEquals(0,((Street) board.getSquares()[31]).getHotel());
+    }
+    
 
     @Test
     public void testPerform(){
