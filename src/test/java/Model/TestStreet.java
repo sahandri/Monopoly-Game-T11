@@ -68,6 +68,24 @@ public class TestStreet {
     }
     
     @Test
+    public void testMorgage() {
+    	assertTrue(streetG.mortgage(player1));
+    }
+    
+    @Test
+    public void testBuyHotel() {
+    	streetG2.setOwner(player1);
+    	streetG3.setOwner(player1);
+    	streetG.buyHouse(player1, board);
+    	streetG.buyHouse(player1, board);
+    	streetG.buyHouse(player1, board);
+    	streetG.buyHouse(player1, board);
+    	assertTrue(streetG.buyHotel(player1));
+    	assertEquals(1,streetG.getHotel());
+    	assertEquals(0,streetG.getHouse());
+    }
+    
+    @Test
     public void testBuyHouse() {
     	streetG2.setOwner(player1);
     	streetG3.setOwner(player1);

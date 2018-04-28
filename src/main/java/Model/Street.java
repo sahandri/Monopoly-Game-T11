@@ -121,7 +121,7 @@ public class Street extends Square{
     public boolean buyHotel(Player player) {
     	if(hotel==0 && house==4) {
     		player.getMoney().sbustractMoney(200);
-    		house++;
+    		hotel++;
     		house = 0;
     		return true;
     	}
