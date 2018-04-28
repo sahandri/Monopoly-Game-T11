@@ -39,12 +39,12 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private JTextArea display;
 	private JButton btnEndTurn;
 	
-	private MortgageBtn btnMortgage;
-	private UnMortgageBtn btnUnmortgage;
-	private BuyHouseBtn btnBuyHouse;
-	private SellHouseBtn btnSellHouse;
-	private BuyHotelBtn btnBuyHotel;
-	private SellHotelBtn btnSellHotel;
+	private ActionButtons btnMortgage;
+	private ActionButtons btnUnmortgage;
+	private ActionButtons btnBuyHouse;
+	private ActionButtons btnSellHouse;
+	private ActionButtons btnBuyHotel;
+	private ActionButtons btnSellHotel;
 	
 	private static Monopoly monopoly;		
 	private JLayeredPane contentPanel;
@@ -86,6 +86,10 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		historyWindow();
 		EndTurnButton();
 		MortgageButton();
+		UnMortgageButton();
+		BuyHouseButton();
+		SellHouseButton();
+		BuyHotelButton();
 		//create LABEL that holds board IMAGE:
 		JLabel boardImage = new JLabel("");
 		boardImage.setBounds(6, 6, 594, 585);
@@ -218,6 +222,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		btnMortgage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnMortgage.clicked(contentPanel, monopoly);
+				playerStatus();	//update players money lbl
 			}
 		});
 		contentPanel.add(btnMortgage);
@@ -228,9 +233,43 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		btnUnmortgage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnUnmortgage.clicked(contentPanel, monopoly);
+				playerStatus();
 			}
 		});
 		contentPanel.add(btnUnmortgage);
+	}
+	
+	private void BuyHouseButton(){
+		btnBuyHouse = new BuyHouseBtn();
+		btnBuyHouse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnBuyHouse.clicked(contentPanel, monopoly);
+				playerStatus();
+			}
+		});
+		contentPanel.add(btnBuyHouse);
+	}
+	
+	private void SellHouseButton() {
+		btnSellHouse = new SellHouseBtn();
+		btnSellHouse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnSellHouse.clicked(contentPanel, monopoly);
+				playerStatus();
+			}
+		});
+		contentPanel.add(btnSellHouse);
+	}
+	
+	private void BuyHotelButton(){
+		btnBuyHotel = new BuyHotelBtn();
+		btnBuyHotel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnBuyHotel.clicked(contentPanel, monopoly);
+				playerStatus();
+			}
+		});
+		contentPanel.add(btnBuyHotel);
 	}
 	
 	private void startTimer(){
@@ -261,18 +300,10 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		timer = new GameTimer(contentPanel, monopoly);
 		timer.setBounds(866, 622, 108, 29);
 		contentPanel.add(timer);
-		
-		btnBuyHouse = new BuyHouseBtn();
-		contentPanel.add(btnBuyHouse);
-		
-		btnSellHouse = new SellHouseBtn();
-		contentPanel.add(btnSellHouse);
-		
-		btnBuyHotel = new BuyHotelBtn();
-		contentPanel.add(btnBuyHotel);
+		/*
 		
 		btnSellHotel = new SellHotelBtn();
-		contentPanel.add(btnSellHotel);
+		contentPanel.add(btnSellHotel);*/
 	}
 	
 	private void playerStatus() {
