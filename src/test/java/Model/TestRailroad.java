@@ -42,7 +42,7 @@ public class TestRailroad {
         assertEquals(1475, player2.getMoney().getMoney()); //testing to pay rent for one railroad
 
         board.getSquares()[15].perform(player1,board); //player 1 buys second railroad
-        assertEquals(1100, player1.getMoney().getMoney()); //testing to buy a railroad
+        assertEquals(1125, player1.getMoney().getMoney()); //testing to buy a railroad
         assertEquals(board.getSquares()[15].getOwner(), 1); // check the railroad owner ID
         board.getSquares()[15].perform(player2,board); //player 2 moves to player1's railroad
         assertEquals(1425, player2.getMoney().getMoney()); //testing to pay rent for two railroads

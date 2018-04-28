@@ -105,8 +105,10 @@ public class Street extends Square{
     
     //if player owns all the color groups can buy a house
     public boolean buyHouse(Player player, Board board) {
+    	System.out.println("============="+house);
     	if(house <=3) {
 	    	if(checkColorOwnership(player, board)) {
+	    		System.out.println("++++++"+house);
 	    		player.getMoney().sbustractMoney(200);
 	    		house++;
 	    		return true;

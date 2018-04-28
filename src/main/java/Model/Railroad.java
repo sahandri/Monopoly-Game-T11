@@ -9,7 +9,7 @@ package Model;
 public class Railroad extends Square{
 
 	private int ID;
-	
+
 	public enum railroads{
 		READING_RAILROAD,
 		PENNSYLVANIA_RAILROAD,
@@ -50,7 +50,6 @@ public class Railroad extends Square{
 		return ID;
 	}
 
-
 	@Override
 	public void perform(Player player, Board board) {
 		if(this.getOwner() == -1 && player.getDecision()){ // if nobody owns the street and player wants to buy it
@@ -61,16 +60,16 @@ public class Railroad extends Square{
 			int counter = numOfColorGroup(board); //gets the number of Railroads owned by a the owner
 			switch (counter){
 				case 1: player.getMoney().sbustractMoney(25);
-					board.getPropertyOwner(getOwner()).getMoney().addMoney(25);
+					board.getPropertyOwner(getPosition()).getMoney().addMoney(25);
 					break;
 				case 2: player.getMoney().sbustractMoney(50);
-					board.getPropertyOwner(getOwner()).getMoney().addMoney(50);
+					board.getPropertyOwner(getPosition()).getMoney().addMoney(50);
 					break;
 				case 3: player.getMoney().sbustractMoney(100);
-					board.getPropertyOwner(getOwner()).getMoney().addMoney(100);
+					board.getPropertyOwner(getPosition()).getMoney().addMoney(100);
 					break;
 				case 4: player.getMoney().sbustractMoney(200);
-					board.getPropertyOwner(getOwner()).getMoney().addMoney(200);
+					board.getPropertyOwner(getPosition()).getMoney().addMoney(200);
 					break;
 			}
 			if(player.getDecision() && board.getPropertyOwner(getPosition()).getDecision()) {
@@ -79,14 +78,14 @@ public class Railroad extends Square{
 			}
 		}
 	}
-
+	
 	//returns number of railroad owned by the same player(owner of this street)
 	private int numOfColorGroup(Board board){
 		int counter = 0;
 		int[][] street = board.getStreetArray();
-		for(int i=0; i<street[this.getID()].length; i++){
+		for(int i=0; i<4; i++){
 			//if(this.getOwner() == board.getPropertyOwner(street[this.getID()][i]).getID()){
-			if(this.getOwner() == board.getSquares()[street[this.getID()][i]].getOwner()){
+			if(this.getOwner() == board.getSquares()[street[8][i]].getOwner()){
 				counter++;
 			}
 		}

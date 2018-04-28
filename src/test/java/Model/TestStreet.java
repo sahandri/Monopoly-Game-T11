@@ -64,6 +64,12 @@ public class TestStreet {
         assertEquals(player1.getID(),streetG.getOwner());
         assertEquals(player2.getID(),streetP.getOwner());
     }
+    
+    @Test
+    public void testBuyHouse() {
+    	streetG.buyHouse(player1, board);
+    	assertEquals(1,streetG.getHouse());
+    }
 
     @Test
     public void testPerform(){
