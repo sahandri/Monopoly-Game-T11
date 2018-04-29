@@ -147,15 +147,53 @@ public class TestStreet {
         assertEquals(board.getSquares()[3].getOwner(), 1); // check the streets owner ID
         board.getSquares()[3].perform(player2,board); //player 2 moves to player1's street
         assertEquals(1490, player2.getMoney().getMoney()); //testing to pay rent for two streets
+        ((Street) board.getSquares()[3]).buyHouse(player1,board);// pay rent with one house
+        board.getSquares()[3].perform(player2,board);
+        assertEquals(1470, player2.getMoney().getMoney());
+        ((Street) board.getSquares()[3]).buyHouse(player1,board);//pay rent with two hoses
+        board.getSquares()[3].perform(player2,board);
+        assertEquals(1410, player2.getMoney().getMoney());
+        ((Street) board.getSquares()[3]).buyHouse(player1,board);//pay rent with three houses
+        board.getSquares()[3].perform(player2,board);
+        assertEquals(1230, player2.getMoney().getMoney());
+        ((Street) board.getSquares()[3]).buyHouse(player1,board);//pay rent with four houses
+        board.getSquares()[3].perform(player2,board);
+        assertEquals(970, player2.getMoney().getMoney());
+        ((Street) board.getSquares()[3]).buyHotel(player1);//pay rent with a hotel
+        board.getSquares()[3].perform(player2,board);
+        assertEquals(630, player2.getMoney().getMoney());
+        
+        
 
         player2.setDecision(false);
         board.getSquares()[6].perform(player2,board); //player2 moves to a street without owner
         assertEquals(board.getSquares()[6].getOwner(), -1); // check the streets owner ID
-        assertEquals(1490, player2.getMoney().getMoney()); //testing to not buy the street
+        assertEquals(630, player2.getMoney().getMoney()); //testing to not buy the street
     }
 
     @Test
     public void testToString(){
     	assertEquals(" at Mediterranian Avenue. \n", board.getSquares()[1].toString());
+    	assertEquals(" at Baltic Avenue. \n", board.getSquares()[3].toString());
+    	assertEquals(" at Oriental Avenue. \n", board.getSquares()[6].toString());
+    	assertEquals(" at Vermont Avenue. \n", board.getSquares()[8].toString());
+    	assertEquals(" at Connecticut Avenue. \n", board.getSquares()[9].toString());
+    	assertEquals(" at St. Charles Place. \n", board.getSquares()[11].toString());
+    	assertEquals(" at States Avenue. \n", board.getSquares()[13].toString());
+    	assertEquals(" at Virginia Avenue. \n", board.getSquares()[14].toString());
+    	assertEquals(" at St. James Place. \n", board.getSquares()[16].toString());
+    	assertEquals(" at Tennessee Avenue. \n", board.getSquares()[18].toString());
+    	assertEquals(" at New York Avenue. \n", board.getSquares()[19].toString());
+    	assertEquals(" at Kentucky Avenue. \n", board.getSquares()[21].toString());
+    	assertEquals(" at Indiana Avenue. \n", board.getSquares()[23].toString());
+    	assertEquals(" at Illinois Avenue. \n", board.getSquares()[24].toString());
+    	assertEquals(" at Atlantic Avenue. \n", board.getSquares()[26].toString());
+    	assertEquals(" at Ventnor Avenue. \n", board.getSquares()[27].toString());
+    	assertEquals(" at Marvin Gardens. \n", board.getSquares()[29].toString());
+    	assertEquals(" at Pacific Avenue. \n", board.getSquares()[31].toString());
+    	assertEquals(" at North Carolina Avenue. \n", board.getSquares()[32].toString());
+    	assertEquals(" at Pennsylvania Avenue. \n", board.getSquares()[34].toString());
+    	assertEquals(" at Park Place. \n", board.getSquares()[37].toString());
+    	assertEquals(" at Boardwalk. \n", board.getSquares()[39].toString());
     }
 }
