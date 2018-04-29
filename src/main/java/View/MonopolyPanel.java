@@ -329,13 +329,14 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	
 	private void GetOutButton() {
 		btnGetOutOfJail = new JButton("Get Out of Jail");
+		btnGetOutOfJail.setFont(new Font("Avenir", Font.PLAIN, 13));
 		btnGetOutOfJail.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				monopoly.getPlayer().getToken().release();
 				monopoly.getPlayer().setGetOutOfJail(false);
 			}
 		});
-		btnGetOutOfJail.setBounds(610, 593, 109, 23);
+		btnGetOutOfJail.setBounds(610, 593, 117, 23);
 		contentPanel.add(btnGetOutOfJail);
 		btnGetOutOfJail.setEnabled(false);
 	}
