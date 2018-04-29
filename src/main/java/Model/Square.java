@@ -50,7 +50,6 @@ public abstract class Square{
     public void sellProperty(Player buyer, Board board) {
 		Player seller = board.getPropertyOwner(getPosition());
 		if(seller.getDecision()) {
-			buyer.getMoney().sbustractMoney(getPrice());
 			seller.getMoney().addMoney(getPrice());
 			// seller no longer owns property
 			this.setOwner(buyer);
