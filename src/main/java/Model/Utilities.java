@@ -58,6 +58,7 @@ public class Utilities extends Square {
 		}
 		else if(this.getOwner() != -1 && this.getOwner()!=player.getID()){
 			if(player.getDecision() && board.getPropertyOwner(getPosition()).getDecision()) {
+				board.getPropertyOwner(getPosition()).getMoney().addMoney(getPrice());
 				board.purchaseProperty(player, this.getPosition());
 				this.setOwner(player);
 			}
