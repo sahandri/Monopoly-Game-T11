@@ -30,14 +30,16 @@ public class TestBoard {
     public void initialize(){
 		board = new Board();
 		tok = new Token();
+		p = board.addPlayer(1, tok);
     }
 	
 	@Before
 	public void testAddPlayer(){
-		p = board.addPlayer(1, tok);
-		assertEquals(1, p.getID());							//check the player id was added correctly
-		assertEquals(tok, board.getToken(p)); 				//check the token was mapped correctly
-		assertEquals(0, board.getToken(p).getPosition());	//check the token was correctly placed on the START square
+		Player p1 = board.addPlayer(2, tok, "player1");
+		assertEquals(2, p1.getID());							//check the player id was added correctly
+		assertEquals(tok, board.getToken(p1)); 				//check the token was mapped correctly
+		assertEquals(0, board.getToken(p1).getPosition());	//check the token was correctly placed on the START square
+		assertEquals("player1", p1.getName());
 	}
 	
 	@Test
@@ -101,4 +103,29 @@ public class TestBoard {
 		assertEquals(s,board.getOwnedStreets(p));
 	}
 	
+	@Test
+	public void testOwnedHouses() {
+		ArrayList h = new ArrayList();
+		h.add(31);
+		board.getSquares()[31].setOwner(p);
+    	board.getSquares()[32].setOwner(p);
+    	board.getSquares()[34].setOwner(p);
+    	((Street) board.getSquares()[31]).buyHouse(p, board);
+		assertEquals(h,board.getOwnedHouses(p));
+	}
+	
+	@Test
+	public void testOwnedHotels() {
+		ArrayList h = new ArrayList();
+		h.add(31);
+		board.getSquares()[31].setOwner(p);
+    	board.getSquares()[32].setOwner(p);
+    	board.getSquares()[34].setOwner(p);
+    	((Street) board.getSquares()[31]).buyHouse(p, board);
+    	((Street) board.getSquares()[31]).buyHouse(p, board);
+    	((Street) board.getSquares()[31]).buyHouse(p, board);
+    	((Street) board.getSquares()[31]).buyHouse(p, board);
+    	((Street) board.getSquares()[31]).buyHotel(p);
+		assertEquals(h,board.getOwnedHotels(p));
+	}
 }
