@@ -38,7 +38,9 @@ public class BuyPropertyBtn extends JButton implements ActionListener{
 				if(success) {
 					Object[] messageObj = {"Property purchased succesfully"};
 					JOptionPane.showMessageDialog(contentPanel, messageObj,"Hooray!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
-					display.append(monopoly.getName(monopoly.getPlayer()) + " Purchased Property " + monopoly.getSquareName(monopoly.getCurrentPlayerPosition()));
+					//display.append(monopoly.getName(monopoly.getPlayer()) + " Purchased Property " + monopoly.getSquareName(monopoly.getCurrentPlayerPosition()));
+					display.setText(monopoly.getName(monopoly.getPlayer()) + " Purchased Property " + monopoly.getSquareName(monopoly.getCurrentPlayerPosition())  + display.getText());
+					display.setCaretPosition(0);
 				}else {
 					Object[] messageObj = {"Can not purchase this property"};
 					JOptionPane.showMessageDialog(contentPanel,messageObj ,"Oops!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
@@ -49,13 +51,16 @@ public class BuyPropertyBtn extends JButton implements ActionListener{
 			if(success) {
 				Object[] messageObj = {"Property purchased succesfully"};
 				JOptionPane.showMessageDialog(contentPanel, messageObj,"Hooray!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
-				display.append(monopoly.getName(monopoly.getPlayer()) + " Purchased Property " + monopoly.getSquareName(monopoly.getCurrentPlayerPosition()));
+				//display.append(monopoly.getName(monopoly.getPlayer()) + " Purchased Property " + monopoly.getSquareName(monopoly.getCurrentPlayerPosition()));
+				display.setText(monopoly.getName(monopoly.getPlayer()) + " Purchased Property " + monopoly.getSquareName(monopoly.getCurrentPlayerPosition())  + display.getText());
+				display.setCaretPosition(0);
 			}else {
 				Object[] messageObj = {"Can not purchase this property"};
 				JOptionPane.showMessageDialog(contentPanel,messageObj ,"Oops!", JOptionPane.OK_CANCEL_OPTION, MONOPOLY_ICON);
 			}
 		}
 		return display;
+		
 	}
 	
 	@Override

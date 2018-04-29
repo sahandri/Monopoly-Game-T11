@@ -19,7 +19,7 @@ public class TestTax {
 
     @Test
     public void testToString(){
-        assertEquals(" at Income Tax Pay $200, or 10% of total worth. \n",buffetTax.toString());
+        assertEquals(" at Income Tax Pay $200. \n",buffetTax.toString());
         assertEquals(" at Luxury Tax Pay $75. \n",corporateTax.toString());
     }
 

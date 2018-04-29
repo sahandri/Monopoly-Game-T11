@@ -252,4 +252,8 @@ public class Monopoly{
     	}
     	return true;
     }
+    
+    public void perform(int position) {
+    	board.getSquares()[position].perform(getPlayer(), board);;
+    }
 }
