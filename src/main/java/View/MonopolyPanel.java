@@ -50,6 +50,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	
 	private static Monopoly monopoly;		
 	private JLayeredPane contentPanel;
+	private JButton btnPay;
 	
 	/*constructor of MonopolyPanel*/
 	public MonopolyPanel(Monopoly monopoly) {
@@ -92,7 +93,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		BuyHouseButton();
 		SellHouseButton();
 		BuyHotelButton();
-
+		PayBailButton();
 		GetOutButton();
 
 		SellHotelButton();
@@ -177,8 +178,12 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				
 				if(monopoly.getPlayer().getToken().inJail() && monopoly.getPlayer().getOutOfJailCard()) {
 					btnGetOutOfJail.setEnabled(true);
-				}else {
+				}else if(monopoly.getPlayer().getToken().inJail() && (monopoly.getPlayer().getMoney().getMoney() >=50)) {
+					btnPay.setEnabled(true);
+				}
+				else {
 					btnGetOutOfJail.setEnabled(false);
+					btnPay.setEnabled(false);
 				}
 			}
 		});
@@ -359,6 +364,22 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 			}
 		});
 		SimpleTimer.start();
+	}
+	
+	private void PayBailButton() {
+		btnPay = new JButton("Pay $50 Bail");
+		btnPay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				monopoly.getPlayer().setDecision(true);
+				monopoly.perform(monopoly.getCurrentPlayerPosition());
+				playerStatus();
+				btnPay.setEnabled(false);
+				rollDiceBtn.setEnabled(true);
+			}
+		});
+		btnPay.setBounds(726, 593, 115, 23);
+		contentPanel.add(btnPay);
+		btnPay.setEnabled(false);
 	}
 	
 	private void setLabels() {
