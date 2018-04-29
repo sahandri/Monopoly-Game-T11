@@ -1,6 +1,8 @@
 package Model;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,6 +13,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
 
 public class TestBoard {
 	private Board board;
@@ -85,6 +89,16 @@ public class TestBoard {
 		
 		assertEquals(p, board.getPropertyOwner(3));			//check the deed was created successfully 
 		assertEquals((1500-60), p.getMoney().getMoney());			//check player got charged
+	}
+	
+	@Test
+	public void testOwnedStreets() {
+		board.getSquares()[1].setOwner(p);
+		board.getSquares()[3].setOwner(p);
+		ArrayList s = new ArrayList();
+		s.add(1);
+		s.add(3);
+		assertEquals(s,board.getOwnedStreets(p));
 	}
 	
 }
