@@ -25,7 +25,15 @@ public class Player {
 		this.id = id;
 		this.money = new Money(1500);
 		this.token = token;
-		this.name = name;
+		checkName(name);
+	}
+	
+	private void checkName(String name){
+		if(name.equals("")){
+			this.name = "Player " + this.id;
+		}else{
+			this.name = name;
+		}
 	}
 
 	public Money getMoney() {

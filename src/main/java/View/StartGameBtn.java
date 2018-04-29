@@ -53,7 +53,7 @@ public class StartGameBtn extends JButton implements ActionListener{
 		String numP = (String) JOptionPane.showInputDialog(contentPanel, "How many of you playing?", "select number of players", JOptionPane.QUESTION_MESSAGE, MONOPOLY_ICON, List, "Titan");
 		numberOfPlayers = Integer.parseInt(numP);
 		switch(Integer.valueOf(numberOfPlayers)){
-				case 2: 
+				case 2:
 					option = JOptionPane.showConfirmDialog(contentPanel, playerNames2Q, "insert players names", JOptionPane.OK_CANCEL_OPTION, JOptionPane.CLOSED_OPTION,MONOPOLY_ICON);
 					if (option == JOptionPane.OK_OPTION){
 						names.add(name1.getText());

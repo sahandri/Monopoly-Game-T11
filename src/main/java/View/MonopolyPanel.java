@@ -353,7 +353,9 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		Timer SimpleTimer = new Timer(1000, new ActionListener(){
 			@Override
 		    public void actionPerformed(ActionEvent e) {
-				timer.startTimer(startTimeMin, endTimeMin);
+				if(timer.startTimer(startTimeMin, endTimeMin) == false){
+					try {wait();} catch (InterruptedException e1) {}
+				}
 			}
 		});
 		SimpleTimer.start();
