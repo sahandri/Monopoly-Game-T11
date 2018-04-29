@@ -213,6 +213,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				buyBtn.setEnabled(true);
 				btnEndTurn.setEnabled(true);
 				rollDiceBtn.setEnabled(false);
+				playerStatus();
 			}
 		});
 		contentPanel.add(rollDiceBtn);
