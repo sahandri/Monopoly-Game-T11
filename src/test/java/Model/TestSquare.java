@@ -19,7 +19,6 @@ public class TestSquare {
 		player1.setDecision(true);
 		player2 = board.addPlayer(1, new Token());
 		player2.setDecision(true);
-		//square.setOwner(player2);
 		board.purchaseProperty(player2, 12);
 	}
 	
