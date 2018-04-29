@@ -50,7 +50,7 @@ public class ChanceCard extends Card{
 				player.getMoney().addMoney(200);
 			}
 			board.move(player, 11);
-			message =  "Advance to St. Charles Place – If you pass Go, collect $200";
+			message =  "Advance to St. Charles Place - If you pass Go, collect $200";
 			break;
 		case 3:
 			// If difference from player's current location to utility1 less than that of utility2, move to utility1.
@@ -94,7 +94,7 @@ public class ChanceCard extends Card{
 			break;
 		case 6:
 			player.setGetOutOfJail(true);
-			message =  "Get out of Jail Free – This card may be kept until needed, or traded/sold";
+			message =  "Get out of Jail Free - This card may be kept until needed, or traded/sold";
 			break;
 		case 7:
 			int threeBack = player.getToken().getPosition()-3;
@@ -107,13 +107,13 @@ public class ChanceCard extends Card{
 		case 8:
 			player.getToken().imprison();
 			board.move(player, 10);
-			message =  "Go to Jail – Go directly to Jail – Do not pass Go, do not collect $200";
+			message =  "Go to Jail - Go directly to Jail - Do not pass Go, do not collect $200";
 			break;
 		case 9:
 			int houses = board.getOwnedHouses(player).size();
 			int hotels = board.getOwnedHotels(player).size();
 			player.getMoney().sbustractMoney(25*houses + 100*hotels);
-			message = "Make general repairs on all your property – For each house pay $25 – For each hotel $100";
+			message = "Make general repairs on all your property - For each house pay $25 - For each hotel $100";
 			break;
 		case 10:
 			player.getMoney().sbustractMoney(15);
@@ -124,11 +124,11 @@ public class ChanceCard extends Card{
 				player.getMoney().addMoney(200);
 			}
 			board.move(player, 5);
-			message =  "Take a trip to Reading Railroad – If you pass Go, collect $200";
+			message =  "Take a trip to Reading Railroad - If you pass Go, collect $200";
 			break;
 		case 12:
 			board.move(player, 39);
-			message =  "Take a walk on the Boardwalk – Advance token to Boardwalk.";
+			message =  "Take a walk on the Boardwalk - Advance token to Boardwalk.";
 			break;
 		case 13:
 
@@ -140,11 +140,11 @@ public class ChanceCard extends Card{
 
 			}
 			player.getMoney().sbustractMoney(50*numPlayers);
-			message = "You have been elected Chairman of the Board – Pay each player $50";
+			message = "You have been elected Chairman of the Board - Pay each player $50";
 			break;
 		case 14:
 			player.getMoney().addMoney(150);
-			message =  "Your building loan matures – Collect $150";
+			message =  "Your building loan matures - Collect $150";
 			break;
 		case 15:
 
