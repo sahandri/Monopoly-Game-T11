@@ -39,6 +39,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 	private JTextArea display;
 	private JButton btnEndTurn;
 	private JButton btnGetOutOfJail;
+	private JScrollPane scrollPane;
 	
 	private ActionButtons btnMortgage;
 	private ActionButtons btnUnmortgage;
@@ -144,7 +145,7 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		display.setFont(new Font("Avenir", Font.PLAIN, 13));
 		display.setText("Press Start to begin the game\n");
 		display.setEditable ( false );
-		JScrollPane scrollPane = new JScrollPane(display);
+		scrollPane = new JScrollPane(display);
 		scrollPane.setBounds(610, 370, 364, 212);
 		contentPanel.add(scrollPane);
 		scrollPane.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
@@ -160,7 +161,8 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 		btnEndTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//switch player to the next one
-				display.append(monopoly.getName(monopoly.getPlayer()) + " ended turn. \n");
+				display.setText(monopoly.getName(monopoly.getPlayer()) + " ended turn." + "\n" + display.getText());
+				display.setCaretPosition(0);
 				
 				monopoly.changePlayer();
 				playerStatus();
@@ -207,7 +209,9 @@ public class MonopolyPanel extends JFrame implements ActionListener {
 				rollDiceBtn.clicked(contentPanel, monopoly, tok1, tok2, tok3, tok4);
 				int previousPosition = monopoly.getCurrentPlayerPosition();
 				
-				display.append(monopoly.move());
+				display.setText(monopoly.move() + "\n" + display.getText());
+				display.setCaretPosition(0);
+				
 				rollDiceBtn.moveToken(getCurrentToken(monopoly.getPlayer().getID()), monopoly.getCurrentPlayerPosition());//Called again just incase Chance or Community Chest moved token again!
 
 				buyBtn.setEnabled(true);
