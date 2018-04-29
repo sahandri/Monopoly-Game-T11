@@ -51,8 +51,4 @@ public class TestUtilities {
         assertEquals(1350,player2.getMoney().getMoney());
     }
     
-    @Test
-    public void testsetUp() {
-    	badPos = new Utilities(0,3);
-    }
 }

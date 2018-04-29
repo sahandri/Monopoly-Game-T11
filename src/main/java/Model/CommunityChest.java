@@ -2,7 +2,7 @@ package Model;
 
 import java.util.Random;
 
-public class CommunityChest extends Card{
+public class CommunityChest extends Square{
 	private Random rand = new Random();
 
 	private int randomNumber;
