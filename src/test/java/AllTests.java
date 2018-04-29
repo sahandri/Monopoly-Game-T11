@@ -12,7 +12,6 @@ import junit.framework.JUnit4TestAdapter;
 	TestCommunityChest.class,
 	TestCorner.class,
 	TestDice.class,
-	TestMonopoly.class,
 	TestPlayer.class,
 	TestRailroad.class,
 	TestSquare.class,
