@@ -18,6 +18,7 @@ public class Railroad extends Square{
 	}
 
 	private railroads railroad;
+	private String message = "";
 
 	public Railroad(int price, int position) {
 		super(price, position);
@@ -56,25 +57,31 @@ public class Railroad extends Square{
 			//player pays price and buy the property
 			board.purchaseProperty(player, this.getPosition());
 			this.setOwner(player);
+			message = player.getName() + " -$" + getPrice() + "\n";
 		}else if(this.getOwner() != -1 && this.getOwner()!=player.getID()){ //if street owns by somebody else
 			int counter = numOfColorGroup(board); //gets the number of Railroads owned by a the owner
 			switch (counter){
 				case 1: player.getMoney().sbustractMoney(25);
 					board.getPropertyOwner(getPosition()).getMoney().addMoney(25);
+					message = player.getName() + " -$25" + "\n";
 					break;
 				case 2: player.getMoney().sbustractMoney(50);
 					board.getPropertyOwner(getPosition()).getMoney().addMoney(50);
+					message = player.getName() + " -$50" + "\n";
 					break;
 				case 3: player.getMoney().sbustractMoney(100);
 					board.getPropertyOwner(getPosition()).getMoney().addMoney(100);
+					message = player.getName() + " -$100" + "\n";
 					break;
 				case 4: player.getMoney().sbustractMoney(200);
 					board.getPropertyOwner(getPosition()).getMoney().addMoney(200);
+					message = player.getName() + " -$200" + "\n";
 					break;
 			}
 			if(player.getDecision() && board.getPropertyOwner(getPosition()).getDecision()) {
 				board.purchaseProperty(player, this.getPosition());
 				this.setOwner(player);
+				message = player.getName() + " -$" + getPrice() + "\n";
 			}
 		}
 	}
@@ -95,10 +102,10 @@ public class Railroad extends Square{
 
 	public String toString(){
 		switch(this.railroad){
-			case READING_RAILROAD: return " at Reading Railroad. \n";
-			case PENNSYLVANIA_RAILROAD: return " at Pennsylvania Railroad. \n";
-			case B_O_RAILROAD: return " at B. & O. Railroad. \n";
-			case SHORT_LINE: return " at Short Line. \n";
+			case READING_RAILROAD: return " at Reading Railroad. \n" + message;
+			case PENNSYLVANIA_RAILROAD: return " at Pennsylvania Railroad. \n" + message;
+			case B_O_RAILROAD: return " at B. & O. Railroad. \n" + message;
+			case SHORT_LINE: return " at Short Line. \n" + message;
 			default: return "Type not defined.";
 		}
 	}

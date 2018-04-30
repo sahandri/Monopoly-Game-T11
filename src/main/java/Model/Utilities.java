@@ -12,12 +12,14 @@ public class Utilities extends Square {
      4, for a total of 28; Mary now owes Sarah $28 rent.
     */
 	
+	
 	public enum utilities{
 		WATER_WORKS,
 		ELECTRICITY_COMPANY
 	}
 	
 	private utilities utility;
+	private String message = "";
 	
     public Utilities(int price, int position) {
     	super(price, position);
@@ -43,8 +45,8 @@ public class Utilities extends Square {
     
     public String toString(){
 		switch(this.utility){
-			case ELECTRICITY_COMPANY: return " at Electricity Company. \n";
-			case WATER_WORKS: return " at Water Works. \n";
+			case ELECTRICITY_COMPANY: return " at Electricity Company. \n" + message;
+			case WATER_WORKS: return " at Water Works. \n" + message;
 			default: return "Type not defined.";
 		}
 	}
@@ -55,12 +57,14 @@ public class Utilities extends Square {
 			//player pays price and buy the property
 			board.purchaseProperty(player, this.getPosition());
 			this.setOwner(player);
+			message = player.getName() + " -$" + getPrice() +"\n";
 		}
 		else if(this.getOwner() != -1 && this.getOwner()!=player.getID()){
 			if(player.getDecision() && board.getPropertyOwner(getPosition()).getDecision()) {
 				board.getPropertyOwner(getPosition()).getMoney().addMoney(getPrice());
 				board.purchaseProperty(player, this.getPosition());
 				this.setOwner(player);
+				message = player.getName() + " -$" + getPrice() + "\n";
 			}
 		}
 		else {
@@ -75,5 +79,6 @@ public class Utilities extends Square {
 		if(this.getOwner() != -1) {
 			board.getPropertyOwner(getPosition()).getMoney().addMoney(rent);
 		}
+		message  = player.getName() + " -$" + rent + "\n";
 	}
 }
