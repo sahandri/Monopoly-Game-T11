@@ -18,6 +18,7 @@ public class Street extends Square{
     private int house; //number of houses on the street
     private int hotel; //number of hotels on the street
     private boolean mortgage;
+    private String message = "";
 
 	public Street(int price, int position, int rent) {
 		super(price, position);
@@ -206,12 +207,15 @@ public class Street extends Square{
             //player pays price and buy the property
             board.purchaseProperty(player, this.getPosition());
             this.setOwner(player);
+            message = player.getName() + " -$" + getPrice() + " \n"; // to be printed in history
         }else if(this.getOwner() != -1 && this.getOwner()!=player.getID()){ //if street owns by somebody else
             player.getMoney().sbustractMoney(calculateRent(board));//subtract the rent amount
             board.getPropertyOwner(getPosition()).getMoney().addMoney(calculateRent(board));//adds the rent amount to the owner
+            message = player.getName() + " pays rent -$" + calculateRent(board) + " \n"; // to be printed in history 
 	        if(player.getDecision() && board.getPropertyOwner(getPosition()).getDecision()) {//player buys the property from other player
 				board.purchaseProperty(player, this.getPosition());
 				this.setOwner(player);
+				message = player.getName() + " -$" + getPrice() + " \n"; // to be printed in history
 			}
         }
 	}
@@ -245,28 +249,28 @@ public class Street extends Square{
 
     public String toString(){
     	switch(getPosition()) {
-        case 1: return " at Mediterranian Avenue. \n";
-        case 3: return " at Baltic Avenue. \n";
-        case 6: return " at Oriental Avenue. \n";
-        case 8: return " at Vermont Avenue. \n";
-        case 9: return " at Connecticut Avenue. \n";
-        case 11:return " at St. Charles Place. \n";
-        case 13:return " at States Avenue. \n";
-        case 14: return " at Virginia Avenue. \n";
-        case 16:return " at St. James Place. \n";
-        case 18:return " at Tennessee Avenue. \n";
-        case 19:return " at New York Avenue. \n";
-        case 21:return " at Kentucky Avenue. \n";
-        case 23:return " at Indiana Avenue. \n";
-        case 24:return " at Illinois Avenue. \n";
-        case 26:return " at Atlantic Avenue. \n";
-        case 27:return " at Ventnor Avenue. \n";
-        case 29:return " at Marvin Gardens. \n";
-        case 31:return " at Pacific Avenue. \n";
-        case 32:return " at North Carolina Avenue. \n";
-        case 34:return " at Pennsylvania Avenue. \n";
-        case 37:return " at Park Place. \n";
-        case 39:return " at Boardwalk. \n";
+        case 1: return " at Mediterranian Avenue. \n" + message;
+        case 3: return " at Baltic Avenue. \n" + message;
+        case 6: return " at Oriental Avenue. \n" + message;
+        case 8: return " at Vermont Avenue. \n" + message;
+        case 9: return " at Connecticut Avenue. \n" + message;
+        case 11:return " at St. Charles Place. \n" + message;
+        case 13:return " at States Avenue. \n" + message;
+        case 14: return " at Virginia Avenue. \n" + message;
+        case 16:return " at St. James Place. \n" + message;
+        case 18:return " at Tennessee Avenue. \n" + message;
+        case 19:return " at New York Avenue. \n" + message;
+        case 21:return " at Kentucky Avenue. \n" + message;
+        case 23:return " at Indiana Avenue. \n" + message;
+        case 24:return " at Illinois Avenue. \n" + message;
+        case 26:return " at Atlantic Avenue. \n" + message;
+        case 27:return " at Ventnor Avenue. \n" + message;
+        case 29:return " at Marvin Gardens. \n" + message;
+        case 31:return " at Pacific Avenue. \n" + message;
+        case 32:return " at North Carolina Avenue. \n" + message;
+        case 34:return " at Pennsylvania Avenue. \n" + message;
+        case 37:return " at Park Place. \n" + message;
+        case 39:return " at Boardwalk. \n" + message;
         default:// throw error if wrong position is specified
             throw new IllegalArgumentException("Unknown position");
     }
